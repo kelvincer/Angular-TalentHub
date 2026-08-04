@@ -1,0 +1,37 @@
+<aside class="w-64 bg-base-100 border-r border-base-300 h-full">
+    <div class="menu-title">
+        Talent Hub
+    </div>
+
+    <ul class="menu w-64">
+        @if(authService.hasRole('ADMIN')) {
+        <li>
+            <a routerLink="user-manager" routerLinkActive="menu-active">Gestionar Usuarios</a>
+        </li>
+        }
+
+        @if(authService.hasRole('ADMIN')) {
+        <li>
+            <a routerLink="visualize-report" routerLinkActive="menu-active">Visualizar Reportes</a>
+        </li>
+        }
+
+        @if(authService.hasRole('ADMIN')) {
+        <li>
+            <a routerLink="manage-vacancy" routerLinkActive="menu-active">Administrar Vacantes</a>
+        </li>
+        }
+
+        @if(authService.hasRole('EDITOR')) {
+        <li>
+            <a routerLink="publicaciones" routerLinkActive="active">Publicaciones</a>
+        </li>
+        }
+
+        @if(authService.hasRole('EDITOR')) {
+        <li>
+            <a routerLink="perfil" routerLinkActive="active">Perfil</a>
+        </li>
+        }
+    </ul>
+</aside>

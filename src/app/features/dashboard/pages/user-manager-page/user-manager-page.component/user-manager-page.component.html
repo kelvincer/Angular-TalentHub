@@ -1,0 +1,100 @@
+<div class="flex flex-wrap justify-between gap-4">
+
+    <button class="btn btn-primary">
+        Nuevo Usuario
+    </button>
+
+    <input type="text" class="input input-bordered" placeholder="Buscar usuario">
+
+    <select class="select select-bordered">
+
+        <option>Todos</option>
+        <option>Administrador</option>
+        <option>Reclutador</option>
+        <option>Candidato</option>
+
+    </select>
+
+</div>
+
+<div class="overflow-x-auto">
+
+    <table class="table table-zebra">
+
+        <thead>
+
+            <tr>
+
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Rol</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @for(user of users(); track user.id){
+
+            <tr>
+
+                <td>{{user.name}}</td>
+
+                <td>{{user.email}}</td>
+
+                <td>
+
+                    <div class="badge badge-primary">
+
+                        {{user.role}}
+
+                    </div>
+
+                </td>
+
+                <td>
+
+                    @if(user.status==='Activo'){
+
+                    <div class="badge badge-success">
+                        Activo
+                    </div>
+
+                    }@else{
+
+                    <div class="badge badge-error">
+                        Inactivo
+                    </div>
+
+                    }
+
+                </td>
+
+                <td>
+
+                    <div class="flex gap-2">
+
+                        <button class="btn btn-sm btn-info">
+                            Editar
+                        </button>
+
+                        <button class="btn btn-sm btn-error">
+                            Eliminar
+                        </button>
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+            }
+
+        </tbody>
+
+    </table>
+
+</div>
