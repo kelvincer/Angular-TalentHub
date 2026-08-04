@@ -1,0 +1,112 @@
+@if(modalOpen()) {
+<dialog class="modal modal-open">
+    <div class="modal-box">
+
+        <h3 class="font-bold text-xl">
+            Editar usuario
+        </h3>
+
+        <p class="text-sm text-gray-500">
+            Actualiza la información y permisos del usuario
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5">
+
+            <div>
+                <label class="label">
+                    Nombre completo
+                </label>
+
+                <input class="input input-bordered w-full" value="Juan Pérez">
+            </div>
+
+
+            <div>
+                <label class="label">
+                    Correo electrónico
+                </label>
+
+                <input class="input input-bordered w-full" value="juan@email.com">
+            </div>
+
+
+            <div>
+                <label class="label">
+                    Teléfono
+                </label>
+
+                <input class="input input-bordered w-full">
+            </div>
+
+
+            <div>
+                <label class="label">
+                    Rol
+                </label>
+
+                <select class="select select-bordered w-full">
+
+                    <option>
+                        Administrador
+                    </option>
+
+                    <option selected>
+                        Reclutador
+                    </option>
+
+                    <option>
+                        Candidato
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+        <div class="divider">
+            Permisos
+        </div>
+
+
+        <div class="grid grid-cols-2 gap-3">
+
+            <label class="cursor-pointer label">
+
+                <span>
+                    Crear vacantes
+                </span>
+
+                <input type="checkbox" checked class="checkbox checkbox-primary">
+
+            </label>
+
+
+            <label class="cursor-pointer label">
+
+                <span>
+                    Ver reportes
+                </span>
+
+                <input type="checkbox" class="checkbox checkbox-primary">
+
+            </label>
+
+        </div>
+
+        <div class="modal-action">
+
+            <button class="btn btn-ghost" (click)="closeModal()">
+                Cancelar
+            </button>
+
+            <button class="btn btn-primary">
+                Guardar cambios
+            </button>
+
+        </div>
+
+    </div>
+
+</dialog>
+}

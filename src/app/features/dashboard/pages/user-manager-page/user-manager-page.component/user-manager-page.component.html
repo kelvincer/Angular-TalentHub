@@ -1,6 +1,6 @@
 <div class="flex flex-wrap justify-between gap-4">
 
-    <button class="btn btn-primary">
+    <button class="btn btn-primary" (click)="openModal()">
         Nuevo Usuario
     </button>
 
@@ -24,13 +24,11 @@
         <thead>
 
             <tr>
-
                 <th>Nombre</th>
                 <th>Correo</th>
                 <th>Rol</th>
                 <th>Estado</th>
                 <th>Acciones</th>
-
             </tr>
 
         </thead>
@@ -77,11 +75,11 @@
 
                     <div class="flex gap-2">
 
-                        <button class="btn btn-sm btn-info">
+                        <button class="btn btn-sm btn-info" (click)="openEditUserModal()">
                             Editar
                         </button>
 
-                        <button class="btn btn-sm btn-error">
+                        <button class="btn btn-sm btn-error" (click)="openDeleteUserModal()">
                             Eliminar
                         </button>
 
@@ -98,3 +96,7 @@
     </table>
 
 </div>
+
+<app-create-user [modalOpen]="isCreateUserModalOpen()" (close)="closeModal()" />
+<app-delete-user [modalOpen]="isDeleteUserModalOpen()" (close)="closeDeleteUserModal()"/>
+<app-edit-user [modalOpen]="isEditUserModalOpen()" (close)="closeEditUserModal()"/>

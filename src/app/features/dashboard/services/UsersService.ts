@@ -1,44 +1,28 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { User } from '../models/User';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
 
-  loadUsers(): User[] {
+  private api = 'http://localhost:3000/users';
+  http = inject(HttpClient)
 
-    return [{
-      id: 1,
-      name: 'Jorge',
-      email: 'mail@site.com',
-      role: 'Administrador',
-      status: 'Activo',
-      createdAt: '12-09-2026'
-    },
-    {
-      id: 2,
-      name: 'Juan',
-      email: 'mail@site.com',
-      role: 'Administrador',
-      status: 'Activo',
-      createdAt: '12-09-2026'
-    },
-    {
-      id: 3,
-      name: 'Popeye',
-      email: 'mail@site.com',
-      role: 'Administrador',
-      status: 'Activo',
-      createdAt: '12-09-2026'
-    },
-    {
-      id: 4,
-      name: 'Oliva',
-      email: 'mail@site.com',
-      role: 'Candidato',
-      status: 'Inactivo',
-      createdAt: '12-09-2026'
-    }];
+  getUsers() {
+    return this.http.get<User[]>(this.api);
+  }
+
+  create(user: User) {
+    return this.http.post<User>(this.api, user);
+  }
+
+  update(id: number, user: User) {
+    return this.http.put<User>(`${this.api}/${id}`, user);
+  }
+
+  delete(id: number) {
+    return this.http.delete(`${this.api}/${id}`);
   }
 }

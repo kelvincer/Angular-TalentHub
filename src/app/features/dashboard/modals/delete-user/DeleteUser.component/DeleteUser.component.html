@@ -1,0 +1,29 @@
+@if (modalOpen()) {
+<dialog class="modal modal-open">
+
+    <div class="modal-box">
+
+        <h3 class="font-bold">
+            Eliminar usuario
+        </h3>
+
+        <p>
+            ¿Desea eliminar este usuario?
+        </p>
+
+        <div class="modal-action">
+
+            <button class="btn" (click)="closeModal()">
+                Cancelar
+            </button>
+
+            <button class="btn btn-error">
+                Eliminar
+            </button>
+
+        </div>
+
+    </div>
+
+</dialog>
+}

@@ -1,8 +1,8 @@
 export interface User {
-    id: number;
+    id: string;
     name: string;
     email: string;
     role: 'Administrador' | 'Reclutador' | 'Candidato';
     status: 'Activo' | 'Inactivo';
-    createdAt: string;
+    createdAt: Date;
 }
