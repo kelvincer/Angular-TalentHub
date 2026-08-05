@@ -10,61 +10,55 @@
             Actualiza la información y permisos del usuario
         </p>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5">
+        <form class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5" [formGroup]="editUserForm">
 
             <div>
                 <label class="label">
                     Nombre completo
                 </label>
 
-                <input class="input input-bordered w-full" value="Juan Pérez">
+                <input class="input input-bordered w-full" formControlName="name">
             </div>
-
 
             <div>
                 <label class="label">
                     Correo electrónico
                 </label>
 
-                <input class="input input-bordered w-full" value="juan@email.com">
+                <input class="input input-bordered w-full" formControlName="email">
             </div>
-
-
-            <div>
-                <label class="label">
-                    Teléfono
-                </label>
-
-                <input class="input input-bordered w-full">
-            </div>
-
-
             <div>
                 <label class="label">
                     Rol
                 </label>
 
-                <select class="select select-bordered w-full">
-
-                    <option>
-                        Administrador
+                <select class="select select-bordered w-full" formControlName="role">
+                    @for (rol of roles; track rol) {
+                    <option [value]="rol">
+                        {{ rol }}
                     </option>
-
-                    <option selected>
-                        Reclutador
-                    </option>
-
-                    <option>
-                        Candidato
-                    </option>
-
+                    }
                 </select>
 
             </div>
 
-        </div>
+            <div>
+                <label class="label">
+                    Estado
+                </label>
 
-        <div class="divider">
+                <select class="select select-bordered w-full" formControlName="status">
+                    @for (state of states; track state) {
+                    <option [value]="state">
+                        {{ state }}
+                    </option>
+                    }
+                </select>
+            </div>
+
+        </form>
+
+        <!-- <div class="divider">
             Permisos
         </div>
 
@@ -93,14 +87,14 @@
             </label>
 
         </div>
-
+        -->
         <div class="modal-action">
 
             <button class="btn btn-ghost" (click)="closeModal()">
                 Cancelar
             </button>
 
-            <button class="btn btn-primary">
+            <button class="btn btn-primary" (click)="updateUser()">
                 Guardar cambios
             </button>
 

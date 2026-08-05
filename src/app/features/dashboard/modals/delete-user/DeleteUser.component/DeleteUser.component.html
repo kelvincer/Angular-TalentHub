@@ -8,7 +8,7 @@
         </h3>
 
         <p>
-            ¿Desea eliminar este usuario?
+            ¿Desea eliminar a este usuario {{user()?.name}}?
         </p>
 
         <div class="modal-action">
@@ -17,7 +17,7 @@
                 Cancelar
             </button>
 
-            <button class="btn btn-error">
+            <button class="btn btn-error" (click)="deleteUser()">
                 Eliminar
             </button>
 

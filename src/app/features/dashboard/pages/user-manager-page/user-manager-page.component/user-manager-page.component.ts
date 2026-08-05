@@ -15,9 +15,11 @@ export class UserManagerPageComponent implements OnInit {
 
   usersService = inject(UsersService)
   users = signal<User[]>([])
-  isCreateUserModalOpen = signal(false)
-  isDeleteUserModalOpen = signal(false)
-  isEditUserModalOpen = signal(false)
+  isUserCreateModalOpen = signal(false)
+  isUserDeleteModalOpen = signal(false)
+  isUserEditModalOpen = signal(false)
+  selectedUserEdit = signal<User | undefined>(undefined)
+  selectedUserDelete = signal<User |undefined>(undefined)
 
   ngOnInit(): void {
     this.loadUsers();
@@ -31,30 +33,36 @@ export class UserManagerPageComponent implements OnInit {
   }
 
   openModal() {
-    this.isCreateUserModalOpen.set(true);
+    this.isUserCreateModalOpen.set(true);
     console.log("open modal");
   }
 
   closeModal() {
-    this.isCreateUserModalOpen.set(false);
+    this.isUserCreateModalOpen.set(false);
     this.loadUsers();
   }
 
-  openDeleteUserModal() {
-    this.isDeleteUserModalOpen.set(true);
+  openDeleteUserModal(id: string) {
+    this.isUserDeleteModalOpen.set(true);
+    this.selectedUserDelete.set(this.users().find((item) => {
+      return item.id === id
+    }))
   }
 
   closeDeleteUserModal() {
-    this.isDeleteUserModalOpen.set(false);
+    this.isUserDeleteModalOpen.set(false);
     this.loadUsers();
   }
 
-  openEditUserModal() {
-    this.isEditUserModalOpen.set(true);
+  openEditUserModal(id: string) {
+    this.isUserEditModalOpen.set(true)
+    this.selectedUserEdit.set(this.users().find((item) => {
+      return item.id === id
+    }))
   }
 
   closeEditUserModal() {
-    this.isEditUserModalOpen.set(false);
-    this.loadUsers();
+    this.isUserEditModalOpen.set(false)
+    this.loadUsers()
   }
 }

@@ -75,11 +75,11 @@
 
                     <div class="flex gap-2">
 
-                        <button class="btn btn-sm btn-info" (click)="openEditUserModal()">
+                        <button class="btn btn-sm btn-info" (click)="openEditUserModal(user.id)">
                             Editar
                         </button>
 
-                        <button class="btn btn-sm btn-error" (click)="openDeleteUserModal()">
+                        <button class="btn btn-sm btn-error" (click)="openDeleteUserModal(user.id)">
                             Eliminar
                         </button>
 
@@ -97,6 +97,6 @@
 
 </div>
 
-<app-create-user [modalOpen]="isCreateUserModalOpen()" (close)="closeModal()" />
-<app-delete-user [modalOpen]="isDeleteUserModalOpen()" (close)="closeDeleteUserModal()"/>
-<app-edit-user [modalOpen]="isEditUserModalOpen()" (close)="closeEditUserModal()"/>
+<app-create-user [modalOpen]="isUserCreateModalOpen()" (close)="closeModal()" />
+<app-delete-user [modalOpen]="isUserDeleteModalOpen()" (close)="closeDeleteUserModal()" [user]="selectedUserDelete()"/>
+<app-edit-user [modalOpen]="isUserEditModalOpen()" (close)="closeEditUserModal()" [user]="selectedUserEdit()"/>

@@ -18,11 +18,11 @@ export class UsersService {
     return this.http.post<User>(this.api, user);
   }
 
-  update(id: number, user: User) {
+  update(id: string, user: User) {
     return this.http.put<User>(`${this.api}/${id}`, user);
   }
 
-  delete(id: number) {
+  delete(id: string) {
     return this.http.delete(`${this.api}/${id}`);
   }
 }
