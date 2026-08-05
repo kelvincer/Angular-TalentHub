@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { User } from '../../../models/User';
 import { UsersService } from '../../../services/UsersService';
 import { CreateUserComponent } from "../../../modals/create-user/CreateUser.component";
@@ -19,9 +19,23 @@ export class UserManagerPageComponent implements OnInit {
   isUserDeleteModalOpen = signal(false)
   isUserEditModalOpen = signal(false)
   selectedUserEdit = signal<User | undefined>(undefined)
-  selectedUserDelete = signal<User |undefined>(undefined)
+  selectedUserDelete = signal<User | undefined>(undefined)
+  search = signal('')
+  roleFilter = signal('Todos')
+  roles = ['Todos', 'Administrador', 'Reclutador', 'Candidato']
 
-  ngOnInit(): void {
+  filteredUsers = computed(() => {
+    const texto = this.search().toLowerCase().trim();
+    const rol = this.roleFilter();
+
+    return this.users().filter(user => {
+      const matchesText = !texto || user.name.toLowerCase().includes(texto);
+      const matchesRole = rol === 'Todos' || user.role === rol;
+      return matchesText && matchesRole;
+    });
+  });
+
+  ngOnInit() {
     this.loadUsers();
   }
 

@@ -4,14 +4,14 @@
         Nuevo Usuario
     </button>
 
-    <input type="text" class="input input-bordered" placeholder="Buscar usuario">
+    <input type="text" class="input input-bordered" placeholder="Buscar usuario" [value]="search()"
+        (input)="search.set($any($event.target).value)">
 
-    <select class="select select-bordered">
+    <select class="select select-bordered" [value]="roleFilter()" (change)="roleFilter.set($any($event.target).value)">
 
-        <option>Todos</option>
-        <option>Administrador</option>
-        <option>Reclutador</option>
-        <option>Candidato</option>
+        @for (role of roles; track role) {
+        <option>{{role}}</option>
+        }
 
     </select>
 
@@ -35,8 +35,7 @@
 
         <tbody>
 
-            @for(user of users(); track user.id){
-
+            @for (user of filteredUsers(); track user.id){
             <tr>
 
                 <td>{{user.name}}</td>
@@ -98,5 +97,5 @@
 </div>
 
 <app-create-user [modalOpen]="isUserCreateModalOpen()" (close)="closeModal()" />
-<app-delete-user [modalOpen]="isUserDeleteModalOpen()" (close)="closeDeleteUserModal()" [user]="selectedUserDelete()"/>
-<app-edit-user [modalOpen]="isUserEditModalOpen()" (close)="closeEditUserModal()" [user]="selectedUserEdit()"/>
+<app-delete-user [modalOpen]="isUserDeleteModalOpen()" (close)="closeDeleteUserModal()" [user]="selectedUserDelete()" />
+<app-edit-user [modalOpen]="isUserEditModalOpen()" (close)="closeEditUserModal()" [user]="selectedUserEdit()" />

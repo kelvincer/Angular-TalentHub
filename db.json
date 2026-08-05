@@ -1,5 +1,12 @@
 {
   "$schema": "./node_modules/json-server/schema.json",
+  "loggedUsers": [
+    {
+      "email": "mail@site.com",
+      "password": "America2030@0",
+      "role": "Administrador"
+    }
+  ],
   "users": [
     {
       "id": "1",
