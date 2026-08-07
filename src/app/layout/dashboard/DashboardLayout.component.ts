@@ -1,9 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
-import { SideBarComponent } from "../../side-bar.component/side-bar.component";
+import { SideBarComponent } from "../side-bar.component/side-bar.component";
 import { ActivatedRoute, RouterOutlet } from "@angular/router";
-import { UsersService } from '../../../features/dashboard/services/UsersService';
-import { User } from '../../../features/dashboard/models/User';
-import { menu, Menu } from '../../../features/dashboard/models/Menu';
+import { UsersService } from '../../features/dashboard/services/UsersService';
+import { User } from '../../features/dashboard/models/User';
+import { menu, Menu } from '../../features/dashboard/models/Menu';
 
 @Component({
   selector: 'app-dashboard-layout.component',
@@ -11,7 +11,7 @@ import { menu, Menu } from '../../../features/dashboard/models/Menu';
   templateUrl: './DashboardLayout.component.html',
   styleUrl: './DashboardLayout.component.css',
 })
-export class DashboardLayoutComponent {
+export default class DashboardLayoutComponent {
 
   private usersService = inject(UsersService)
   user = signal<User | undefined>(undefined)

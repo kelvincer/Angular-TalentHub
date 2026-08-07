@@ -1,9 +1,9 @@
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
-import { User } from '../../../models/User';
-import { UsersService } from '../../../services/UsersService';
-import { CreateUserComponent } from "../../../modals/create-user/CreateUser.component";
-import { DeleteUserComponent } from "../../../modals/delete-user/DeleteUser.component/DeleteUser.component";
-import { EditUserComponent } from "../../../modals/edit-user/EditUser.component/EditUser.component";
+import { User } from '../../models/User';
+import { UsersService } from '../../services/UsersService';
+import { CreateUserComponent } from "../../modals/create-user/CreateUser.component";
+import { DeleteUserComponent } from "../../modals/delete-user/DeleteUser.component/DeleteUser.component";
+import { EditUserComponent } from "../../modals/edit-user/EditUser.component/EditUser.component";
 
 @Component({
   selector: 'app-user-manager-page.component',
