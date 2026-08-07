@@ -12,18 +12,4 @@ export class AuthService {
   getUsers() {
     return this.http.get<LoggedUser[]>(this.api);
   }
-
-
-  user = {
-    name: 'Juan',
-    role: 'ADMIN' // ADMIN | USER | EDITOR
-  };
-
-  getRole(): string {
-    return this.user.role;
-  }
-
-  hasRole(role: string): boolean {
-    return this.user.role === role;
-  }
 }

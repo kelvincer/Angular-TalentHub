@@ -1,36 +1,13 @@
-<aside class="w-64 bg-base-100 border-r border-base-300 h-full">
-    <div class="menu-title">
+<aside class="w-72 bg-base-100 border-r border-base-300 h-full">
+    <div class="menu-title text-2xl">
         Talent Hub
+        <div class="badge badge-lg ml-2 badge-secondary">Hello {{userName()}}</div>
     </div>
 
-    <ul class="menu w-64">
-        @if(authService.hasRole('ADMIN')) {
+    <ul class="menu w-72">
+        @for (item of menu(); track item) {
         <li>
-            <a routerLink="user-manager" routerLinkActive="menu-active">Gestionar Usuarios</a>
-        </li>
-        }
-
-        @if(authService.hasRole('ADMIN')) {
-        <li>
-            <a routerLink="visualize-report" routerLinkActive="menu-active">Visualizar Reportes</a>
-        </li>
-        }
-
-        @if(authService.hasRole('ADMIN')) {
-        <li>
-            <a routerLink="manage-vacancy" routerLinkActive="menu-active">Administrar Vacantes</a>
-        </li>
-        }
-
-        @if(authService.hasRole('EDITOR')) {
-        <li>
-            <a routerLink="publicaciones" routerLinkActive="active">Publicaciones</a>
-        </li>
-        }
-
-        @if(authService.hasRole('EDITOR')) {
-        <li>
-            <a routerLink="perfil" routerLinkActive="active">Perfil</a>
+            <a [routerLink]="item.link" routerLinkActive="menu-active">{{item.name}}</a>
         </li>
         }
     </ul>
