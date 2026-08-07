@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-empty.component',
   imports: [],
-  templateUrl: './Empty.component.html',
-  styleUrl: './Empty.component.css',
+  templateUrl: './empty.component.html',
+  styleUrl: './empty.component.css',
 })
 export default class EmptyComponent {}

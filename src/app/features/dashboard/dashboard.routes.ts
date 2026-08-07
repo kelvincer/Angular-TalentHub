@@ -5,13 +5,13 @@ const dashboardRoutes: Routes = [
 
     {
         path: ':userId',
-        loadComponent: () => import('../../layout/dashboard/DashboardLayout.component'),
+        loadComponent: () => import('../../layout/dashboard/dashboard-layout.component'),
         children: [
             {
                 path: '',
                 pathMatch: 'full',
                 canActivate: [initialDashboardRouteGuard],
-                loadComponent: () => import("./pages/empty-page/Empty.component")
+                loadComponent: () => import("./pages/empty-page/empty.component")
             },
             {
                 path: 'user-manager',
@@ -27,27 +27,27 @@ const dashboardRoutes: Routes = [
             },
             {
                 path: 'create-vacancy',
-                loadComponent: () => import("./pages/create-vacancy-page/CreateVacancy.component")
+                loadComponent: () => import("./pages/create-vacancy-page/create-vacancy.component")
             },
             {
                 path: 'manage-candidate',
-                loadComponent: () => import("./pages/manage-candidates-page/ManageCandidate.component")
+                loadComponent: () => import("./pages/manage-candidates-page/manage-candidate.component")
             },
             {
                 path: 'manage-interview',
-                loadComponent: () => import("./pages/manage-interview-page/ManageInterview.component")
+                loadComponent: () => import("./pages/manage-interview-page/manage-interview.component")
             },
             {
                 path: 'edit-profile',
-                loadComponent: () => import("./pages/edit-profile-page/EditProfile.component")
+                loadComponent: () => import("./pages/edit-profile-page/edit-profile.component")
             },
             {
                 path: 'upload-cv',
-                loadComponent: () => import("./pages/upload-cv-page/UploadCV.component")
+                loadComponent: () => import("./pages/upload-cv-page/upload-cv.component")
             },
             {
                 path: 'apply-vacancy',
-                loadComponent: () => import("./pages/apply-vacancy-page/ApplyVacancy.component")
+                loadComponent: () => import("./pages/apply-vacancy-page/apply-vacancy.component")
             }
         ]
     }

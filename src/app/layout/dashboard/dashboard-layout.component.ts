@@ -8,8 +8,8 @@ import { menu, Menu } from '../../features/dashboard/models/Menu';
 @Component({
   selector: 'app-dashboard-layout.component',
   imports: [SideBarComponent, RouterOutlet],
-  templateUrl: './DashboardLayout.component.html',
-  styleUrl: './DashboardLayout.component.css',
+  templateUrl: './dashboard-layout.component.html',
+  styleUrl: './dashboard-layout.component.css',
 })
 export default class DashboardLayoutComponent {
 
