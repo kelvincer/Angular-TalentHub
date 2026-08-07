@@ -6,4 +6,4 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   templateUrl: './manage-vacancy.component.html',
   styleUrl: './manage-vacancy.component.css',
 })
-export class ManageVacancyComponent {}
+export default class ManageVacancyComponent { }

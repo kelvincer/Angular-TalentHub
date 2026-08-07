@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-empty.component',
@@ -6,4 +6,4 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   templateUrl: './Empty.component.html',
   styleUrl: './Empty.component.css',
 })
-export class EmptyComponent {}
+export default class EmptyComponent {}

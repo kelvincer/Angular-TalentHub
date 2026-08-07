@@ -6,4 +6,4 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   templateUrl: './UploadCV.component.html',
   styleUrl: './UploadCV.component.css',
 })
-export class UploadCVComponent {}
+export default class UploadCVComponent {}

@@ -1,15 +1,6 @@
 import { Routes } from "@angular/router";
 import { DashboardLayoutComponent } from "../../layout/dashboard/DashboardLayout.component/DashboardLayout.component";
-import { UserManagerPageComponent } from "./pages/user-manager-page/user-manager-page.component/user-manager-page.component";
-import { VisualizeReportPageComponent } from "./pages/visualize-report-page/visualize-report-page.component/visualize-report-page.component";
-import { ManageVacancyComponent } from "./pages/manage-vancancy-page/manage-vacancy.component/manage-vacancy.component";
-import { CreateVacancyComponent } from "./pages/create-vacancy-page/CreateVacancy.component/CreateVacancy.component";
-import { ManageInterviewComponent } from "./pages/manage-interview-page/ManageInterview.component/ManageInterview.component";
 import { initialDashboardRouteGuard } from "./guards/initialDashboardRouteGuard";
-import { EditProfileComponent } from "./pages/edit-profile-page/EditProfile.component/EditProfile.component";
-import { UploadCVComponent } from "./pages/upload-cv-page/UploadCV.component/UploadCV.component";
-import { ApplyVacancyComponent } from "./pages/apply-vacancy-page/ApplyVacancy.component/ApplyVacancy.component";
-import { EmptyComponent } from "./pages/empty-page/Empty.component/Empty.component";
 
 const dashboardRoutes: Routes = [
 
@@ -21,48 +12,44 @@ const dashboardRoutes: Routes = [
                 path: '',
                 pathMatch: 'full',
                 canActivate: [initialDashboardRouteGuard],
-                component: EmptyComponent
+                loadComponent: () => import("./pages/empty-page/Empty.component/Empty.component")
             },
             {
                 path: 'user-manager',
-                component: UserManagerPageComponent
+                loadComponent: () => import("./pages/user-manager-page/user-manager-page.component/user-manager-page.component")
             },
             {
                 path: 'visualize-report',
-                component: VisualizeReportPageComponent
+                loadComponent: () => import("./pages/visualize-report-page/visualize-report-page.component/visualize-report-page.component")
             },
             {
                 path: 'manage-vacancy',
-                component: ManageVacancyComponent
+                loadComponent: () => import("./pages/manage-vancancy-page/manage-vacancy.component/manage-vacancy.component")
             },
             {
                 path: 'create-vacancy',
-                component: CreateVacancyComponent
+                loadComponent: () => import("./pages/create-vacancy-page/CreateVacancy.component/CreateVacancy.component")
             },
             {
-                path: 'manage-vacancy',
-                component: ManageVacancyComponent
+                path: 'manage-candidate',
+                loadComponent: () => import("./pages/manage-candidates-page/ManageCandidate.component/ManageCandidate.component")
             },
             {
                 path: 'manage-interview',
-                component: ManageInterviewComponent
+                loadComponent: () => import("./pages/manage-interview-page/ManageInterview.component/ManageInterview.component")
             },
             {
                 path: 'edit-profile',
-                component: EditProfileComponent
+                loadComponent: () => import("./pages/edit-profile-page/EditProfile.component/EditProfile.component")
             },
             {
                 path: 'upload-cv',
-                component: UploadCVComponent
+                loadComponent: () => import("./pages/upload-cv-page/UploadCV.component/UploadCV.component")
             },
             {
                 path: 'apply-vacancy',
-                component: ApplyVacancyComponent
+                loadComponent: () => import("./pages/apply-vacancy-page/ApplyVacancy.component/ApplyVacancy.component")
             }
-            /*  {
-                 path: '**',
-                 redirectTo: 'user-manager',
-             }, */
         ]
     }
 ]

@@ -6,4 +6,4 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   templateUrl: './EditProfile.component.html',
   styleUrl: './EditProfile.component.css',
 })
-export class EditProfileComponent {}
+export default class EditProfileComponent {}

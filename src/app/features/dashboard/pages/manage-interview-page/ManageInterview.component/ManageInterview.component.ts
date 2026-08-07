@@ -6,4 +6,4 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   templateUrl: './ManageInterview.component.html',
   styleUrl: './ManageInterview.component.css',
 })
-export class ManageInterviewComponent {}
+export default class ManageInterviewComponent {}

@@ -6,4 +6,4 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   templateUrl: './visualize-report-page.component.html',
   styleUrl: './visualize-report-page.component.css',
 })
-export class VisualizeReportPageComponent {}
+export default class VisualizeReportPageComponent {}

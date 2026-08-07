@@ -11,7 +11,7 @@ import { EditUserComponent } from "../../../modals/edit-user/EditUser.component/
   templateUrl: './user-manager-page.component.html',
   styleUrl: './user-manager-page.component.css',
 })
-export class UserManagerPageComponent implements OnInit {
+export default class UserManagerPageComponent implements OnInit {
 
   usersService = inject(UsersService)
   users = signal<User[]>([])

@@ -27,7 +27,7 @@ export const menu : Menu[] = [
     },
     {
         role: 'Reclutador',
-        link: 'manage-vacancy',
+        link: 'manage-candidate',
         name: 'Gestionar candidatos'
     },
     {
