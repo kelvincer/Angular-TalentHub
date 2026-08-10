@@ -26,8 +26,8 @@ const dashboardRoutes: Routes = [
                 loadComponent: () => import("./pages/manage-vancancy-page/manage-vacancy.component")
             },
             {
-                path: 'create-vacancy',
-                loadComponent: () => import("./pages/create-vacancy-page/create-vacancy.component")
+                path: 'vacancy',
+                loadChildren: () => import("./pages/vacancy-page/vacancies.routes")
             },
             {
                 path: 'manage-candidate',

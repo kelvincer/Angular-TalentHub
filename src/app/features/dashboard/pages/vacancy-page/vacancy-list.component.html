@@ -1,0 +1,88 @@
+<div class="flex flex-wrap justify-between">
+
+    <div>
+        <div class="text-2xl">Vacantes</div>
+        <div class="text-base-content/60">Administra las vacantes del proceso de reclutamiento.</div>
+    </div>
+
+    <a class="btn btn-primary" routerLink="new-vacancy">Nueva vacante</a>
+
+</div>
+
+<div class="flex flex-wrap mt-4">
+    <label class="input">
+        <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.3-4.3"></path>
+            </g>
+        </svg>
+        <input type="search" class="grow" placeholder="Buscar por título, ubicación o área..." />
+        <kbd class="kbd kbd-sm">⌘</kbd>
+        <kbd class="kbd kbd-sm">K</kbd>
+    </label>
+</div>
+
+<div class="overflow-x-auto mt-3">
+    <table class="table table-zebra">
+        <!-- head -->
+        <thead>
+            <tr class="text-sm">
+                <th>Vacante</th>
+                <th>Área / Ubicación</th>
+                <th class="w-44">Salario</th>
+                <th class="w-32">Estado</th>
+                <th class="md:table-cell">Postulantes</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of vacancies(); track item.id) {
+            <tr>
+                <th>
+                    <div class="font-semibold">
+                        {{item.title}}
+                    </div>
+                    <div class="text-xs text-base-content/60">
+                        {{item.createdAt | date:'dd/MM/yyyy'}}
+                    </div>
+                </th>
+                <td>
+                    <div>
+                        {{item.department}}
+                    </div>
+                    <div class="text-xs text-base-content/60">
+                        {{ item.location }} · {{ item.modality }}
+                    </div>
+
+                </td>
+                <td>S/. {{item.salaryMin}} - S/. {{item.salaryMax}}</td>
+                <td>
+                    @switch(item.status) {
+                    @case('ACTIVE'){
+                    <div class="badge badge-primary">Activa</div>
+                    }
+                    @case ('PAUSED') {
+                    <div class="badge badge-warning"> En pausa</div>
+                    }
+                    @case ('CLOSED') {
+                    <div class="badge badge-ghost">Cerrada</div>
+                    }
+                    }
+                </td>
+                <td>
+                    <div class="badge badge-soft badge-info">
+                        {{applicantCount(item.id)}}
+                    </div>
+                </td>
+                <td>
+                    <div class="flex flex-wrap gap-x-1 gap-y-0.5">
+                        <button class="btn btn-dash btn-info">Ver</button>
+                        <button class="btn btn-dash btn-info">Editar</button>
+                    </div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

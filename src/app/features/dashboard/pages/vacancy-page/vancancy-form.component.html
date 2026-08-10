@@ -1,0 +1,91 @@
+<div class="flex flex-wrap justify-between items-center">
+    <div>
+        <h1 class="text-2xl font-bold">Nueva vacante</h1>
+        <div class="text-base-content/60">Completa la información de la vacante.</div>
+    </div>
+    <a routerLink="../" class="btn btn-ghost btn-sm">← Volver</a>
+</div>
+
+<form [formGroup]="createVacancyForm" (ngSubmit)="submit()">
+
+    <div class="mt-8 justify-between m-27">
+        <div class="w-full form-control">
+            <fieldset class="fieldset">
+                <legend class="fieldset-legend text-lg">Título del puesto *</legend>
+                <input type="text" class="input w-full" formControlName="title"
+                    placeholder="Ej. Desarrollador Frontend Angular" />
+            </fieldset>
+        </div>
+
+        <div class="flex w-full gap-4 form-control">
+            <div class="flex-1">
+                <fieldset class="fieldset">
+                    <legend class="fieldset-legend text-lg">Área / Departamento *</legend>
+                    <input type="text" class="input w-full" formControlName="department" placeholder="Ej. Tecnología" />
+                </fieldset>
+            </div>
+            <div class="flex-1">
+                <fieldset class="fieldset">
+                    <legend class="fieldset-legend text-lg">Ubicación *</legend>
+                    <input type="text" class="input w-full" formControlName="location"
+                        placeholder="Ej. Lima, Perú o Remoto" />
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="flex gap-4 form-control">
+            <div class="flex-1">
+                <fieldset class="fieldset">
+                    <legend class="fieldset-legend text-lg">Modalidad *</legend>
+                    <select class="select" formControlName="modality">
+                        <option disabled selected>Selecciona una modalidad</option>
+                        @for (item of modalityLabels | keyvalue; track item.key) {
+                        <option [value]="item.key">{{ item.value }}</option>
+                        }
+                    </select>
+                </fieldset>
+            </div>
+            <div class="flex-1">
+                <fieldset class="fieldset">
+                    <legend class="fieldset-legend text-lg">Salario mínimo</legend>
+                    <input type="text" class="input" formControlName="salaryMin" placeholder="2000" />
+                </fieldset>
+            </div>
+            <div class="flex-1">
+                <fieldset class="fieldset">
+                    <legend class="fieldset-legend text-lg">Salario máximo</legend>
+                    <input type="text" class="input" formControlName="salaryMax" placeholder="3500" />
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="form-control">
+            <fieldset class="fieldset">
+                <legend class="fieldset-legend text-lg">Estado *</legend>
+                <select class="select w-full" formControlName="status">
+                    <option disabled selected>Selecciona un estado</option>
+                    @for (item of vacancyLabels | keyvalue; track item.key) {
+                    <option [value]="item.key">{{ item.value }}</option>
+                    }
+                </select>
+            </fieldset>
+        </div>
+
+        <div class="form-control">
+            <legend class="fieldset-legend text-lg">Descripción *</legend>
+            <textarea class="textarea w-full" formControlName="description"
+                placeholder="Describe las responsabilidades del puesto..."></textarea>
+        </div>
+
+        <div class="form-control">
+            <legend class="fieldset-legend text-lg">Requisitos *</legend>
+            <textarea class="textarea w-full" formControlName="requirements"
+                placeholder="Experiencia, habilidades técnicas, idiomas..."></textarea>
+        </div>
+
+        <div class="flex justify-end gap-4 pt-4">
+            <a routerLink="../" class="btn btn-ghost">Cancelar</a>
+            <button class="btn btn-primary" type="submit">Crear vacante</button>
+        </div>
+    </div>
+</form>

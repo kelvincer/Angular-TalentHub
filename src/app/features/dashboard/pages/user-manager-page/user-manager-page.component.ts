@@ -13,15 +13,15 @@ import { EditUserComponent } from "../../modals/edit-user/EditUser.component/Edi
 })
 export default class UserManagerPageComponent implements OnInit {
 
-  usersService = inject(UsersService)
-  users = signal<User[]>([])
-  isUserCreateModalOpen = signal(false)
-  isUserDeleteModalOpen = signal(false)
-  isUserEditModalOpen = signal(false)
-  selectedUserEdit = signal<User | undefined>(undefined)
-  selectedUserDelete = signal<User | undefined>(undefined)
-  search = signal('')
-  roleFilter = signal('Todos')
+  private usersService = inject(UsersService)
+  readonly users = signal<User[]>([])
+  readonly isUserCreateModalOpen = signal(false)
+  readonly isUserDeleteModalOpen = signal(false)
+  readonly isUserEditModalOpen = signal(false)
+  readonly selectedUserEdit = signal<User | undefined>(undefined)
+  readonly selectedUserDelete = signal<User | undefined>(undefined)
+  readonly search = signal('')
+  readonly roleFilter = signal('Todos')
   roles = ['Todos', 'Administrador', 'Reclutador', 'Candidato']
 
   filteredUsers = computed(() => {

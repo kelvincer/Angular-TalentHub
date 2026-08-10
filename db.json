@@ -61,11 +61,132 @@
       "createdAt": "2026-08-04T22:30:29.050Z"
     }
   ],
-  "products": [
+  "vacancies": [
     {
       "id": "1",
-      "name": "Laptop",
-      "price": 1200
+      "title": "Desarrollador Frontend Angular",
+      "description": "Buscamos un desarrollador frontend con experiencia en Angular, TypeScript y diseño de interfaces. Será responsable de construir módulos de la plataforma TalentHub.",
+      "requirements": "3+ años de experiencia. Manejo de Angular, RxJS, HTML/CSS. Inglés intermedio.",
+      "location": "Remoto",
+      "modality": "REMOTO",
+      "department": "Tecnología",
+      "salaryMin": 2500,
+      "salaryMax": 3500,
+      "status": "ACTIVE",
+      "createdBy": 2,
+      "createdAt": "2026-07-02T10:00:00.000Z"
+    },
+    {
+      "id": "2",
+      "title": "Analista de Reclutamiento",
+      "description": "Apoyar el proceso de selección de personal: publicación de vacantes, preselección de candidatos y coordinación de entrevistas.",
+      "requirements": "2+ años en reclutamiento. Manejo de herramientas ATS. Excelente comunicación.",
+      "location": "Lima, Perú",
+      "modality": "HIBRIDO",
+      "department": "RRHH",
+      "salaryMin": 1800,
+      "salaryMax": 2400,
+      "status": "ACTIVE",
+      "createdBy": 2,
+      "createdAt": "2026-07-05T10:00:00.000Z"
+    },
+    {
+      "id": "3",
+      "title": "Backend Developer Node.js",
+      "description": "Diseñar e implementar servicios REST en Node.js. Experiencia con bases de datos SQL y NoSQL.",
+      "requirements": "4+ años con Node.js, Express, PostgreSQL o MongoDB. Conocimiento de Docker.",
+      "location": "Remoto",
+      "modality": "REMOTO",
+      "department": "Tecnología",
+      "salaryMin": 3200,
+      "salaryMax": 4200,
+      "status": "PAUSED",
+      "createdBy": 2,
+      "createdAt": "2026-06-20T10:00:00.000Z"
+    },
+    {
+      "id": "4",
+      "title": "Diseñador UX/UI",
+      "description": "Crear wireframes, prototipos y design systems para productos web. Colaborar con equipos de desarrollo.",
+      "requirements": "Portafolio con proyectos web. Manejo de Figma. Conocimiento de accesibilidad.",
+      "location": "Bogotá, Colombia",
+      "modality": "HIBRIDO",
+      "department": "Diseño",
+      "salaryMin": 2000,
+      "salaryMax": 2800,
+      "status": "ACTIVE",
+      "createdBy": 2,
+      "createdAt": "2026-07-10T10:00:00.000Z"
+    },
+    {
+      "id": "5",
+      "title": "DevOps Engineer",
+      "description": "Automatizar pipelines de CI/CD y administrar infraestructura en la nube.",
+      "requirements": "Experiencia con AWS/Azure, Terraform, Kubernetes y Jenkins.",
+      "location": "Santiago, Chile",
+      "modality": "PRESENCIAL",
+      "department": "Tecnología",
+      "salaryMin": 3500,
+      "salaryMax": 4500,
+      "status": "CLOSED",
+      "createdBy": 5,
+      "createdAt": "2026-05-15T10:00:00.000Z"
+    },
+    {
+      "id": "6",
+      "title": "Data Analyst",
+      "description": "Analizar métricas de negocio y construir reportes para la toma de decisiones.",
+      "requirements": "SQL avanzado, Python, Power BI o Looker.",
+      "location": "Remoto",
+      "modality": "REMOTO",
+      "department": "Datos",
+      "salaryMin": 2200,
+      "salaryMax": 3000,
+      "status": "ACTIVE",
+      "createdBy": 2,
+      "createdAt": "2026-07-18T10:00:00.000Z"
+    }
+  ],
+  "applications": [
+    {
+      "id": "1",
+      "candidateId": "1",
+      "vacancyId": "1",
+      "status": "INTERVIEW",
+      "appliedAt": "2026-07-03T14:30:00.000Z",
+      "notes": "Buen perfil técnico, avanza a entrevista técnica."
+    },
+    {
+      "id": "2",
+      "candidateId": "2",
+      "vacancyId": "3",
+      "status": "REVIEWED",
+      "appliedAt": "2026-06-22T09:00:00.000Z",
+      "notes": ""
+    },
+    {
+      "id": "3",
+      "candidateId": "3",
+      "vacancyId": "4",
+      "status": "PENDING",
+      "appliedAt": "2026-07-12T16:45:00.000Z",
+      "notes": ""
+    },
+    {
+      "id": "4",
+      "candidateId": "4",
+      "vacancyId": "6",
+      "status": "ACCEPTED",
+      "appliedAt": "2026-07-20T11:00:00.000Z",
+      "notes": "Contratado. Inicio el 15 de agosto."
+    },
+    {
+      "id": "5",
+      "candidateId": "1",
+      "vacancyId": "2",
+      "status": "REJECTED",
+      "appliedAt": "2026-07-06T10:00:00.000Z",
+      "notes": "Candidato sobrecalificado para el rol."
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
