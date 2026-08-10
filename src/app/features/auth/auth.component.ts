@@ -19,10 +19,13 @@ export class AuthComponent {
   private router = inject(Router)
   email = model('')
   password = model('')
+  isSubmiting = signal(false)
+  onSubmitError = signal(false)
 
-  navigateToDashboard() {
+  loginUser() {
     console.log(this.email(), this.password())
-
+    this.isSubmiting.set(true)
+    this.onSubmitError.set(false)
     this.authService.getUsers().subscribe({
       next: (data) => {
         const loggedUser = data.find(u => {
@@ -32,6 +35,8 @@ export class AuthComponent {
         console.log("user", loggedUser)
 
         if (!loggedUser) {
+          this.onSubmitError.set(true)
+          this.isSubmiting.set(false)
           return
         }
 
@@ -48,10 +53,19 @@ export class AuthComponent {
             } else {
               console.log("User can't authenticated")
             }
+          },
+          error: (error) => {
+            this.isSubmiting.set(false)
+            this.onSubmitError.set(true)
+            console.log(error)
           }
         })
       },
-      error: (error) => console.log(error)
+      error: (error) => {
+        this.isSubmiting.set(false)
+        this.onSubmitError.set(true)
+        console.log(error)
+      }
     })
   }
 

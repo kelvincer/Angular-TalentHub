@@ -6,7 +6,7 @@
 
                 <h1 class="card-title text-5xl font-bold text-primary">Talent Hub</h1>
                 <p class="text-base-100 font-bold">Entra tu correo electrónico y contraseña</p>
-                <label class="input validator w-full">
+                <label class="input validator w-full" [class.input-error]="emailInput.invalid && emailInput.touched">
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none"
                             stroke="currentColor">
@@ -14,9 +14,13 @@
                             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                         </g>
                     </svg>
-                    <input type="email" placeholder="mail@site.com" [(ngModel)]="email" required />
+                    <input type="email" placeholder="mail@site.com" [(ngModel)]="email" #emailInput="ngModel"
+                        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required />
                 </label>
-                <div class="validator-hint hidden">Enter valid email address</div>
+                @if (emailInput.invalid && emailInput.touched) {
+                <div class="text-error ">Ingresa un correo válido</div>
+                }
+
                 <label class="input validator w-full">
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none"
@@ -27,18 +31,29 @@
                             <circle cx="16.5" cy="7.5" r=".5" fill="currentColor"></circle>
                         </g>
                     </svg>
-                    <input type="password" [(ngModel)]="password" required placeholder="Contraseña" minlength="8"
-                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                        title="Must be more than 8 characters, including number, lowercase letter, uppercase letter" />
+                    <input type="password" [(ngModel)]="password" required placeholder="Contraseña" minlength="6"
+                        #passwordInput="ngModel" />
                 </label>
-                <p class="validator-hint hidden">
-                    Must be more than 8 characters, including
-                    <br />At least one number <br />At least one lowercase letter <br />At least one uppercase letter
+                @if (passwordInput.invalid && passwordInput.touched) {
+                <p class="text-error">
+                    Debe ser por lo menos 6 caracteres
                 </p>
-
+                }
                 <div class="card-actions w-full">
-                    <button class="btn btn-primary btn-block" (click)="navigateToDashboard()">Iniciar Sesión</button>
+                    <button class="btn btn-primary btn-block  disabled:bg-gray-400 disabled:text-gray-700"
+                        (click)="loginUser()"
+                        [disabled]="isSubmiting() || (emailInput.invalid && emailInput.value?.length !== 0) || (passwordInput.invalid && passwordInput.value?.length !== 0)">
+                        @if(isSubmiting()) {
+                        <span class="loading loading-spinner loading-sm"></span>
+                        Ingresando...
+                        } @else {
+                        Iniciar Sesión
+                        }
+                    </button>
                 </div>
+                @if (onSubmitError()) {
+                <div class="text-error">Error en autenticación</div>
+                }
             </div>
         </div>
     </div>
