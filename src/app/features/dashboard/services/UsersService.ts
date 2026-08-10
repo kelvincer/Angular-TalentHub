@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UsersService {
 
-  private api = 'http://localhost:3000/users';
+  private api = 'http://localhost:3001/users';
   http = inject(HttpClient)
 
   getUsers() {

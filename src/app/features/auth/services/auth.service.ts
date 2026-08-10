@@ -7,7 +7,7 @@ import { delay } from 'rxjs';
 })
 export class AuthService {
 
-  private api = 'http://localhost:3000/loggedUsers';
+  private api = 'http://localhost:3001/loggedUsers';
   http = inject(HttpClient)
 
   getUsers() {
