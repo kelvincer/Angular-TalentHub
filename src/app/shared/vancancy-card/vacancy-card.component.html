@@ -1,20 +1,28 @@
 <div class="card card-border bg-base-100 w-full">
     <div class="card-body">
-        <h2 class="card-title">{{ vacancy().title }}</h2>
-        <p class="text-base-content/60">{{ vacancy().department }} · {{ vacancy().location }} · {{ modalityLabel() }}</p>
+        <div class="flex justify-between items-center">
+            <h2 class="card-title">{{ vacancy().title }}</h2>
+            <div class="card-actions justify-end">
+                @switch(vacancy().status) {
+                @case('ACTIVE') {
+                <span class="badge badge-primary">Activa</span>
+                }
+                @case('PAUSED') {
+                <span class="badge badge-warning">En pausa</span>
+                }
+                @case('CLOSED') {
+                <span class="badge badge-ghost">Cerrada</span>
+                }
+                }
+            </div>
+        </div>
+        <p class="text-base-content/60">{{ vacancy().department }} · {{ vacancy().location }} · {{ modalityLabel() }}
+        </p>
         <p class="text-lg font-semibold">S/. {{ vacancy().salaryMin }} - S/. {{ vacancy().salaryMax }}</p>
-        <div class="card-actions justify-end">
-            @switch(vacancy().status) {
-            @case('ACTIVE') {
-            <span class="badge badge-primary">Activa</span>
-            }
-            @case('PAUSED') {
-            <span class="badge badge-warning">En pausa</span>
-            }
-            @case('CLOSED') {
-            <span class="badge badge-ghost">Cerrada</span>
-            }
-            }
+
+        <div class="flex gap-2 mt-5">
+            <button class="flex-1 btn btn-secondary">Ver detalles</button>
+            <button class="flex-1 btn btn-secondary">Postular</button>
         </div>
     </div>
 </div>

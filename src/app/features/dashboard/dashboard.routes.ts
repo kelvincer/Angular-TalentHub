@@ -38,8 +38,8 @@ const dashboardRoutes: Routes = [
                 loadComponent: () => import("./pages/manage-interview-page/manage-interview.component")
             },
             {
-                path: 'edit-profile',
-                loadComponent: () => import("./pages/edit-profile-page/edit-profile.component")
+                path: 'my-profile',
+                loadComponent: () => import("./pages/candidate-profile-page/candidate-profile.component")
             },
             {
                 path: 'upload-cv',

@@ -14,28 +14,10 @@ export class AuthService {
 
   private api = `${API_URL}/loggedUsers`;
   http = inject(HttpClient)
-  readonly currentUser = signal<User | undefined>(undefined)
-  readonly isAdmin = computed(() => this.currentUser()?.role === 'ADMIN')
-  readonly isRecruiter = computed(() => this.currentUser()?.role === 'RECRUITER')
-  readonly isCanditate = computed(() => this.currentUser()?.role === 'CANDIDATE')
-
-  constructor() {
-    const raw = localStorage.getItem(SESSION_KEY);
-    if (raw) {
-      try {
-        this.currentUser.set(JSON.parse(raw) as User);
-      } catch {
-        localStorage.removeItem(SESSION_KEY);
-      }
-    }
-  }
 
   getUsers() {
     return this.http.get<LoggedUser[]>(this.api).pipe(delay(3000));
   }
 
-  saveUser(user: User | undefined) {
-    this.currentUser.set(user)
-    localStorage.setItem(SESSION_KEY, JSON.stringify(user))
-  }
+  
 }

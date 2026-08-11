@@ -181,5 +181,88 @@
       "notes": "Candidato sobrecalificado para el rol."
     }
   ],
+  "candidates": [
+    {
+      "id": 1,
+      "userId": 3,
+      "fullName": "Carlos Pérez",
+      "email": "candidato@talenthub.com",
+      "phone": "+51 999 555 111",
+      "location": "Lima, Perú",
+      "title": "Desarrollador Frontend",
+      "summary": "Ingeniero de software con 4 años de experiencia construyendo aplicaciones web con Angular y React. Apasionado por el diseño de interfaces y el rendimiento web.",
+      "skills": [
+        "Angular",
+        "TypeScript",
+        "RxJS",
+        "SCSS",
+        "Git"
+      ],
+      "yearsExperience": 4,
+      "education": "Ingeniería de Sistemas",
+      "cvUrl": null,
+      "createdAt": "2026-06-01T10:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "userId": 4,
+      "fullName": "María Gómez",
+      "email": "maria@example.com",
+      "phone": "+51 999 555 222",
+      "location": "Arequipa, Perú",
+      "title": "Backend Developer",
+      "summary": "Desarrolladora backend con 5 años de experiencia en Node.js, Python y bases de datos relacionales.",
+      "skills": [
+        "Node.js",
+        "Python",
+        "PostgreSQL",
+        "Docker"
+      ],
+      "yearsExperience": 5,
+      "education": "Ingeniería de Computación",
+      "cvUrl": null,
+      "createdAt": "2026-06-10T10:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "userId": null,
+      "fullName": "Lucía Fernández",
+      "email": "lucia.fernandez@mail.com",
+      "phone": "+51 999 555 333",
+      "location": "Lima, Perú",
+      "title": "UX/UI Designer",
+      "summary": "Diseñadora de producto con enfoque en investigación de usuarios y prototipado.",
+      "skills": [
+        "Figma",
+        "UX Research",
+        "Prototipado",
+        "HTML/CSS"
+      ],
+      "yearsExperience": 3,
+      "education": "Diseño Gráfico",
+      "cvUrl": null,
+      "createdAt": "2026-06-25T10:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "userId": null,
+      "fullName": "Jorge Castillo",
+      "email": "jorge.castillo@mail.com",
+      "phone": "+51 999 555 444",
+      "location": "Cusco, Perú",
+      "title": "Data Analyst",
+      "summary": "Analista de datos con experiencia en SQL, Python y visualización de métricas.",
+      "skills": [
+        "SQL",
+        "Python",
+        "Power BI",
+        "Excel"
+      ],
+      "yearsExperience": 2,
+      "education": "Administración de Negocios",
+      "cvUrl": null,
+      "createdAt": "2026-07-01T10:00:00.000Z"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }

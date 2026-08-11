@@ -8,6 +8,7 @@ import { RouterLink } from "@angular/router";
 import { AuthService } from '../../../auth/services/auth.service';
 import { VacancyCardComponent } from '../../../../shared/vancancy-card/vacancy-card.component';
 import { VacancyRowComponent } from '../../../../shared/vacancy-table-row/vacancy-row.component';
+import { UsersService } from '../../services/UsersService';
 
 @Component({
   selector: 'app-vacancy-list.component',
@@ -19,18 +20,18 @@ export default class VacancyListComponent implements OnInit {
 
   private vacanciesService = inject(VancancyService)
   private applicationsService = inject(ApplicationsService)
-  private authService = inject(AuthService)
+  private usersService = inject(UsersService)
   readonly vacancies = signal<Vacancy[]>([])
   readonly applications = signal<Application[]>([])
-  readonly isStaff = computed(() => this.authService.isAdmin() || this.authService.isRecruiter())
-  readonly isCandidate = this.authService.isCanditate
+  readonly isStaff = computed(() => this.usersService.isAdmin() || this.usersService.isRecruiter())
+  readonly isCandidate = this.usersService.isCanditate
   readonly applicantCount = (vacancyId: string) => {
     return this.applications().filter((v) => v.vacancyId === vacancyId).length
   }
 
   ngOnInit(): void {
 
-    console.log("ngOnInit", this.authService.currentUser())
+    console.log("ngOnInit", this.usersService.currentUser())
     this.vacanciesService.getVacancies().subscribe({
       next: (data) => this.vacancies.set(data),
       error: (error) => console.log(error)

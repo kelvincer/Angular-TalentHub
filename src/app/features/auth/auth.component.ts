@@ -49,7 +49,7 @@ export class AuthComponent {
             })
 
             this.roleService.role.set(user?.role)
-            this.authService.saveUser(user)
+            this.usersService.saveUser(user)
 
             if (user) {
               this.router.navigate(['/dashboard', user.id])

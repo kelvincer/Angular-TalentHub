@@ -49,8 +49,8 @@ export const menu : Menu[] = [
     },
     {
         role: 'CANDIDATE',
-        link: 'edit-profile',
-        name: 'Editar perfil'
+        link: 'my-profile',
+        name: 'Mi perfil'
     },
     {
         role: 'CANDIDATE',
