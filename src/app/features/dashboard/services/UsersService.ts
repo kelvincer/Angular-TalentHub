@@ -1,13 +1,14 @@
 import { inject, Injectable } from '@angular/core';
 import { User } from '../models/User';
 import { HttpClient } from '@angular/common/http';
+import { API_URL } from '../utils/config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
 
-  private api = 'http://localhost:3001/users';
+  private api = `${API_URL}/users`;
   http = inject(HttpClient)
 
   getUsers() {

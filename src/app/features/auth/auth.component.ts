@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { UsersService } from '../dashboard/services/UsersService';
 import { RoleStateService } from '../dashboard/services/RoleStateService';
 import { Role } from './models/LoggedUser';
+import { SESSION_KEY } from '../dashboard/utils/config';
 
 @Component({
   selector: 'app-auth',
@@ -48,6 +49,7 @@ export class AuthComponent {
             })
 
             this.roleService.role.set(user?.role)
+            this.authService.saveUser(user)
 
             if (user) {
               this.router.navigate(['/dashboard', user.id])

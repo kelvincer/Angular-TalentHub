@@ -2,11 +2,15 @@
 
     <div>
         <div class="text-2xl">Vacantes</div>
-        <div class="text-base-content/60">Administra las vacantes del proceso de reclutamiento.</div>
+        <div class="text-base-content/60">
+            {{ isCandidate() ? 'Explora las oportunidades disponibles y postula.'
+            : 'Administra las vacantes del proceso de reclutamiento.' }}
+        </div>
     </div>
 
+    @if (isStaff()) {
     <a class="btn btn-primary" routerLink="new-vacancy">Nueva vacante</a>
-
+    }
 </div>
 
 <div class="flex flex-wrap mt-4">
@@ -23,6 +27,7 @@
     </label>
 </div>
 
+@if (isStaff()) {
 <div class="overflow-x-auto mt-3">
     <table class="table table-zebra">
         <!-- head -->
@@ -86,3 +91,10 @@
         </tbody>
     </table>
 </div>
+} @else if (isCandidate()) {
+<div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 mt-4">
+    @for (item of vacancies(); track item.id) {
+    <app-vacancy-card [vacancy]="item" />
+    }
+</div>
+}

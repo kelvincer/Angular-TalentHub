@@ -9,6 +9,11 @@ export interface Menu {
 export const menu : Menu[] = [
     {
         role: 'ADMIN',
+        link: 'vacancy',
+        name: 'Vacantes'
+    },
+    {
+        role: 'ADMIN',
         link: 'user-manager',
         name: 'Gestionar Usuarios'
     },
@@ -36,6 +41,11 @@ export const menu : Menu[] = [
         role: 'RECRUITER',
         link: 'manage-interview',
         name: 'Gestionar entrevistas'
+    },
+     {
+        role: 'CANDIDATE',
+        link: 'vacancy',
+        name: 'Vacantes'
     },
     {
         role: 'CANDIDATE',

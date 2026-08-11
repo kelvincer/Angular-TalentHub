@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Application } from '../models/Application';
+import { API_URL } from '../utils/config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApplicationsService {
 
-  private api = 'http://localhost:3001/applications';
+  private api = `${API_URL}/applications`;
   http = inject(HttpClient)
 
   getApplications() {
