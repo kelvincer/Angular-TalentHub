@@ -1,5 +1,7 @@
+export type Role = 'ADMIN' | 'RECRUITER' | 'CANDIDATE';
+
 interface LoggedUser {
     email: string,
     password: string,
-    role: 'Administrador' | 'Reclutador' | 'Candidato'
+    role: Role
 }

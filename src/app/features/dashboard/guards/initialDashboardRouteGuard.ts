@@ -11,11 +11,11 @@ export const initialDashboardRouteGuard: CanActivateFn = (route) => {
     console.log("userid", userId)
 
     switch (roleService.role()) {
-        case 'Administrador':
+        case 'ADMIN':
             return router.createUrlTree(['dashboard', userId, 'user-manager']);
-        case 'Reclutador':
+        case 'RECRUITER':
             return router.createUrlTree(['dashboard', userId, 'vacancy']);
-        case 'Candidato':
+        case 'CANDIDATE':
             return router.createUrlTree(['dashboard', userId, 'edit-profile']);
         default:
             return router.createUrlTree(['dashboard', userId, 'user-manager']);

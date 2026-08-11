@@ -4,6 +4,7 @@ import { AuthService } from './services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { UsersService } from '../dashboard/services/UsersService';
 import { RoleStateService } from '../dashboard/services/RoleStateService';
+import { Role } from './models/LoggedUser';
 
 @Component({
   selector: 'app-auth',
@@ -67,6 +68,16 @@ export class AuthComponent {
         console.log(error)
       }
     })
+  }
+
+  fill(role: Role): void {
+    const creds: Record<Role, { email: string; password: string }> = {
+      ADMIN: { email: 'admin@talenthub.com', password: 'admin123' },
+      RECRUITER: { email: 'reclutador@talenthub.com', password: 'reclutador123' },
+      CANDIDATE: { email: 'candidato@talenthub.com', password: 'candidato123' },
+    };
+    this.email.set(creds[role].email)
+    this.password.set(creds[role].password)
   }
 
 }

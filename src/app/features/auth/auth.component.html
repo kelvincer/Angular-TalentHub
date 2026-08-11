@@ -55,6 +55,20 @@
                 <div class="text-error">Error en autenticación</div>
                 }
             </div>
+
+            <div class="max-w-md divider ml-7 mr-7 mt-3 divider-neutral items-center justify-center">
+                <p class=" text-primary">Cuentas de demostración</p>
+            </div>
+
+            <div class="flex flex-wrap gap-x-1 justify-between ml-7 mr-7 mb-5">
+                <button type="button" class="btn btn-sm" (click)="fill('ADMIN')">Administrador</button>
+                <button type="button" class="btn  btn-sm" (click)="fill('RECRUITER')">Reclutador</button>
+                <button type="button" class="btn  btn-sm" (click)="fill('CANDIDATE')">Candidato</button>
+
+            </div>
+
         </div>
+
     </div>
+
 </div>

@@ -1,52 +1,54 @@
+import { Role } from "../../auth/models/LoggedUser"
+
 export interface Menu {
-    role: 'Administrador' | 'Reclutador' | 'Candidato'
+    role: Role
     link: string
     name: string
 }
 
 export const menu : Menu[] = [
     {
-        role: 'Administrador',
+        role: 'ADMIN',
         link: 'user-manager',
         name: 'Gestionar Usuarios'
     },
     {
-        role: 'Administrador',
+        role: 'ADMIN',
         link: 'visualize-report',
         name: 'Visualizar Reportes'
     },
     {
-        role: 'Administrador',
+        role: 'ADMIN',
         link: 'manage-vacancy',
         name: 'Administrar Vacantes'
     },
     {
-        role: 'Reclutador',
+        role: 'RECRUITER',
         link: 'vacancy',
         name: 'Vacantes'
     },
     {
-        role: 'Reclutador',
+        role: 'RECRUITER',
         link: 'manage-candidate',
         name: 'Gestionar candidatos'
     },
     {
-        role: 'Reclutador',
+        role: 'RECRUITER',
         link: 'manage-interview',
         name: 'Gestionar entrevistas'
     },
     {
-        role: 'Candidato',
+        role: 'CANDIDATE',
         link: 'edit-profile',
         name: 'Editar perfil'
     },
     {
-        role: 'Candidato',
+        role: 'CANDIDATE',
         link: 'upload-cv',
         name: 'Subir CV'
     },
     {
-        role: 'Candidato',
+        role: 'CANDIDATE',
         link: 'apply-vacancy',
         name: 'Postular a vacantes'
     },

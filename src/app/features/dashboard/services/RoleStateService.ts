@@ -1,10 +1,11 @@
 import { Injectable, signal } from "@angular/core";
+import { Role } from "../../auth/models/LoggedUser";
 
 @Injectable({ providedIn: 'root' })
 export class RoleStateService {
-    role = signal<'Administrador' | 'Reclutador' | 'Candidato' | undefined>(undefined);
+    role = signal<Role | undefined>(undefined);
 
-    setRole(role: 'Administrador' | 'Reclutador' | 'Candidato') {
+    setRole(role: Role) {
         this.role.set(role);
     }
 }

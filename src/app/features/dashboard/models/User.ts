@@ -1,8 +1,10 @@
+import { Role } from "../../auth/models/LoggedUser";
+
 export interface User {
     id: string;
     name: string;
     email: string;
-    role: 'Administrador' | 'Reclutador' | 'Candidato';
+    role: Role;
     status: 'Activo' | 'Inactivo';
     createdAt: Date;
 }

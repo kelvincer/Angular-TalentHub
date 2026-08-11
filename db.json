@@ -1,64 +1,56 @@
 {
   "loggedUsers": [
     {
-      "email": "mail@site.com",
-      "password": "America2030@0",
-      "role": "Administrador",
+      "email": "admin@talenthub.com",
+      "password": "admin123",
+      "role": "ADMIN",
       "id": "WkfNwEGDE_0"
     },
     {
-      "email": "juan@site.com",
-      "password": "America2030@0",
-      "role": "Reclutador",
+      "email": "reclutador@talenthub.com",
+      "password": "reclutador123",
+      "role": "RECRUITER",
       "id": "Hf9Jd9aEKLE"
     },
     {
-      "email": "michel@site.com",
-      "password": "America2030@0",
-      "role": "Candidato",
+      "email": "candidato@talenthub.com",
+      "password": "candidato123",
+      "role": "CANDIDATE",
       "id": "sRRi4raDgd4"
     }
   ],
   "users": [
     {
       "id": "1",
-      "name": "Jorge",
-      "email": "mail@site.com",
-      "role": "Administrador",
+      "name": "Jorge Mendez",
+      "email": "admin@talenthub.com",
+      "role": "ADMIN",
       "status": "Activo",
       "createdAt": "12-09-2026"
     },
     {
       "id": "2",
-      "name": "Juan",
-      "email": "juan@site.com",
-      "role": "Reclutador",
+      "name": "Juan Aparicio",
+      "email": "reclutador@talenthub.com",
+      "role": "RECRUITER",
       "status": "Activo",
       "createdAt": "12-09-2026"
     },
     {
       "id": "3",
-      "name": "Michel",
-      "email": "michel@site.com",
-      "role": "Candidato",
+      "name": "Michel Gutierrez",
+      "email": "candidato@talenthub.com",
+      "role": "CANDIDATE",
       "status": "Activo",
       "createdAt": "12-09-2026"
     },
     {
       "id": "4",
-      "name": "Cocolizo",
+      "name": "Alfredo Perez",
       "email": "mail@site.com",
-      "role": "Candidato",
+      "role": "CANDIDATE",
       "status": "Inactivo",
       "createdAt": "12-09-2026"
-    },
-    {
-      "id": "cKAeQQb-5YY",
-      "name": "bibi",
-      "email": "bibi@site.com",
-      "role": "Reclutador",
-      "status": "Inactivo",
-      "createdAt": "2026-08-04T22:30:29.050Z"
     }
   ],
   "vacancies": [
