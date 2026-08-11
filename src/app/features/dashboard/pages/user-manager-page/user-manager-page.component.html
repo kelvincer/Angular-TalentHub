@@ -46,7 +46,17 @@
 
                     <div class="badge badge-primary">
 
-                        {{user.role}}
+                        @switch(user.role) {
+                        @case ('ADMIN') {
+                        Administrador
+                        }
+                        @case ('RECRUITER') {
+                        Reclutador
+                        }
+                        @case ('CANDIDATE') {
+                        Candidato
+                        }
+                        }
 
                     </div>
 

@@ -2,6 +2,17 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.19.
 
+## Steps to run this project
+
+1. ### Start local web mock server
+    ```bash
+    npm run mock-api
+    ```
+2. ### Start application
+    ```bash
+    ng serve -o
+    ```
+
 ## Development server
 
 To start a local development server, run:
