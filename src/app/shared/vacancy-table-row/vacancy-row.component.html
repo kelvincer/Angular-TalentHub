@@ -1,0 +1,42 @@
+<td>
+    <div class="font-semibold">
+        {{vacancy().title}}
+    </div>
+    <div class="text-xs text-base-content/60">
+        {{vacancy().createdAt | date:'dd/MM/yyyy'}}
+    </div>
+</td>
+<td>
+    <div>
+        {{vacancy().department}}
+    </div>
+    <div class="text-xs text-base-content/60">
+        {{ vacancy().location }} · {{ vacancy().modality }}
+    </div>
+
+</td>
+<td>S/. {{vacancy().salaryMin}} - S/. {{vacancy().salaryMax}}</td>
+<td>
+    @switch(vacancy().status) {
+    @case('ACTIVE'){
+    <div class="badge badge-primary">Activa</div>
+    }
+    @case ('PAUSED') {
+    <div class="badge badge-warning"> En pausa</div>
+    }
+    @case ('CLOSED') {
+    <div class="badge badge-ghost">Cerrada</div>
+    }
+    }
+</td>
+<td>
+    <div class="badge badge-soft badge-info">
+        {{applicantCount()}}
+    </div>
+</td>
+<td>
+    <div class="flex flex-wrap gap-x-1 gap-y-0.5">
+        <button class="btn btn-dash btn-info">Ver</button>
+        <button class="btn btn-dash btn-info">Editar</button>
+    </div>
+</td>

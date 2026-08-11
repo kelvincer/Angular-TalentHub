@@ -7,10 +7,11 @@ import { Application } from '../../models/Application';
 import { RouterLink } from "@angular/router";
 import { AuthService } from '../../../auth/services/auth.service';
 import { VacancyCardComponent } from '../../../../shared/vancancy-card/vacancy-card.component';
+import { VacancyRowComponent } from '../../../../shared/vacancy-table-row/vacancy-row.component';
 
 @Component({
   selector: 'app-vacancy-list.component',
-  imports: [DatePipe, RouterLink, VacancyCardComponent],
+  imports: [RouterLink, VacancyCardComponent, VacancyRowComponent],
   templateUrl: './vacancy-list.component.html',
   styleUrl: './vacancy-list.component.css',
 })

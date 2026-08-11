@@ -43,49 +43,10 @@
         </thead>
         <tbody>
             @for (item of vacancies(); track item.id) {
+            <tr app-vacancy-row [vacancy]="item" [applicantCount]="applicantCount(item.id)"></tr>
+            } @empty {
             <tr>
-                <th>
-                    <div class="font-semibold">
-                        {{item.title}}
-                    </div>
-                    <div class="text-xs text-base-content/60">
-                        {{item.createdAt | date:'dd/MM/yyyy'}}
-                    </div>
-                </th>
-                <td>
-                    <div>
-                        {{item.department}}
-                    </div>
-                    <div class="text-xs text-base-content/60">
-                        {{ item.location }} · {{ item.modality }}
-                    </div>
-
-                </td>
-                <td>S/. {{item.salaryMin}} - S/. {{item.salaryMax}}</td>
-                <td>
-                    @switch(item.status) {
-                    @case('ACTIVE'){
-                    <div class="badge badge-primary">Activa</div>
-                    }
-                    @case ('PAUSED') {
-                    <div class="badge badge-warning"> En pausa</div>
-                    }
-                    @case ('CLOSED') {
-                    <div class="badge badge-ghost">Cerrada</div>
-                    }
-                    }
-                </td>
-                <td>
-                    <div class="badge badge-soft badge-info">
-                        {{applicantCount(item.id)}}
-                    </div>
-                </td>
-                <td>
-                    <div class="flex flex-wrap gap-x-1 gap-y-0.5">
-                        <button class="btn btn-dash btn-info">Ver</button>
-                        <button class="btn btn-dash btn-info">Editar</button>
-                    </div>
-                </td>
+                <td colspan="3">No users found.</td>
             </tr>
             }
         </tbody>
