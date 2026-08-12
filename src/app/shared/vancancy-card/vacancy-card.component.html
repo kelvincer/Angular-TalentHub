@@ -18,7 +18,8 @@
         </div>
         <p class="text-base-content/60">{{ vacancy().department }} · {{ vacancy().location }} · {{ modalityLabel() }}
         </p>
-        <p class="text-lg font-semibold">S/. {{ vacancy().salaryMin }} - S/. {{ vacancy().salaryMax }}</p>
+        <p class="text-lg font-semibold">S/. {{ vacancy().salaryMin | number }} - S/. {{ vacancy().salaryMax | number}}
+        </p>
 
         <div class="flex gap-2 mt-5">
             <button class="flex-1 btn btn-secondary">Ver detalles</button>

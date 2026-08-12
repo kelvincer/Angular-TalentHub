@@ -18,6 +18,6 @@ export const initialDashboardRouteGuard: CanActivateFn = (route) => {
         case 'CANDIDATE':
             return router.createUrlTree(['dashboard', userId, 'vacancy']);
         default:
-            return router.createUrlTree(['dashboard', userId, 'user-manager']);
+            return router.createUrlTree(['dashboard', userId, 'vacancy']);
     }
 };

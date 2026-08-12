@@ -1,1 +1,107 @@
-<p>my profile</p>
+<div>
+    <div class="text-2xl">Mi perfil</div>
+    <p class="text-base-content/60">Completa tu perfil para postular a las vacantes.</p>
+</div>
+
+<form class="flex flex-row flex-wrap mt-8 h-full gap-6" [formGroup]="candidateForm" (ngSubmit)="submit()">
+
+    <div class="flex flex-col flex-5">
+        <div class="flex flex-row gap-3">
+
+            <fieldset class="fieldset flex-1">
+                <legend class="fieldset-legend text-lg">Nombre completo *</legend>
+                <input type="text" class="input w-full" formControlName="fullName" />
+            </fieldset>
+
+            <fieldset class="fieldset flex-1">
+                <legend class="fieldset-legend text-lg">Correo electrónico *</legend>
+                <input type="text" class="input w-full" formControlName="email" />
+            </fieldset>
+
+        </div>
+
+        <div class="flex flex-row gap-3">
+
+            <fieldset class="fieldset flex-1">
+                <legend class="fieldset-legend text-lg">Teléfono</legend>
+                <input type="text" class="input w-full" formControlName="phone" />
+            </fieldset>
+
+            <fieldset class="fieldset flex-1">
+                <legend class="fieldset-legend text-lg">Ubicación</legend>
+                <input type="text" class="input w-full" formControlName="location" />
+            </fieldset>
+
+        </div>
+
+        <div class="flex flex-row gap-3">
+
+            <fieldset class="fieldset flex-1">
+                <legend class="fieldset-legend text-lg">Puesto / Perfil</legend>
+                <input type="text" class="input" formControlName="title" />
+            </fieldset>
+
+            <fieldset class="fieldset flex-1">
+                <legend class="fieldset-legend text-lg">Formación</legend>
+                <input type="text" class="input" formControlName="education" />
+            </fieldset>
+
+            <fieldset class="fieldset flex-1">
+                <legend class="fieldset-legend text-lg">Años de experiencia</legend>
+                <input type="text" class="input" formControlName="yearsExperience" />
+            </fieldset>
+
+        </div>
+
+        <fieldset class="fieldset">
+            <legend class="fieldset-legend text-lg">Habilidades (separadas por coma)</legend>
+            <input type="text" class="input w-full" formControlName="skills" />
+        </fieldset>
+
+        <fieldset class="fieldset">
+            <legend class="fieldset-legend text-lg">Resumen / profesional</legend>
+            <textarea class="textarea h-30 w-full" formControlName="summary"></textarea>
+        </fieldset>
+
+        <div class="flex-1"></div>
+
+        <div class="flex justify-end w-full">
+            <button class="btn btn-primary" type="submit">Guardar perfil</button>
+        </div>
+
+    </div>
+
+    <div class="flex flex-2 flex-col justify-between">
+        <div>
+            <div>
+                <h2 class="card-title text-lg">Curriculum Vitae</h2>
+                <p class="text-sm text-base-content/60">
+                    Sube tu CV en PDF, DOC, DOCX o imagen. Se guardará en el servidor del proyecto.
+                </p>
+            </div>
+        </div>
+
+        <div class="flex flex-col items-center justify-center">
+            <input type="file" class="file-input" />
+
+            <div class="divider">
+
+            </div>
+
+            <a class="btn btn-outline w-full" routerLink="/dashboard/{{userId()}}/vacancy">Explorar vacantes</a>
+
+            <a class="btn btn-ghost mt-3 w-full">Mis postulaciones</a>
+
+        </div>
+
+    </div>
+
+</form>
+
+@if (toastVisible()) {
+<div class="toast">
+    <div class="alert alert-success">
+        <span class="text-white">Perfil creado correctamente.</span>
+    </div>
+</div>
+}

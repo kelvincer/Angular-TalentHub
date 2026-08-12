@@ -183,8 +183,8 @@
   ],
   "candidates": [
     {
-      "id": 1,
-      "userId": 3,
+      "id": "1",
+      "userId": "3",
       "fullName": "Carlos Pérez",
       "email": "candidato@talenthub.com",
       "phone": "+51 999 555 111",
@@ -196,16 +196,17 @@
         "TypeScript",
         "RxJS",
         "SCSS",
-        "Git"
+        "Git",
+        "OpenCode"
       ],
       "yearsExperience": 4,
       "education": "Ingeniería de Sistemas",
       "cvUrl": null,
-      "createdAt": "2026-06-01T10:00:00.000Z"
+      "createdAt": "2026-08-12T17:34:22.031Z"
     },
     {
-      "id": 2,
-      "userId": 4,
+      "id": "2",
+      "userId": "4",
       "fullName": "María Gómez",
       "email": "maria@example.com",
       "phone": "+51 999 555 222",
@@ -224,7 +225,7 @@
       "createdAt": "2026-06-10T10:00:00.000Z"
     },
     {
-      "id": 3,
+      "id": "3",
       "userId": null,
       "fullName": "Lucía Fernández",
       "email": "lucia.fernandez@mail.com",
@@ -244,7 +245,7 @@
       "createdAt": "2026-06-25T10:00:00.000Z"
     },
     {
-      "id": 4,
+      "id": "4",
       "userId": null,
       "fullName": "Jorge Castillo",
       "email": "jorge.castillo@mail.com",

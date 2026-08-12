@@ -9,7 +9,7 @@ import { API_URL } from '../utils/config';
 export class ApplicationsService {
 
   private api = `${API_URL}/applications`;
-  http = inject(HttpClient)
+  private http = inject(HttpClient)
 
   getApplications() {
     return this.http.get<Application[]>(this.api) 

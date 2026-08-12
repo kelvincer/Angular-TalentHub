@@ -15,7 +15,7 @@
     </div>
 
 </td>
-<td>S/. {{vacancy().salaryMin}} - S/. {{vacancy().salaryMax}}</td>
+<td>S/. {{vacancy().salaryMin | number}} - S/. {{vacancy().salaryMax | number}}</td>
 <td>
     @switch(vacancy().status) {
     @case('ACTIVE'){
