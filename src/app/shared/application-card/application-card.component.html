@@ -1,0 +1,31 @@
+<div class="card card-border bg-base-100 w-full">
+    <div class="card-body">
+        <div class="flex justify-between items-center">
+            <h2 class="card-title">{{ vacancyTitle() }}</h2>
+            @switch (application().status) {
+            @case ('PENDING') {
+            <span class="badge badge-info">{{ statusLabel() }}</span>
+            }
+            @case ('REVIEWED') {
+            <span class="badge badge-info">{{ statusLabel() }}</span>
+            }
+            @case ('INTERVIEW') {
+            <span class="badge badge-warning">{{ statusLabel() }}</span>
+            }
+            @case ('ACCEPTED') {
+            <span class="badge badge-success">{{ statusLabel() }}</span>
+            }
+            @case ('REJECTED') {
+            <span class="badge badge-error">{{ statusLabel() }}</span>
+            }
+            }
+        </div>
+        <p class="text-base-content/60">Postulado: {{ appliedAt() | date:'dd/MM/yyyy' }}</p>
+        @if (application().notes) {
+        <p class="text-sm text-base-content/60">💬 {{ application().notes }}</p>
+        }
+        <div class="card-actions justify-end mt-2">
+            <button class="btn btn-outline btn-sm">Ver detalle</button>
+        </div>
+    </div>
+</div>

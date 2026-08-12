@@ -6,7 +6,7 @@ export interface Menu {
     name: string
 }
 
-export const menu : Menu[] = [
+export const menu: Menu[] = [
     {
         role: 'ADMIN',
         link: 'vacancy',
@@ -42,25 +42,19 @@ export const menu : Menu[] = [
         link: 'manage-interview',
         name: 'Gestionar entrevistas'
     },
-     {
+    {
         role: 'CANDIDATE',
         link: 'vacancy',
         name: 'Vacantes'
     },
     {
         role: 'CANDIDATE',
+        link: 'applications',
+        name: 'Postulaciones'
+    },
+    {
+        role: 'CANDIDATE',
         link: 'my-profile',
         name: 'Mi perfil'
     },
-    {
-        role: 'CANDIDATE',
-        link: 'upload-cv',
-        name: 'Subir CV'
-    },
-    {
-        role: 'CANDIDATE',
-        link: 'apply-vacancy',
-        name: 'Postular a vacantes'
-    },
-
 ]

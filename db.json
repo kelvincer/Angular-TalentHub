@@ -17,6 +17,36 @@
       "password": "candidato123",
       "role": "CANDIDATE",
       "id": "sRRi4raDgd4"
+    },
+    {
+      "email": "jorge.castillo@mail.com",
+      "password": "candidato123",
+      "role": "CANDIDATE",
+      "id": "sRRi4raDg12"
+    },
+    {
+      "email": "maria@example.com",
+      "password": "candidato123",
+      "role": "CANDIDATE",
+      "id": "sRRP9raDg12"
+    },
+    {
+      "email": "alfredo@site.com",
+      "password": "admin123",
+      "role": "ADMIN",
+      "id": "sRRi4raDgd9"
+    },
+    {
+      "email": "lucia.fernandez@mail.com",
+      "password": "candidato123",
+      "role": "CANDIDATE",
+      "id": "sRRi4raDgd3"
+    },
+    {
+      "email": "reclutador2@talenthub.com",
+      "password": "reclutador123",
+      "role": "RECRUITER",
+      "id": "Hf9Jd9aEKLF"
     }
   ],
   "users": [
@@ -47,10 +77,42 @@
     {
       "id": "4",
       "name": "Alfredo Perez",
-      "email": "mail@site.com",
-      "role": "CANDIDATE",
-      "status": "Inactivo",
+      "email": "alfredo@site.com",
+      "role": "ADMIN",
+      "status": "Activo",
       "createdAt": "12-09-2026"
+    },
+    {
+      "id": "5",
+      "name": "Jorge Castillo",
+      "email": "jorge.castillo@mail.com",
+      "role": "CANDIDATE",
+      "status": "Activo",
+      "createdAt": "12-08-2026"
+    },
+     {
+      "id": "6",
+      "name": "María Gómez",
+      "email": "maria@example.com",
+      "role": "CANDIDATE",
+      "status": "Activo",
+      "createdAt": "13-08-2026"
+    },
+    {
+      "id": "7",
+      "name": "Lucía Fernández",
+      "email": "lucia.fernandez@mail.com",
+      "role": "CANDIDATE",
+      "status": "Activo",
+      "createdAt": "13-08-2026"
+    },
+    {
+      "id": "8",
+      "name": "Andrea Torres",
+      "email": "reclutador2@talenthub.com",
+      "role": "RECRUITER",
+      "status": "Activo",
+      "createdAt": "13-08-2026"
     }
   ],
   "vacancies": [
@@ -121,7 +183,7 @@
       "salaryMin": 3500,
       "salaryMax": 4500,
       "status": "CLOSED",
-      "createdBy": 5,
+      "createdBy": 2,
       "createdAt": "2026-05-15T10:00:00.000Z"
     },
     {
@@ -137,6 +199,90 @@
       "status": "ACTIVE",
       "createdBy": 2,
       "createdAt": "2026-07-18T10:00:00.000Z"
+    },
+    {
+      "id": "7",
+      "title": "Desarrollador Full Stack",
+      "description": "Desarrollar aplicaciones web end-to-end con Angular en el frontend y Node.js en el backend.",
+      "requirements": "4+ años de experiencia. Dominio de Angular, TypeScript, Node.js y bases de datos relacionales.",
+      "location": "Remoto",
+      "modality": "REMOTO",
+      "department": "Tecnología",
+      "salaryMin": 4000,
+      "salaryMax": 5500,
+      "status": "ACTIVE",
+      "createdBy": 2,
+      "createdAt": "2026-08-12T10:00:00.000Z"
+    },
+    {
+      "id": "8",
+      "title": "Cloud Architect",
+      "description": "Diseñar arquitecturas escalables en la nube y liderar la migración de infraestructura on-premise.",
+      "requirements": "5+ años en AWS/Azure/GCP. Terraform, Kubernetes y patrones de alta disponibilidad.",
+      "location": "Remoto",
+      "modality": "REMOTO",
+      "department": "Tecnología",
+      "salaryMin": 5000,
+      "salaryMax": 6500,
+      "status": "ACTIVE",
+      "createdBy": 2,
+      "createdAt": "2026-08-12T10:00:00.000Z"
+    },
+    {
+      "id": "9",
+      "title": "Data Engineer",
+      "description": "Construir pipelines de datos y modelos ETL para alimentar el data warehouse de la empresa.",
+      "requirements": "Python, Spark, Airflow, SQL. Experiencia con AWS Redshift o BigQuery.",
+      "location": "Lima, Perú",
+      "modality": "HIBRIDO",
+      "department": "Datos",
+      "salaryMin": 3800,
+      "salaryMax": 4800,
+      "status": "ACTIVE",
+      "createdBy": 8,
+      "createdAt": "2026-08-12T10:00:00.000Z"
+    },
+    {
+      "id": "10",
+      "title": "QA Automation Engineer",
+      "description": "Diseñar y mantener suites de pruebas automatizadas para aplicaciones web y APIs.",
+      "requirements": "Selenium/Cypress/Playwright, Java o TypeScript, CI/CD con GitHub Actions o Jenkins.",
+      "location": "Remoto",
+      "modality": "REMOTO",
+      "department": "Tecnología",
+      "salaryMin": 2800,
+      "salaryMax": 3600,
+      "status": "ACTIVE",
+      "createdBy": 8,
+      "createdAt": "2026-08-12T10:00:00.000Z"
+    },
+    {
+      "id": "11",
+      "title": "Desarrollador Mobile React Native",
+      "description": "Desarrollar aplicaciones móviles multiplataforma para iOS y Android.",
+      "requirements": "3+ años con React Native, Redux y publicaciones en App Store / Google Play.",
+      "location": "Buenos Aires, Argentina",
+      "modality": "HIBRIDO",
+      "department": "Tecnología",
+      "salaryMin": 3200,
+      "salaryMax": 4200,
+      "status": "PAUSED",
+      "createdBy": 2,
+      "createdAt": "2026-08-12T10:00:00.000Z"
+    },
+    {
+      "id": "12",
+      "title": "Analista de Ciberseguridad",
+      "description": "Monitorear amenazas, gestionar incidentes de seguridad y aplicar buenas prácticas de protección.",
+      "requirements": "Conocimiento en OWASP, SIEM, redes y auditorías de seguridad. Certificaciones deseables.",
+      "location": "Remoto",
+      "modality": "REMOTO",
+      "department": "Tecnología",
+      "salaryMin": 3500,
+      "salaryMax": 4500,
+      "status": "ACTIVE",
+      "createdBy": 8,
+      "createdAt": "2026-08-12T10:00:00.000Z"
     }
   ],
   "applications": [
@@ -162,7 +308,7 @@
       "vacancyId": "4",
       "status": "PENDING",
       "appliedAt": "2026-07-12T16:45:00.000Z",
-      "notes": ""
+      "notes": "Candidato con muchas ganas de iniciar una nueva posición"
     },
     {
       "id": "4",
@@ -179,13 +325,21 @@
       "status": "REJECTED",
       "appliedAt": "2026-07-06T10:00:00.000Z",
       "notes": "Candidato sobrecalificado para el rol."
+    },
+    {
+      "id": "6",
+      "candidateId": "3",
+      "vacancyId": "7",
+      "status": "REJECTED",
+      "appliedAt": "2026-08-12T12:00:00.000Z",
+      "notes": "Excelente en la prueba técnica, pero se buscaba perfil con más experiencia en despliegue cloud; se guardó en la banca de talento para futuras vacantes."
     }
   ],
   "candidates": [
     {
       "id": "1",
       "userId": "3",
-      "fullName": "Carlos Pérez",
+      "fullName": "Michel Gutierrez",
       "email": "candidato@talenthub.com",
       "phone": "+51 999 555 111",
       "location": "Lima, Perú",
@@ -202,11 +356,11 @@
       "yearsExperience": 4,
       "education": "Ingeniería de Sistemas",
       "cvUrl": null,
-      "createdAt": "2026-08-12T17:34:22.031Z"
+      "createdAt": "2026-08-12T19:02:21.684Z"
     },
     {
       "id": "2",
-      "userId": "4",
+      "userId": "6",
       "fullName": "María Gómez",
       "email": "maria@example.com",
       "phone": "+51 999 555 222",
@@ -226,7 +380,7 @@
     },
     {
       "id": "3",
-      "userId": null,
+      "userId": "7",
       "fullName": "Lucía Fernández",
       "email": "lucia.fernandez@mail.com",
       "phone": "+51 999 555 333",
@@ -246,7 +400,7 @@
     },
     {
       "id": "4",
-      "userId": null,
+      "userId": "5",
       "fullName": "Jorge Castillo",
       "email": "jorge.castillo@mail.com",
       "phone": "+51 999 555 444",

@@ -42,12 +42,8 @@ const dashboardRoutes: Routes = [
                 loadComponent: () => import("./pages/candidate-profile-page/candidate-profile.component")
             },
             {
-                path: 'upload-cv',
-                loadComponent: () => import("./pages/upload-cv-page/upload-cv.component")
-            },
-            {
-                path: 'apply-vacancy',
-                loadComponent: () => import("./pages/apply-vacancy-page/apply-vacancy.component")
+                path: 'applications',
+                loadComponent: () => import("./pages/applications-page/application.component")
             }
         ]
     }

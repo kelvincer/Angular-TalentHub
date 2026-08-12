@@ -48,6 +48,12 @@ export class AuthComponent {
               return u.email === loggedUser?.email
             })
 
+            if (!user) {
+              this.onSubmitError.set(true)
+              this.isSubmiting.set(false)
+              return
+            }
+
             this.roleService.role.set(user?.role)
             this.usersService.saveUser(user)
 

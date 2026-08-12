@@ -1,0 +1,18 @@
+<div>
+    <div class="text-2xl">Postulaciones</div>
+    <p class="text-base-content/60">Sigue el estado de tus postulaciones.</p>
+</div>
+@if (applications().length === 0) {
+<div class="card bg-base-100 shadow-sm mt-4">
+    <div class="card-body items-center py-16 text-center">
+        <p class="text-base-content/50">Aún no has postulado a ninguna vacante.</p>
+        <a routerLink="/dashboard/{{ userId()}}/vacancy" class="btn btn-primary mt-4">Explorar vacantes</a>
+    </div>
+</div>
+} @else {
+<div class="flex flex-col mt-4 gap-y-4">
+    @for (item of applications(); track item.id) {
+    <app-application-card [application]="item" [vacancyTitle]="vacancyTitle(item.vacancyId)"></app-application-card>
+    }
+</div>
+}
