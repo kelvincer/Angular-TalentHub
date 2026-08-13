@@ -2,8 +2,6 @@ import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { ApplicationsService } from '../../services/ApplicationsService';
 import { Application } from '../../models/Application';
 import { ApplicationCardComponent } from '../../../../shared/application-card/application-card.component';
-import { CandidateService } from '../../services/CandidatesService';
-import { Candidate } from '../../models/Candidate';
 import { VancancyService } from '../../services/VancancyService';
 import { Vacancy } from '../../models/Vacancy';
 import { forkJoin } from 'rxjs';

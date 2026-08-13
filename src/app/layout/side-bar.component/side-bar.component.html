@@ -16,5 +16,13 @@
             <a [routerLink]="item.link" routerLinkActive="menu-active">{{item.name}}</a>
         </li>
         }
+
+        <li class="mt-4 border-t border-base-300 pt-3">
+            <button class="text-error" (click)="logout()">
+                Cerrar sesión
+            </button>
+        </li>
+
     </ul>
+
 </aside>

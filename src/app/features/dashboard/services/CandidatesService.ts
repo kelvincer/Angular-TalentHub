@@ -31,4 +31,8 @@ export class CandidateService {
     updateCandidate(id: string, candidate: Candidate) {
         return this.http.put<Candidate>(`${this.api}/${id}`, candidate)
     }
+
+    createCandidate(candidate: Candidate) {
+        return this.http.post<Candidate>(this.api, candidate)
+    }
 }

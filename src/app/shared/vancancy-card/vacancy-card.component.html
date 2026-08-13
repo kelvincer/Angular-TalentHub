@@ -23,7 +23,16 @@
 
         <div class="flex gap-2 mt-5">
             <button class="flex-1 btn btn-secondary">Ver detalles</button>
-            <button class="flex-1 btn btn-secondary">Postular</button>
+            <button class="flex-1 btn btn-secondary" (click)="apply(vacancy())">Postular</button>
         </div>
     </div>
 </div>
+
+
+@if (toastVisible()) {
+<div class="toast z-1">
+    <div class="alert {{toastType()}}">
+        <span class="text-white">{{ toastMessage() }}</span>
+    </div>
+</div>
+}

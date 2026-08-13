@@ -90,7 +90,7 @@
 
             <a class="btn btn-outline w-full" routerLink="/dashboard/{{userId()}}/vacancy">Explorar vacantes</a>
 
-            <a class="btn btn-ghost mt-3 w-full">Mis postulaciones</a>
+            <a class="btn btn-ghost mt-3 w-full" routerLink="/dashboard/{{userId()}}/applications">Mis postulaciones</a>
 
         </div>
 
@@ -100,8 +100,8 @@
 
 @if (toastVisible()) {
 <div class="toast">
-    <div class="alert alert-success">
-        <span class="text-white">Perfil creado correctamente.</span>
+    <div class="alert {{toastType()}}">
+        <span class="text-white">{{ toastMessage() }}</span>
     </div>
 </div>
 }

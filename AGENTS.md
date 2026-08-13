@@ -1,5 +1,31 @@
-
 You are an expert in TypeScript, Angular, and scalable web application development. You write functional, maintainable, performant, and accessible code following Angular and TypeScript best practices.
+
+## Repo overview
+
+- Single Angular v21 standalone app (`talenthub-app`) rooted at `src/`. Bootstrap via `src/main.ts` + `src/app/app.config.ts`.
+- No Angular `environments/*`; API base URL is hardcoded in `src/app/features/dashboard/utils/config.ts` (`API_URL = http://localhost:3001`).
+- The app runs against a local `json-server` mock API backed by `db.json` (collections: `loggedUsers`, `users`, `vacancies`, `applications`, `candidates`). Editing `db.json` changes the data the app sees.
+- Directory conventions: self-contained feature folders under `src/app/features/<feature>/` (each with `models/`, `services/`, `pages/`, `modals/`), shared components in `src/app/shared/`, dashboard shell + sidebar in `src/app/layout/`.
+- Routing: `''` is the auth page; `dashboard/:userId/...` is lazy-loaded (see `app.routes.ts` and `dashboard.routes.ts`). Lazy-loaded route components use `export default class`.
+
+## Commands
+
+- `npm run mock-api` — starts json-server on port 3001 (`db.json`). Must be running before the app can make any request; start it before `ng serve`.
+- `ng serve` — dev server on http://localhost:4200.
+- `ng test` — Vitest unit tests (via `@angular/build:unit-test`). NO coverage of e2e; `ng e2e` is not configured.
+- `npm run build` — production build (budget: 500kB warning / 1MB error on initial bundle).
+- Prettier is configured (singleQuote, printWidth 100, angular parser for `.html`).
+
+## UI stack
+
+- Tailwind CSS 4 + daisyUI 5, themed in `src/styles.css` (`@plugin "daisyui"` with `light` default, `dark` prefersdark, `emerald`).
+- MANDATORY: for any UI/HTML/Tailwind work, load the local daisyUI skill (`.agents/skills/daisyui/SKILL.md`) and follow its usage + colors docs before writing daisyUI class names like `card`, `badge`, `btn`.
+
+## Repo-specific conventions
+
+- Session/auth state is stored in localStorage under keys `talenthub_session`, `talenthub_current_user`, `talenthub_role`. Roles are `ADMIN | RECRUITER | CANDIDATE` (`src/app/features/auth/models/LoggedUser.ts`). Guards (`auth.guard.ts`) check `talenthub_session` presence.
+- Data services inject `HttpClient` directly and expose signals; follow the existing pattern: `signal()` for state, `computed()` for derived flags, `inject()` instead of constructor injection, `providedIn: 'root'`.
+- `noPropertyAccessFromIndexSignature` is enforced — use bracket access on index-signature types.
 
 ## TypeScript Best Practices
 

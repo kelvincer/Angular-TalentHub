@@ -47,6 +47,13 @@
       "password": "reclutador123",
       "role": "RECRUITER",
       "id": "Hf9Jd9aEKLF"
+    },
+    {
+      "_comment": "Usuario que no se encuentra en candidates",
+      "email": "carlos.silva@talenthub.com",
+      "password": "candidato123",
+      "role": "CANDIDATE",
+      "id": "sRRi4raDgd5"
     }
   ],
   "users": [
@@ -90,7 +97,7 @@
       "status": "Activo",
       "createdAt": "12-08-2026"
     },
-     {
+    {
       "id": "6",
       "name": "María Gómez",
       "email": "maria@example.com",
@@ -111,6 +118,14 @@
       "name": "Andrea Torres",
       "email": "reclutador2@talenthub.com",
       "role": "RECRUITER",
+      "status": "Activo",
+      "createdAt": "13-08-2026"
+    },
+    {
+      "id": "9",
+      "name": "Carlos Silva",
+      "email": "carlos.silva@talenthub.com",
+      "role": "CANDIDATE",
       "status": "Activo",
       "createdAt": "13-08-2026"
     }
@@ -356,7 +371,7 @@
       "yearsExperience": 4,
       "education": "Ingeniería de Sistemas",
       "cvUrl": null,
-      "createdAt": "2026-08-12T19:02:21.684Z"
+      "createdAt": "2026-06-01T10:00:00.000Z"
     },
     {
       "id": "2",

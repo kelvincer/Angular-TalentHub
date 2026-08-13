@@ -16,12 +16,12 @@ export class UsersService {
   readonly isCanditate = computed(() => this.currentUser()?.role === 'CANDIDATE')
 
   constructor() {
-    const raw = localStorage.getItem(SESSION_KEY);
+    const raw = localStorage.getItem(SESSION_KEY)
     if (raw) {
       try {
-        this.currentUser.set(JSON.parse(raw) as User);
+        this.currentUser.set(JSON.parse(raw) as User)
       } catch {
-        localStorage.removeItem(SESSION_KEY);
+        localStorage.removeItem(SESSION_KEY)
       }
     }
   }
@@ -45,5 +45,9 @@ export class UsersService {
   saveUser(user: User | undefined) {
     this.currentUser.set(user)
     localStorage.setItem(SESSION_KEY, JSON.stringify(user))
+  }
+
+  removeSessionKey() {
+    localStorage.removeItem(SESSION_KEY)
   }
 }

@@ -19,5 +19,7 @@ export class AuthService {
     return this.http.get<LoggedUser[]>(this.api).pipe(delay(3000));
   }
 
-  
+  isAuthenticated(): boolean {
+    return localStorage.getItem(SESSION_KEY) !== null
+  }
 }

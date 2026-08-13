@@ -1,7 +1,8 @@
 import { Component, computed, inject, input } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../features/auth/services/auth.service';
 import { Menu } from '../../features/dashboard/models/Menu';
+import { UsersService } from '../../features/dashboard/services/UsersService';
 
 @Component({
   selector: 'app-side-bar',
@@ -11,12 +12,13 @@ import { Menu } from '../../features/dashboard/models/Menu';
 })
 export class SideBarComponent {
 
-  authService = inject(AuthService)
+  private router = inject(Router)
+  private usersService = inject(UsersService)
   menu = input.required<Menu[]>()
   userName = input.required<string>()
   role = input<string>()
   computedRole = computed(() => {
-    switch(this.role()) {
+    switch (this.role()) {
       case 'ADMIN':
         return 'Administrador'
       case 'RECRUITER':
@@ -27,4 +29,10 @@ export class SideBarComponent {
         return ''
     }
   })
+
+  logout() {
+    this.usersService.removeSessionKey()
+    // this.router.navigate([''], { replaceUrl: true })
+    this.router.navigateByUrl('');
+  }
 }

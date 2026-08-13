@@ -1,8 +1,9 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from "@angular/router";
 import { CandidateService } from '../../services/CandidatesService';
 import { Candidate } from '../../models/Candidate';
+import { UsersService } from '../../services/UsersService';
 
 @Component({
   selector: 'app-candidate-profile.component',
@@ -14,12 +15,15 @@ export default class CandidateProfileComponent implements OnInit {
 
   private route = inject(ActivatedRoute)
   private candidateService = inject(CandidateService)
+  private usersService = inject(UsersService)
   readonly userId = signal<string | null>(null)
   readonly candidate = signal<Candidate | null>(null)
   readonly toastVisible = signal<boolean>(false)
+  readonly toastMessage = signal<string>('')
+  readonly toastType = signal<'alert-success' | 'alert-error'>('alert-success')
   candidateForm = new FormGroup({
-    fullName: new FormControl(''),
-    email: new FormControl(''),
+    fullName: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required]),
     phone: new FormControl(''),
     location: new FormControl(''),
     title: new FormControl(''),
@@ -56,6 +60,11 @@ export default class CandidateProfileComponent implements OnInit {
               cvUrl: data.cvUrl,
               createdAt: String(data.createdAt),
             })
+          } else {
+            this.candidateForm.patchValue({
+              fullName: this.usersService.currentUser()?.name,
+              email: this.usersService.currentUser()?.email
+            })
           }
         },
         error: (error) => console.log(error)
@@ -64,9 +73,17 @@ export default class CandidateProfileComponent implements OnInit {
   }
 
   submit() {
+
+    if (this.candidateForm.invalid) {
+      this.showToast('Completa los campos obligatorios para guardar tu perfil.', 'alert-error')
+      return
+    }
+
+    const candidate = this.candidate()
+
     const c: Candidate = {
       id: this.candidate()?.id ?? '',
-      userId: this.candidate()?.userId ?? '',
+      userId: this.userId(),
       fullName: this.candidateForm.value.fullName ?? '',
       email: this.candidateForm.value.email ?? '',
       phone: this.candidateForm.value.phone ?? '',
@@ -80,21 +97,27 @@ export default class CandidateProfileComponent implements OnInit {
       createdAt: new Date()
     }
 
-    this.candidateService.updateCandidate(c.id, c).subscribe({
-      next: () => {
-        this.showToast()
-      },
-      error: (error) => {
-        console.log(error)
-      }
-    })
+    if (candidate) {
+      this.candidateService.updateCandidate(c.id, c).subscribe({
+        next: () => this.showToast('Perfil guardado correctamente.', 'alert-success'),
+        error: (error) => console.log(error)
+
+      })
+    } else {
+      this.candidateService.createCandidate(c).subscribe({
+        next: () => this.showToast('Perfil guardado correctamente.', 'alert-success'),
+        error: (error) => console.log(error)
+      })
+    }
   }
 
-  showToast() {
-    this.toastVisible.set(true);
+  showToast(message: string, type: 'alert-success' | 'alert-error') {
+    this.toastMessage.set(message)
+    this.toastType.set(type)
+    this.toastVisible.set(true)
     setTimeout(() => {
-      this.toastVisible.set(false);
-    }, 3000);
+      this.toastVisible.set(false)
+    }, 3000)
   }
 
 }

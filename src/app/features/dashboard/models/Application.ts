@@ -8,3 +8,5 @@ export interface Application {
     appliedAt: Date;
     notes: string;
 }
+
+export type NewApplication = Omit<Application, 'id' | 'appliedAt'>;
