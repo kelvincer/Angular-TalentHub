@@ -30,11 +30,11 @@ const dashboardRoutes: Routes = [
                 loadChildren: () => import("./pages/vacancy-page/vacancies.routes")
             },
             {
-                path: 'manage-candidate',
-                loadComponent: () => import("./pages/manage-candidates-page/manage-candidate.component")
+                path: 'candidates',
+                loadChildren: () => import("./pages/candidates-list-page/candidates.routes")
             },
             {
-                path: 'manage-interview',
+                path: 'applications',
                 loadComponent: () => import("./pages/manage-interview-page/manage-interview.component")
             },
             {

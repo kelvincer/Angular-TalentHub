@@ -1,0 +1,42 @@
+<div class="card card-border bg-base-100 w-full h-100">
+    <div class="card-body">
+        <div class="flex justify-between items-start gap-2">
+            <div>
+                <h2 class="card-title">{{ candidate().fullName }}</h2>
+                <p class="text-base-content/60">{{ candidate().title }}</p>
+            </div>
+            <div class="avatar">
+                <div class="w-12 rounded-full {{avatarBgColor()}}">
+                    <span class="flex h-full w-full items-center justify-center text-lg font-bold text-white">
+                        {{ candidate().fullName.charAt(0) }}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-wrap gap-2 mt-2">
+            <span class="badge badge-outline">{{ candidate().location }}</span>
+            <span class="badge badge-outline">{{ yearsLabel() }}</span>
+            <span class="badge badge-outline">{{ candidate().education }}</span>
+        </div>
+
+        @if (candidate().summary) {
+        <div class="text-sm text-base-content/80 mt-3 line-clamp-3">{{ candidate().summary }}</div>
+        }
+
+        @if (candidate().skills.length) {
+        <div class="flex flex-wrap gap-1.5 mt-3">
+            @for (skill of candidate().skills; track skill) {
+            <span class="badge badge-ghost badge-sm">{{ skill }}</span>
+            }
+        </div>
+        }
+
+        <div class="flex-1"></div>
+
+        <div class="card-actions justify-between items-center mt-4">
+            <span class="text-sm text-base-content/60">{{ candidate().email }}</span>
+            <button class="btn btn-outline btn-sm" (click)="seeProfile()">Ver perfil</button>
+        </div>
+    </div>
+</div>

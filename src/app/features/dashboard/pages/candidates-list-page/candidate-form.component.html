@@ -1,0 +1,88 @@
+<div class="flex flex-wrap justify-between items-center">
+    <div>
+        <h1 class="text-2xl font-bold">Nuevo candidato</h1>
+        <div class="text-base-content/60">Completa la información del candidato.</div>
+    </div>
+    <a routerLink="../" class="btn btn-ghost btn-sm">← Volver</a>
+</div>
+
+<form [formGroup]="candidateForm" (ngSubmit)="submit()">
+
+    <div class="mt-8 justify-between m-27">
+        <div class="flex w-full gap-4 form-control">
+            <div class="flex-1">
+                <fieldset class="fieldset">
+                    <legend class="fieldset-legend text-lg">Nombre completo *</legend>
+                    <input type="text" class="input w-full" formControlName="fullName"
+                        placeholder="Ej. Michel Gutierrez" />
+                </fieldset>
+            </div>
+            <div class="flex-1">
+                <fieldset class="fieldset">
+                    <legend class="fieldset-legend text-lg">Correo electrónico *</legend>
+                    <input type="email" class="input w-full" formControlName="email"
+                        placeholder="Ej. candidato@mail.com" />
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="flex w-full gap-4 form-control">
+            <div class="flex-1">
+                <fieldset class="fieldset">
+                    <legend class="fieldset-legend text-lg">Teléfono</legend>
+                    <input type="text" class="input w-full" formControlName="phone" placeholder="Ej. +51 999 555 111" />
+                </fieldset>
+            </div>
+            <div class="flex-1">
+                <fieldset class="fieldset">
+                    <legend class="fieldset-legend text-lg">Ubicación</legend>
+                    <input type="text" class="input w-full" formControlName="location" placeholder="Ej. Lima, Perú" />
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="flex w-full gap-4 form-control">
+            <div class="flex-1">
+                <fieldset class="fieldset">
+                    <legend class="fieldset-legend text-lg">Puesto / Perfil</legend>
+                    <input type="text" class="input w-full" formControlName="title"
+                        placeholder="Ej. Desarrollador Frontend" />
+                </fieldset>
+            </div>
+            <div class="flex-1">
+                <fieldset class="fieldset">
+                    <legend class="fieldset-legend text-lg">Formación</legend>
+                    <input type="text" class="input w-full" formControlName="education"
+                        placeholder="Ej. Ingeniería de Sistemas" />
+                </fieldset>
+            </div>
+            <div class="flex-1">
+                <fieldset class="fieldset">
+                    <legend class="fieldset-legend text-lg">Años de experiencia</legend>
+                    <input type="number" class="input w-full" formControlName="yearsExperience" placeholder="Ej. 3" />
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="form-control">
+            <fieldset class="fieldset">
+                <legend class="fieldset-legend text-lg">Habilidades (separadas por coma)</legend>
+                <input type="text" class="input w-full" formControlName="skills"
+                    placeholder="Ej. Angular, TypeScript, RxJS" />
+            </fieldset>
+        </div>
+
+        <div class="form-control">
+            <fieldset class="fieldset">
+                <legend class="fieldset-legend text-lg">Resumen profesional</legend>
+                <textarea class="textarea w-full" formControlName="summary"
+                    placeholder="Breve resumen de la experiencia del candidato..."></textarea>
+            </fieldset>
+        </div>
+
+        <div class="flex justify-end gap-4 pt-4">
+            <a routerLink="../" class="btn btn-ghost">Cancelar</a>
+            <button class="btn btn-primary" type="submit">Crear candidato</button>
+        </div>
+    </div>
+</form>

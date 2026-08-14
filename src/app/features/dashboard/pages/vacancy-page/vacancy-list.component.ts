@@ -8,6 +8,7 @@ import { RouterLink } from "@angular/router";
 import { VacancyCardComponent } from '../../../../shared/vancancy-card/vacancy-card.component';
 import { VacancyRowComponent } from '../../../../shared/vacancy-table-row/vacancy-row.component';
 import { UsersService } from '../../services/UsersService';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-vacancy-list.component',
@@ -24,6 +25,7 @@ export default class VacancyListComponent implements OnInit {
   readonly applications = signal<Application[]>([])
   readonly isStaff = computed(() => this.usersService.isAdmin() || this.usersService.isRecruiter())
   readonly isCandidate = this.usersService.isCanditate
+  readonly loading = signal(false)
   readonly searchText = model('')
   readonly filteredVacancies = computed(() => {
     const search = this.searchText().toLocaleLowerCase()
@@ -38,17 +40,24 @@ export default class VacancyListComponent implements OnInit {
   ngOnInit(): void {
 
     console.log("ngOnInit", this.usersService.currentUser())
-    this.vacanciesService.getVacancies().subscribe({
-      next: (data) => this.vacancies.set(data),
-      error: (error) => console.log(error)
-    })
+    this.loading.set(true)
 
-    this.applicationsService.getApplications().subscribe({
-      next: (data) => this.applications.set(data),
-      error: (error) => console.log(error)
+    forkJoin({
+      vacancies: this.vacanciesService.getVacancies(),
+      applications: this.applicationsService.getApplications(),
+    }).subscribe({
+      next: ({ applications, vacancies }) => {
+        this.vacancies.set(vacancies)
+        this.applications.set(applications)
+      },
+      error: (error) => {
+        console.error(error);
+        this.loading.set(false);
+      },
+      complete: () => {
+        this.loading.set(false);
+      }
     })
   }
-
-
 
 }

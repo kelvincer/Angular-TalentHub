@@ -1,0 +1,69 @@
+<div class="flex flex-wrap justify-between items-center">
+    <div>
+        <div class="text-2xl">Detalle de candidato</div>
+        <div class="text-base-content/60">Perfil completo del candidato.</div>
+    </div>
+    <a class="btn btn-ghost" routerLink="../">Volver a candidatos</a>
+</div>
+
+@if (loading()) {
+<div class="flex justify-center mt-16">
+    <span class="loading loading-spinner loading-lg"></span>
+</div>
+} @else if (candidate(); as candidate) {
+<div class="card card-border bg-base-100 mt-6">
+    <div class="card-body">
+        <div class="flex justify-between items-start gap-2">
+            <div>
+                <h2 class="card-title text-2xl">{{ candidate.fullName }}</h2>
+                <p class="text-base-content/60">{{ candidate.title }}</p>
+            </div>
+            <div class="avatar">
+                <div class="w-16 rounded-full bg-primary/20">
+                    <span class="flex h-full w-full items-center justify-center text-xl font-bold text-primary">
+                        {{ candidate.fullName.charAt(0) }}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-wrap gap-2 mt-2">
+            <span class="badge badge-outline">{{ candidate.location }}</span>
+            <span class="badge badge-outline">{{ yearsLabel() }}</span>
+            <span class="badge badge-outline">{{ candidate.education }}</span>
+        </div>
+
+        <div class="mt-6">
+            <h3 class="text-lg font-semibold">Resumen</h3>
+            <p class="text-base-content/80">{{ candidate.summary }}</p>
+        </div>
+
+        <div class="mt-6">
+            <h3 class="text-lg font-semibold">Habilidades</h3>
+            <div class="flex flex-wrap gap-1.5 mt-2">
+                @for (skill of candidate.skills; track skill) {
+                <span class="badge badge-ghost">{{ skill }}</span>
+                } @empty {
+                <p class="text-base-content/60">Sin habilidades registradas.</p>
+                }
+            </div>
+        </div>
+
+        <div class="flex flex-wrap gap-6 mt-6">
+            <div class="stat bg-base-200 rounded-box">
+                <div class="stat-title">Correo</div>
+                <div class="stat-value text-base">{{ candidate.email }}</div>
+            </div>
+            <div class="stat bg-base-200 rounded-box">
+                <div class="stat-title">Teléfono</div>
+                <div class="stat-value text-base">{{ candidate.phone || 'Sin registro' }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+} @else {
+<div class="flex flex-col items-center justify-center mt-16 gap-4">
+    <p class="text-base-content/60">No se encontró el candidato solicitado.</p>
+    <a class="btn btn-primary" routerLink="../">Volver a candidatos</a>
+</div>
+}

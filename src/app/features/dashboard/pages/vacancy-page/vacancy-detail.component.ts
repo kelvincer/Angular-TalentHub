@@ -23,7 +23,7 @@ export default class VacancyDetailComponent implements OnInit {
   private vacanciesService = inject(VancancyService)
   private applicationsService = inject(ApplicationsService)
   private candidatesService = inject(CandidateService)
-  private userService = inject(UsersService)
+  private usersService = inject(UsersService)
   private readonly router = inject(Router)
   readonly candidate = signal<Candidate | null>(null)
   readonly vacancy = signal<Vacancy | null>(null)
@@ -31,6 +31,7 @@ export default class VacancyDetailComponent implements OnInit {
   readonly hasApplied = signal(false)
   readonly toastVisible = signal<boolean>(false)
   readonly toastMessage = signal<string>('')
+  readonly isStaff = computed(() => this.usersService.isAdmin() || this.usersService.isRecruiter())
   readonly toastType = signal<'alert-success' | 'alert-error'>('alert-success')
   readonly modalityLabel = computed(() => {
     const modality = this.vacancy()?.modality
@@ -51,7 +52,7 @@ export default class VacancyDetailComponent implements OnInit {
     forkJoin({
       vacancies: this.vacanciesService.getVacancies(),
       applications: this.applicationsService.getApplications(),
-      candidate: this.candidatesService.getCandidateByUserId(this.userService.currentUser()?.id ?? '')
+      candidate: this.candidatesService.getCandidateByUserId(this.usersService.currentUser()?.id ?? '')
     }).subscribe({
       next: ({ applications, vacancies, candidate }) => {
         this.vacancy.set(vacancies.find((v) => v.id === id) ?? null)
@@ -74,7 +75,7 @@ export default class VacancyDetailComponent implements OnInit {
     if (!candidate) {
       this.showToast('Completa tu perfil para poder postular a vacantes.', 'alert-error')
       setTimeout(() => {
-        this.router.navigate(['/dashboard', this.userService.currentUser()?.id, 'my-profile'])
+        this.router.navigate(['/dashboard', this.usersService.currentUser()?.id, 'my-profile'])
       }, 2000)
       return
     }

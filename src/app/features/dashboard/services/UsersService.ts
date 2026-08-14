@@ -9,7 +9,7 @@ import { API_URL, SESSION_KEY } from '../utils/config';
 export class UsersService {
 
   private api = `${API_URL}/users`;
-  http = inject(HttpClient)
+  private http = inject(HttpClient)
   readonly currentUser = signal<User | undefined>(undefined)
   readonly isAdmin = computed(() => this.currentUser()?.role === 'ADMIN')
   readonly isRecruiter = computed(() => this.currentUser()?.role === 'RECRUITER')

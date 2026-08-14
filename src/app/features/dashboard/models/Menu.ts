@@ -34,13 +34,13 @@ export const menu: Menu[] = [
     },
     {
         role: 'RECRUITER',
-        link: 'manage-candidate',
-        name: 'Gestionar candidatos'
+        link: 'candidates',
+        name: 'Candidatos'
     },
     {
         role: 'RECRUITER',
-        link: 'manage-interview',
-        name: 'Gestionar entrevistas'
+        link: 'applications',
+        name: 'Postulaciones'
     },
     {
         role: 'CANDIDATE',

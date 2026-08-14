@@ -26,9 +26,14 @@
 
         <div class="flex-1"></div>
 
-        <div class="card-actions flex gap-2">
+        <div class="card-actions flex gap-2 items-center">
             <button class="flex-1 btn btn-secondary" (click)="seeVacancyDetail()">Ver detalles</button>
-            @if (hasApplied()(vacancy().id)) {
+            @if(appliedVacancyLoading()) {
+            <button class="btn flex-1 disabled:bg-gray-400">
+                <span class="loading loading-spinner loading-md"></span>
+            </button>
+            }
+            @else if (hasApplied()(vacancy().id)) {
             <button type="button" class="btn btn-disabled flex-1" disabled>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                     stroke="currentColor" class="h-4 w-4">

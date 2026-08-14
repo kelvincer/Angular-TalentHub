@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { Candidate } from '../../features/dashboard/models/Candidate';
 import { NewApplication } from '../../features/dashboard/models/Application';
 import { UsersService } from '../../features/dashboard/services/UsersService';
+import { single } from 'rxjs';
 
 @Component({
   selector: 'app-vacancy-card',
@@ -26,6 +27,7 @@ export class VacancyCardComponent implements OnInit {
   readonly toastVisible = signal<boolean>(false)
   readonly toastMessage = signal<string>('')
   readonly toastType = signal<'alert-success' | 'alert-error'>('alert-success')
+  readonly appliedVacancyLoading = signal(false)
   vacancy = input.required<Vacancy>();
   modalityLabel = computed(() => MODALITY_LABELS[this.vacancy().modality]);
   readonly appliedVacancyIds = signal<Set<string>>(new Set())
@@ -74,9 +76,11 @@ export class VacancyCardComponent implements OnInit {
   }
 
   private getApplications() {
+    this.appliedVacancyLoading.set(true)
     this.applicationService.getApplications().subscribe({
       next: (data) => {
         this.appliedVacancyIds.set(new Set(data.filter((v) => v.candidateId === this.candidate()?.id).map((v) => v.vacancyId)))
+        this.appliedVacancyLoading.set(false)
         console.log('vacancyIds', this.appliedVacancyIds())
       },
       error: (error) => console.log(error)

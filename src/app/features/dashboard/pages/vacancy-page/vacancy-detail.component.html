@@ -57,6 +57,12 @@
         </div>
 
         <div class="card-actions justify-end mt-8">
+            @if(isStaff()) {
+            <div class="flex gap-2">
+                <a class="btn btn-dash btn-primary w-40">Editar</a>
+                <a class="btn btn-dash btn-error w-40">Eliminar</a>
+            </div>
+            } @else {
             @if (hasApplied()) {
             <button type="button" class="btn btn-lg disabled:text-gray-500" disabled>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
@@ -67,6 +73,7 @@
             </button>
             } @else {
             <button type="button" class="btn btn-primary btn-lg" (click)="apply()">Postular ahora</button>
+            }
             }
         </div>
     </div>
