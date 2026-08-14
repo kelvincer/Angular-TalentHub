@@ -21,7 +21,8 @@
                 <path d="m21 21-4.3-4.3"></path>
             </g>
         </svg>
-        <input type="search" class="grow" placeholder="Buscar por título, ubicación o área..." />
+        <input type="search" class="grow" placeholder="Buscar por título, ubicación o área..."
+            [(ngModel)]="searchText" />
         <kbd class="kbd kbd-sm">⌘</kbd>
         <kbd class="kbd kbd-sm">K</kbd>
     </label>
@@ -54,7 +55,7 @@
 </div>
 } @else if (isCandidate()) {
 <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 mt-4">
-    @for (item of vacancies(); track item.id) {
+    @for (item of filteredVacancies(); track item.id) {
     <app-vacancy-card [vacancy]="item" />
     }
 </div>

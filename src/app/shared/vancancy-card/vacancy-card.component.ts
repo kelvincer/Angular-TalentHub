@@ -28,6 +28,10 @@ export class VacancyCardComponent implements OnInit {
   readonly toastType = signal<'alert-success' | 'alert-error'>('alert-success')
   vacancy = input.required<Vacancy>();
   modalityLabel = computed(() => MODALITY_LABELS[this.vacancy().modality]);
+  readonly appliedVacancyIds = signal<Set<string>>(new Set())
+  readonly hasApplied = computed(() => {
+    return (vacancyId: string) => this.appliedVacancyIds().has(vacancyId)
+  })
 
   ngOnInit(): void {
     const uId = this.userId()
@@ -38,6 +42,8 @@ export class VacancyCardComponent implements OnInit {
       next: (data) => this.candidate.set(data),
       error: (error) => console.log(error)
     })
+
+    this.getApplications()
   }
 
   apply(vacancy: Vacancy) {
@@ -60,10 +66,25 @@ export class VacancyCardComponent implements OnInit {
     this.applicationService.create(application).subscribe({
       next: () => {
         console.log('aplicacion creada')
+        this.getApplications()
         this.showToast('Postulación enviada correctamente.', 'alert-success')
       },
       error: (error) => console.log(error)
     })
+  }
+
+  private getApplications() {
+    this.applicationService.getApplications().subscribe({
+      next: (data) => {
+        this.appliedVacancyIds.set(new Set(data.filter((v) => v.candidateId === this.candidate()?.id).map((v) => v.vacancyId)))
+        console.log('vacancyIds', this.appliedVacancyIds())
+      },
+      error: (error) => console.log(error)
+    })
+  }
+
+  seeVacancyDetail() {
+    this.router.navigate(['/dashboard', this.userId(), 'vacancy', this.vacancy().id])
   }
 
   showToast(message: string, type: 'alert-success' | 'alert-error') {

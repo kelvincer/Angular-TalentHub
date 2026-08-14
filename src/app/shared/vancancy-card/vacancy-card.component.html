@@ -1,8 +1,8 @@
-<div class="card card-border bg-base-100 w-full">
+<div class="card card-border bg-base-100 w-full h-75">
     <div class="card-body">
         <div class="flex justify-between items-center">
             <h2 class="card-title">{{ vacancy().title }}</h2>
-            <div class="card-actions justify-end">
+            <div>
                 @switch(vacancy().status) {
                 @case('ACTIVE') {
                 <span class="badge badge-primary">Activa</span>
@@ -16,14 +16,29 @@
                 }
             </div>
         </div>
-        <p class="text-base-content/60">{{ vacancy().department }} · {{ vacancy().location }} · {{ modalityLabel() }}
-        </p>
-        <p class="text-lg font-semibold">S/. {{ vacancy().salaryMin | number }} - S/. {{ vacancy().salaryMax | number}}
-        </p>
+        <div class="text-base-content/60">{{ vacancy().department }} · {{ vacancy().location }} · {{ modalityLabel() }}
+        </div>
+        <div class="text-lg font-semibold">S/. {{ vacancy().salaryMin | number }} - S/. {{ vacancy().salaryMax |
+            number}}
+        </div>
 
-        <div class="flex gap-2 mt-5">
-            <button class="flex-1 btn btn-secondary">Ver detalles</button>
+        <div class="line-clamp-3">{{vacancy().description}}</div>
+
+        <div class="flex-1"></div>
+
+        <div class="card-actions flex gap-2">
+            <button class="flex-1 btn btn-secondary" (click)="seeVacancyDetail()">Ver detalles</button>
+            @if (hasApplied()(vacancy().id)) {
+            <button type="button" class="btn btn-disabled flex-1" disabled>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                    stroke="currentColor" class="h-4 w-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                Postulaste
+            </button>
+            } @else {
             <button class="flex-1 btn btn-secondary" (click)="apply(vacancy())">Postular</button>
+            }
         </div>
     </div>
 </div>

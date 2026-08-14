@@ -1,4 +1,5 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, model, OnInit, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { VancancyService } from '../../services/VancancyService';
 import { Vacancy } from '../../models/Vacancy';
 import { ApplicationsService } from '../../services/ApplicationsService';
@@ -10,7 +11,7 @@ import { UsersService } from '../../services/UsersService';
 
 @Component({
   selector: 'app-vacancy-list.component',
-  imports: [RouterLink, VacancyCardComponent, VacancyRowComponent],
+  imports: [RouterLink, VacancyCardComponent, VacancyRowComponent, FormsModule],
   templateUrl: './vacancy-list.component.html',
   styleUrl: './vacancy-list.component.css',
 })
@@ -23,6 +24,13 @@ export default class VacancyListComponent implements OnInit {
   readonly applications = signal<Application[]>([])
   readonly isStaff = computed(() => this.usersService.isAdmin() || this.usersService.isRecruiter())
   readonly isCandidate = this.usersService.isCanditate
+  readonly searchText = model('')
+  readonly filteredVacancies = computed(() => {
+    const search = this.searchText().toLocaleLowerCase()
+    return this.vacancies().filter((v) => v.title.toLocaleLowerCase().includes(search)
+      || v.description.toLocaleLowerCase().includes(search)
+      || v.department.toLocaleLowerCase().includes(search))
+  })
   readonly applicantCount = (vacancyId: string) => {
     return this.applications().filter((v) => v.vacancyId === vacancyId).length
   }

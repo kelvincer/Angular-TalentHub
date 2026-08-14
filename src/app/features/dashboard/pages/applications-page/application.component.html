@@ -12,7 +12,10 @@
 } @else {
 <div class="flex flex-col mt-4 gap-y-4">
     @for (item of applications(); track item.id) {
-    <app-application-card [application]="item" [vacancyTitle]="vacancyTitle(item.vacancyId)"></app-application-card>
+    <app-application-card [application]="item" [vacancyTitle]="vacancyTitle(item.vacancyId)"
+        [vacancyId]="item.vacancyId">
+
+    </app-application-card>
     }
 </div>
 }

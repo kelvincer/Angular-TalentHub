@@ -1,0 +1,87 @@
+<div class="flex flex-wrap justify-between items-center">
+    <div>
+        <div class="text-2xl">Detalle de vacante</div>
+        <div class="text-base-content/60">Información completa de la posición.</div>
+    </div>
+    <a class="btn btn-ghost" routerLink="../">Volver a vacantes</a>
+</div>
+
+@if (loading()) {
+<div class="flex justify-center mt-16">
+    <span class="loading loading-spinner loading-lg"></span>
+</div>
+} @else if (vacancy(); as vacancy) {
+<div class="card card-border bg-base-100 mt-6">
+    <div class="card-body">
+        <div class="flex justify-between items-center">
+            <h2 class="card-title text-2xl">{{ vacancy.title }}</h2>
+            @switch (vacancy.status) {
+            @case ('ACTIVE') {
+            <span class="badge badge-primary">{{ statusLabel() }}</span>
+            }
+            @case ('PAUSED') {
+            <span class="badge badge-warning">{{ statusLabel() }}</span>
+            }
+            @case ('CLOSED') {
+            <span class="badge badge-ghost">{{ statusLabel() }}</span>
+            }
+            }
+        </div>
+
+        <div class="flex flex-wrap gap-2 mt-2">
+            <span class="badge badge-outline">{{ vacancy.department }}</span>
+            <span class="badge badge-outline">{{ vacancy.location }}</span>
+            <span class="badge badge-outline">{{ modalityLabel() }}</span>
+        </div>
+
+        <div class="mt-6">
+            <h3 class="text-lg font-semibold">Descripción</h3>
+            <p class="text-base-content/80">{{ vacancy.description }}</p>
+        </div>
+
+        <div class="mt-6">
+            <h3 class="text-lg font-semibold">Requisitos</h3>
+            <p class="text-base-content/80">{{ vacancy.requirements }}</p>
+        </div>
+
+        <div class="flex flex-wrap gap-6 mt-6">
+            <div class="stat bg-base-200 rounded-box">
+                <div class="stat-title">Salario</div>
+                <div class="stat-value text-xl">S/. {{ vacancy.salaryMin | number }} - S/. {{ vacancy.salaryMax | number
+                    }}</div>
+            </div>
+            <div class="stat bg-base-200 rounded-box">
+                <div class="stat-title">Modalidad</div>
+                <div class="stat-value text-xl">{{ modalityLabel() }}</div>
+            </div>
+        </div>
+
+        <div class="card-actions justify-end mt-8">
+            @if (hasApplied()) {
+            <button type="button" class="btn btn-lg disabled:text-gray-500" disabled>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                    stroke="currentColor" class="h-5 w-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                Ya postulaste a esta vacante
+            </button>
+            } @else {
+            <button type="button" class="btn btn-primary btn-lg" (click)="apply()">Postular ahora</button>
+            }
+        </div>
+    </div>
+</div>
+} @else {
+<div class="flex flex-col items-center justify-center mt-16 gap-4">
+    <p class="text-base-content/60">No se encontró la vacante solicitada.</p>
+    <a class="btn btn-primary" routerLink="../">Volver a vacantes</a>
+</div>
+}
+
+@if (toastVisible()) {
+<div class="toast z-1">
+    <div class="alert {{toastType()}}">
+        <span class="text-white">{{ toastMessage() }}</span>
+    </div>
+</div>
+}

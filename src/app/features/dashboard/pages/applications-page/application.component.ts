@@ -7,6 +7,7 @@ import { Vacancy } from '../../models/Vacancy';
 import { forkJoin } from 'rxjs';
 import { UsersService } from '../../services/UsersService';
 import { RouterLink } from '@angular/router';
+import { CandidateService } from '../../services/CandidatesService';
 
 @Component({
   selector: 'app-application.component',
@@ -18,6 +19,7 @@ export default class ApplicationComponent implements OnInit {
 
   private applicationsService = inject(ApplicationsService)
   private vacanciesService = inject(VancancyService)
+  private candidatesService = inject(CandidateService)
   private userService = inject(UsersService)
   readonly applications = signal<Application[]>([])
   readonly vacancies = signal<Vacancy[]>([])
@@ -29,10 +31,13 @@ export default class ApplicationComponent implements OnInit {
     this.loadingSignal.set(true)
     forkJoin({
       applications: this.applicationsService.getApplications(),
-      vacancies: this.vacanciesService.getVacancies()
+      vacancies: this.vacanciesService.getVacancies(),
+      candidate: this.candidatesService.getCandidateByUserId(this.userService.currentUser()?.id ?? '')
     }).subscribe({
-      next: ({ applications, vacancies }) => {
-        this.applications.set(applications.filter((apps) => apps.candidateId === this.userService.currentUser()?.id));
+      next: ({ applications, vacancies, candidate }) => {
+        console.log("apps", applications)
+        this.applications.set(applications.filter((apps) => apps.candidateId === candidate.id))
+        console.log("apps", this.applications())
         this.vacancies.set(vacancies);
       },
       error: (error) => {
