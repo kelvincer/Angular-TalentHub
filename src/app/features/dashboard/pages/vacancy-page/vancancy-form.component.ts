@@ -105,7 +105,7 @@ export default class VancancyFormComponent implements OnInit {
           next: () => {
             this.showToast('Vacante creada correctamente.', 'alert-success')
             setTimeout(() => {
-              this.router.navigate(['../'])
+              this.router.navigate(['../'], { relativeTo: this.route });
             }, 2000)
           },
           error: (error) => console.log(error)
