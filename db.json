@@ -304,7 +304,7 @@
     {
       "id": "1",
       "candidateId": "1",
-      "vacancyId": null,
+      "vacancyId": "1",
       "status": "INTERVIEW",
       "appliedAt": "2026-07-03T14:30:00.000Z",
       "notes": "Buen perfil técnico, avanza a entrevista técnica."
