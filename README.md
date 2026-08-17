@@ -2,26 +2,16 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.19.
 
-## Steps to run this project
+## Pasos para ejecutar el proyecto
 
-1. ### Start local web mock server
+1. ### Inicia el servidor web mock
     ```bash
     npm run mock-api
     ```
-2. ### Start application
+2. ### Ejecuta la aplicación
     ```bash
     ng serve -o
     ```
-
-## Development server
-
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
 ## Code scaffolding
 
