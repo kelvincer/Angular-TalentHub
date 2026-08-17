@@ -11,11 +11,11 @@ import { UsersService } from '../../services/UsersService';
 import { Candidate } from '../../models/Candidate';
 import { NewApplication } from '../../models/Application';
 import { DeleteVacancyComponent } from "./modals/delete-vacancy/delete-vacancy.component";
-import { ToastComponent } from '../../../../shared/toast/toast.component';
+import { ToastService } from '../../services/ToastService';
 
 @Component({
   selector: 'app-vacancy-detail',
-  imports: [RouterLink, DecimalPipe, DeleteVacancyComponent, ToastComponent],
+  imports: [RouterLink, DecimalPipe, DeleteVacancyComponent],
   templateUrl: './vacancy-detail.component.html',
   styleUrl: './vacancy-detail.component.css',
 })
@@ -27,14 +27,12 @@ export default class VacancyDetailComponent implements OnInit {
   private candidatesService = inject(CandidateService)
   private usersService = inject(UsersService)
   private readonly router = inject(Router)
+  private readonly toastService = inject(ToastService)
   readonly candidate = signal<Candidate | null>(null)
   readonly vacancy = signal<Vacancy | null>(null)
   readonly loading = signal<boolean>(true)
   readonly hasApplied = signal(false)
-  readonly toastVisible = signal<boolean>(false)
-  readonly toastMessage = signal<string>('')
   readonly isStaff = computed(() => this.usersService.isAdmin() || this.usersService.isRecruiter())
-  readonly toastType = signal<'alert-success' | 'alert-error'>('alert-success')
   readonly modalityLabel = computed(() => {
     const modality = this.vacancy()?.modality
     return modality ? MODALITY_LABELS[modality] : ''
@@ -76,7 +74,7 @@ export default class VacancyDetailComponent implements OnInit {
   apply() {
     const candidate = this.candidate()
     if (!candidate) {
-      this.showToast('Completa tu perfil para poder postular a vacantes.', 'alert-error')
+      this.toastService.show('Completa tu perfil para poder postular a vacantes.', 'alert-error')
       setTimeout(() => {
         this.router.navigate(['/dashboard', this.usersService.currentUser()?.id, 'my-profile'])
       }, 2000)
@@ -93,7 +91,7 @@ export default class VacancyDetailComponent implements OnInit {
     this.applicationsService.create(application).subscribe({
       next: () => {
         this.hasApplied.set(true)
-        this.showToast('Postulación enviada correctamente.', 'alert-success')
+        this.toastService.show('Postulación enviada correctamente.', 'alert-success')
       },
       error: (error) => console.log(error)
     })
@@ -113,18 +111,9 @@ export default class VacancyDetailComponent implements OnInit {
   }
 
   vacancyDeleted(id: string) {
-    this.showToast('Vacante eliminada.', 'alert-success')
+    this.toastService.show('Vacante eliminada.', 'alert-success')
     setTimeout(() => {
       this.router.navigate(['../'], { relativeTo: this.route });
-    }, 2000)
-  }
-
-  showToast(message: string, type: 'alert-success' | 'alert-error') {
-    this.toastMessage.set(message)
-    this.toastType.set(type)
-    this.toastVisible.set(true)
-    setTimeout(() => {
-      this.toastVisible.set(false)
     }, 2000)
   }
 }

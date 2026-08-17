@@ -9,11 +9,11 @@ import { Candidate } from '../../features/dashboard/models/Candidate';
 import { NewApplication } from '../../features/dashboard/models/Application';
 import { UsersService } from '../../features/dashboard/services/UsersService';
 import { single } from 'rxjs';
-import { ToastComponent } from "../toast/toast.component";
+import { ToastService } from '../../features/dashboard/services/ToastService';
 
 @Component({
   selector: 'app-vacancy-card',
-  imports: [DecimalPipe, ToastComponent],
+  imports: [DecimalPipe],
   templateUrl: './vacancy-card.component.html',
   styleUrl: './vacancy-card.component.css',
 })
@@ -23,11 +23,9 @@ export class VacancyCardComponent implements OnInit {
   private candidatesService = inject(CandidateService)
   private usersService = inject(UsersService)
   private readonly router = inject(Router);
+  private readonly toastService = inject(ToastService)
   readonly userId = computed(() => this.usersService.currentUser()?.id ?? null)
   readonly candidate = signal<Candidate | null>(null)
-  readonly toastVisible = signal<boolean>(false)
-  readonly toastMessage = signal<string>('')
-  readonly toastType = signal<'alert-success' | 'alert-error'>('alert-success')
   readonly appliedVacancyLoading = signal(false)
   vacancy = input.required<Vacancy>();
   modalityLabel = computed(() => MODALITY_LABELS[this.vacancy().modality]);
@@ -52,7 +50,7 @@ export class VacancyCardComponent implements OnInit {
   apply(vacancy: Vacancy) {
     const candidate = this.candidate()
     if (!candidate) {
-      this.showToast('Completa tu perfil para poder postular a vacantes.', 'alert-error')
+      this.toastService.show('Completa tu perfil para poder postular a vacantes.', 'alert-error')
       setTimeout(() => {
         this.router.navigate(['/dashboard', this.userId(), 'my-profile'])
       }, 2000)
@@ -70,7 +68,7 @@ export class VacancyCardComponent implements OnInit {
       next: () => {
         console.log('aplicacion creada')
         this.getApplications()
-        this.showToast('Postulación enviada correctamente.', 'alert-success')
+        this.toastService.show('Postulación enviada correctamente.', 'alert-success')
       },
       error: (error) => console.log(error)
     })
@@ -90,14 +88,5 @@ export class VacancyCardComponent implements OnInit {
 
   seeVacancyDetail() {
     this.router.navigate(['/dashboard', this.userId(), 'vacancy', this.vacancy().id])
-  }
-
-  showToast(message: string, type: 'alert-success' | 'alert-error') {
-    this.toastMessage.set(message)
-    this.toastType.set(type)
-    this.toastVisible.set(true)
-    setTimeout(() => {
-      this.toastVisible.set(false)
-    }, 3000)
   }
 }

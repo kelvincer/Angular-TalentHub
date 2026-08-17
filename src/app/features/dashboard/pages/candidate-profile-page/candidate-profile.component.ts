@@ -4,11 +4,11 @@ import { ActivatedRoute, RouterLink } from "@angular/router";
 import { CandidateService } from '../../services/CandidatesService';
 import { Candidate } from '../../models/Candidate';
 import { UsersService } from '../../services/UsersService';
-import { ToastComponent } from '../../../../shared/toast/toast.component';
+import { ToastService } from '../../services/ToastService';
 
 @Component({
   selector: 'app-candidate-profile.component',
-  imports: [RouterLink, ReactiveFormsModule, ToastComponent],
+  imports: [RouterLink, ReactiveFormsModule],
   templateUrl: './candidate-profile.component.html',
   styleUrl: './candidate-profile.component.css',
 })
@@ -17,11 +17,9 @@ export default class CandidateProfileComponent implements OnInit {
   private route = inject(ActivatedRoute)
   private candidateService = inject(CandidateService)
   private usersService = inject(UsersService)
+  private readonly toastService = inject(ToastService)
   readonly userId = signal<string | null>(null)
   readonly candidate = signal<Candidate | null>(null)
-  readonly toastVisible = signal<boolean>(false)
-  readonly toastMessage = signal<string>('')
-  readonly toastType = signal<'alert-success' | 'alert-error'>('alert-success')
   candidateForm = new FormGroup({
     fullName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required]),
@@ -76,7 +74,7 @@ export default class CandidateProfileComponent implements OnInit {
   submit() {
 
     if (this.candidateForm.invalid) {
-      this.showToast('Completa los campos obligatorios para guardar tu perfil.', 'alert-error')
+      this.toastService.show('Completa los campos obligatorios para guardar tu perfil.', 'alert-error')
       return
     }
 
@@ -100,25 +98,16 @@ export default class CandidateProfileComponent implements OnInit {
 
     if (candidate) {
       this.candidateService.updateCandidate(c.id, c).subscribe({
-        next: () => this.showToast('Perfil guardado correctamente.', 'alert-success'),
+        next: () => this.toastService.show('Perfil guardado correctamente.', 'alert-success'),
         error: (error) => console.log(error)
 
       })
     } else {
       this.candidateService.createCandidate(c).subscribe({
-        next: () => this.showToast('Perfil guardado correctamente.', 'alert-success'),
+        next: () => this.toastService.show('Perfil guardado correctamente.', 'alert-success'),
         error: (error) => console.log(error)
       })
     }
-  }
-
-  showToast(message: string, type: 'alert-success' | 'alert-error') {
-    this.toastMessage.set(message)
-    this.toastType.set(type)
-    this.toastVisible.set(true)
-    setTimeout(() => {
-      this.toastVisible.set(false)
-    }, 3000)
   }
 
 }

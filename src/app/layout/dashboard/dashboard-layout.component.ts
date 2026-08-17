@@ -4,16 +4,19 @@ import { ActivatedRoute, RouterOutlet } from "@angular/router";
 import { UsersService } from '../../features/dashboard/services/UsersService';
 import { User } from '../../features/dashboard/models/User';
 import { menu, Menu } from '../../features/dashboard/models/Menu';
+import { ToastComponent } from '../../shared/toast/toast.component';
+import { ToastService } from '../../features/dashboard/services/ToastService';
 
 @Component({
   selector: 'app-dashboard-layout.component',
-  imports: [SideBarComponent, RouterOutlet],
+  imports: [SideBarComponent, RouterOutlet, ToastComponent],
   templateUrl: './dashboard-layout.component.html',
   styleUrl: './dashboard-layout.component.css',
 })
 export default class DashboardLayoutComponent {
 
   private usersService = inject(UsersService)
+  protected toastService = inject(ToastService)
   user = signal<User | undefined>(undefined)
   menuItems = signal<Menu[]>([]);
 

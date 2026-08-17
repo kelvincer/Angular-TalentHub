@@ -85,7 +85,5 @@
 </div>
 }
 
-<app-toast [visible]="toastVisible()" [message]="toastMessage()" [type]="toastType()" />
-
 <app-delete-vacancy [modalOpen]="openDeleteVacancyModel()" (close)="closeDeleteVacancyModal()"
     [vacancy]="vacancy()" (deleted)="vacancyDeleted($event)"></app-delete-vacancy>

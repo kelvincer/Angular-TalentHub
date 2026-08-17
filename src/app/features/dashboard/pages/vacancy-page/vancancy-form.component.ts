@@ -6,11 +6,11 @@ import { Modality, Vacancy, VacancyStatus } from '../../models/Vacancy';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { VancancyService } from '../../services/VancancyService';
 import { UsersService } from '../../services/UsersService';
-import { ToastComponent } from '../../../../shared/toast/toast.component';
+import { ToastService } from '../../services/ToastService';
 
 @Component({
   selector: 'app-vancancy-form.component',
-  imports: [KeyValuePipe, RouterLink, ReactiveFormsModule, ToastComponent],
+  imports: [KeyValuePipe, RouterLink, ReactiveFormsModule],
   templateUrl: './vancancy-form.component.html',
   styleUrl: './vancancy-form.component.css',
 })
@@ -20,12 +20,10 @@ export default class VancancyFormComponent implements OnInit {
   private readonly router = inject(Router);
   private vacanciesService = inject(VancancyService)
   private userService = inject(UsersService)
+  private readonly toastService = inject(ToastService)
   readonly isEditing = signal(false)
   readonly modalityLabels = MODALITY_LABELS
   readonly vacancyLabels = VACANCY_STATUS_LABELS
-  readonly toastVisible = signal<boolean>(false)
-  readonly toastMessage = signal<string>('')
-  readonly toastType = signal<'alert-success' | 'alert-error'>('alert-success')
   readonly vacancyForm = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.minLength(4)]),
     description: new FormControl('', Validators.required),
@@ -61,19 +59,10 @@ export default class VancancyFormComponent implements OnInit {
     })
   }
 
-  showToast(message: string, type: 'alert-success' | 'alert-error') {
-    this.toastMessage.set(message)
-    this.toastType.set(type)
-    this.toastVisible.set(true)
-    setTimeout(() => {
-      this.toastVisible.set(false)
-    }, 3000)
-  }
-
   submit() {
     console.log("title", this.vacancyForm.value.title)
     if (this.vacancyForm.invalid) {
-      this.showToast('Completa los campos requeridos.', 'alert-error')
+      this.toastService.show('Completa los campos requeridos.', 'alert-error')
       return
     }
 
@@ -94,7 +83,7 @@ export default class VancancyFormComponent implements OnInit {
       const id = this.route.snapshot.paramMap.get('vacancyId') ?? '';
       this.vacanciesService.update(id, payload).subscribe({
         next: () => {
-          this.showToast('Vacante actualizada correctamente.', 'alert-success')
+          this.toastService.show('Vacante actualizada correctamente.', 'alert-success')
           setTimeout(() => {
             this.router.navigate(['../'], { relativeTo: this.route });
           }, 2000)
@@ -104,7 +93,7 @@ export default class VancancyFormComponent implements OnInit {
       this.vacanciesService.create({ ...payload, createdBy: this.userService.currentUser()!.id })
         .subscribe({
           next: () => {
-            this.showToast('Vacante creada correctamente.', 'alert-success')
+            this.toastService.show('Vacante creada correctamente.', 'alert-success')
             setTimeout(() => {
               this.router.navigate(['../'], { relativeTo: this.route });
             }, 2000)
