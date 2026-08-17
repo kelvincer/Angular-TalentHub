@@ -47,7 +47,7 @@
             </tr>
         </thead>
         <tbody>
-            @for (item of vacancies(); track item.id) {
+            @for (item of filteredVacancies(); track item.id) {
             <tr app-vacancy-row [vacancy]="item" [applicantCount]="applicantCount(item.id)"></tr>
             } @empty {
             <tr>

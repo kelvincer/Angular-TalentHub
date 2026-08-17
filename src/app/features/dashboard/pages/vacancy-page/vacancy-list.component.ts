@@ -31,7 +31,8 @@ export default class VacancyListComponent implements OnInit {
     const search = this.searchText().toLocaleLowerCase()
     return this.vacancies().filter((v) => v.title.toLocaleLowerCase().includes(search)
       || v.description.toLocaleLowerCase().includes(search)
-      || v.department.toLocaleLowerCase().includes(search))
+      || v.department.toLocaleLowerCase().includes(search)
+      || v.location.toLocaleLowerCase().includes(search))
   })
   readonly applicantCount = (vacancyId: string) => {
     return this.applications().filter((v) => v.vacancyId === vacancyId).length
