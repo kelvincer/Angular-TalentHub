@@ -6,10 +6,11 @@ import { Modality, Vacancy, VacancyStatus } from '../../models/Vacancy';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { VancancyService } from '../../services/VancancyService';
 import { UsersService } from '../../services/UsersService';
+import { ToastComponent } from '../../../../shared/toast/toast.component';
 
 @Component({
   selector: 'app-vancancy-form.component',
-  imports: [KeyValuePipe, RouterLink, ReactiveFormsModule],
+  imports: [KeyValuePipe, RouterLink, ReactiveFormsModule, ToastComponent],
   templateUrl: './vancancy-form.component.html',
   styleUrl: './vancancy-form.component.css',
 })

@@ -11,10 +11,11 @@ import { UsersService } from '../../services/UsersService';
 import { Candidate } from '../../models/Candidate';
 import { NewApplication } from '../../models/Application';
 import { DeleteVacancyComponent } from "./modals/delete-vacancy/delete-vacancy.component";
+import { ToastComponent } from '../../../../shared/toast/toast.component';
 
 @Component({
   selector: 'app-vacancy-detail',
-  imports: [RouterLink, DecimalPipe, DeleteVacancyComponent],
+  imports: [RouterLink, DecimalPipe, DeleteVacancyComponent, ToastComponent],
   templateUrl: './vacancy-detail.component.html',
   styleUrl: './vacancy-detail.component.css',
 })

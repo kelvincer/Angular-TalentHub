@@ -4,10 +4,11 @@ import { ActivatedRoute, RouterLink } from "@angular/router";
 import { CandidateService } from '../../services/CandidatesService';
 import { Candidate } from '../../models/Candidate';
 import { UsersService } from '../../services/UsersService';
+import { ToastComponent } from '../../../../shared/toast/toast.component';
 
 @Component({
   selector: 'app-candidate-profile.component',
-  imports: [RouterLink, ReactiveFormsModule],
+  imports: [RouterLink, ReactiveFormsModule, ToastComponent],
   templateUrl: './candidate-profile.component.html',
   styleUrl: './candidate-profile.component.css',
 })
