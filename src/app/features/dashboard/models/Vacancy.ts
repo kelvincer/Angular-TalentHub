@@ -12,6 +12,8 @@ export interface Vacancy {
     salaryMin: number;
     salaryMax: number;
     status: VacancyStatus;
-    createdBy: number;
+    createdBy: string;
     createdAt: Date;
 }
+
+export type NewVacancy = Omit<Vacancy, 'id' | 'createdAt'>;

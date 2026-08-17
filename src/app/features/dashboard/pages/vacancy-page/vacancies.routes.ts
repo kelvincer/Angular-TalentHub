@@ -7,7 +7,7 @@ const VACANCIES_ROUTES: Routes = [
     { path: '', component: VacancyListComponent },
     { path: 'new-vacancy', component: VancancyFormComponent },
     { path: ':vacancyId', component: VacancyDetailComponent },
-    //{ path: ':id/editar', component: VacancyFormComponent },
+    { path: ':vacancyId/edit', component: VancancyFormComponent },
 ];
 
 export default VACANCIES_ROUTES

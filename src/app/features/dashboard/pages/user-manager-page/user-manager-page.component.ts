@@ -48,7 +48,6 @@ export default class UserManagerPageComponent implements OnInit {
 
   openModal() {
     this.isUserCreateModalOpen.set(true);
-    console.log("open modal");
   }
 
   closeModal() {

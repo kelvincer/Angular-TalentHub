@@ -142,7 +142,7 @@
       "salaryMin": 2500,
       "salaryMax": 3500,
       "status": "ACTIVE",
-      "createdBy": 2,
+      "createdBy": "2",
       "createdAt": "2026-07-02T10:00:00.000Z"
     },
     {
@@ -156,7 +156,7 @@
       "salaryMin": 1800,
       "salaryMax": 2400,
       "status": "ACTIVE",
-      "createdBy": 2,
+      "createdBy": "2",
       "createdAt": "2026-07-05T10:00:00.000Z"
     },
     {
@@ -170,7 +170,7 @@
       "salaryMin": 3200,
       "salaryMax": 4200,
       "status": "PAUSED",
-      "createdBy": 2,
+      "createdBy": "2",
       "createdAt": "2026-06-20T10:00:00.000Z"
     },
     {
@@ -184,7 +184,7 @@
       "salaryMin": 2000,
       "salaryMax": 2800,
       "status": "ACTIVE",
-      "createdBy": 2,
+      "createdBy": "2",
       "createdAt": "2026-07-10T10:00:00.000Z"
     },
     {
@@ -198,7 +198,7 @@
       "salaryMin": 3500,
       "salaryMax": 4500,
       "status": "CLOSED",
-      "createdBy": 2,
+      "createdBy": "2",
       "createdAt": "2026-05-15T10:00:00.000Z"
     },
     {
@@ -212,7 +212,7 @@
       "salaryMin": 2200,
       "salaryMax": 3000,
       "status": "ACTIVE",
-      "createdBy": 2,
+      "createdBy": "2",
       "createdAt": "2026-07-18T10:00:00.000Z"
     },
     {
@@ -226,7 +226,7 @@
       "salaryMin": 4000,
       "salaryMax": 5500,
       "status": "ACTIVE",
-      "createdBy": 2,
+      "createdBy": "2",
       "createdAt": "2026-08-12T10:00:00.000Z"
     },
     {
@@ -240,7 +240,7 @@
       "salaryMin": 5000,
       "salaryMax": 6500,
       "status": "ACTIVE",
-      "createdBy": 2,
+      "createdBy": "2",
       "createdAt": "2026-08-12T10:00:00.000Z"
     },
     {
@@ -254,7 +254,7 @@
       "salaryMin": 3800,
       "salaryMax": 4800,
       "status": "ACTIVE",
-      "createdBy": 8,
+      "createdBy": "8",
       "createdAt": "2026-08-12T10:00:00.000Z"
     },
     {
@@ -268,7 +268,7 @@
       "salaryMin": 2800,
       "salaryMax": 3600,
       "status": "ACTIVE",
-      "createdBy": 8,
+      "createdBy": "8",
       "createdAt": "2026-08-12T10:00:00.000Z"
     },
     {
@@ -282,7 +282,7 @@
       "salaryMin": 3200,
       "salaryMax": 4200,
       "status": "PAUSED",
-      "createdBy": 2,
+      "createdBy": "2",
       "createdAt": "2026-08-12T10:00:00.000Z"
     },
     {
@@ -296,7 +296,7 @@
       "salaryMin": 3500,
       "salaryMax": 4500,
       "status": "ACTIVE",
-      "createdBy": 8,
+      "createdBy": "8",
       "createdAt": "2026-08-12T10:00:00.000Z"
     }
   ],
@@ -304,7 +304,7 @@
     {
       "id": "1",
       "candidateId": "1",
-      "vacancyId": "1",
+      "vacancyId": null,
       "status": "INTERVIEW",
       "appliedAt": "2026-07-03T14:30:00.000Z",
       "notes": "Buen perfil técnico, avanza a entrevista técnica."

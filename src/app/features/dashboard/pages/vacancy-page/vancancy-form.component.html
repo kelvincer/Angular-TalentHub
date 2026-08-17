@@ -6,7 +6,7 @@
     <a routerLink="../" class="btn btn-ghost btn-sm">← Volver</a>
 </div>
 
-<form [formGroup]="createVacancyForm" (ngSubmit)="submit()">
+<form [formGroup]="vacancyForm" (ngSubmit)="submit()">
 
     <div class="mt-8 justify-between m-27">
         <div class="w-full form-control">
@@ -85,7 +85,17 @@
 
         <div class="flex justify-end gap-4 pt-4">
             <a routerLink="../" class="btn btn-ghost">Cancelar</a>
-            <button class="btn btn-primary" type="submit">Crear vacante</button>
+            <button class="btn btn-primary" type="submit">
+                {{ isEditing() ? 'Guardar cambios' : 'Crear vacante'}}
+            </button>
         </div>
     </div>
 </form>
+
+@if (toastVisible()) {
+<div class="toast z-1">
+    <div class="alert {{toastType()}}">
+        <span class="text-white">{{ toastMessage() }}</span>
+    </div>
+</div>
+}

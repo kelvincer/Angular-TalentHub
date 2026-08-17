@@ -1,0 +1,28 @@
+@if (modalOpen()) {
+<dialog class="modal modal-open">
+
+    <div class="modal-box">
+
+        <h3 class="font-bold">Eliminar vacante</h3>
+
+        <p>
+            ¿Desea eliminar la vacante <span class="font-semibold">{{ vacancy()?.title }}</span>?
+            Esta acción no se puede deshacer.
+        </p>
+
+        <div class="modal-action">
+
+            <button class="btn" (click)="closeModal()">
+                Cancelar
+            </button>
+
+            <button class="btn btn-error" (click)="deleteVacancy()">
+                Eliminar
+            </button>
+
+        </div>
+
+    </div>
+
+</dialog>
+}

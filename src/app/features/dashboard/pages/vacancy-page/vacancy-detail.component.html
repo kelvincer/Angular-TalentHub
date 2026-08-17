@@ -59,8 +59,8 @@
         <div class="card-actions justify-end mt-8">
             @if(isStaff()) {
             <div class="flex gap-2">
-                <a class="btn btn-dash btn-primary w-40">Editar</a>
-                <a class="btn btn-dash btn-error w-40">Eliminar</a>
+                <a class="btn btn-dash btn-primary w-40" (click)="onEdit()">Editar</a>
+                <a class="btn btn-dash btn-error w-40" (click)="onDelete()">Eliminar</a>
             </div>
             } @else {
             @if (hasApplied()) {
@@ -78,7 +78,7 @@
         </div>
     </div>
 </div>
-} @else {
+} @else if(vacancy.length === 0){
 <div class="flex flex-col items-center justify-center mt-16 gap-4">
     <p class="text-base-content/60">No se encontró la vacante solicitada.</p>
     <a class="btn btn-primary" routerLink="../">Volver a vacantes</a>
@@ -92,3 +92,6 @@
     </div>
 </div>
 }
+
+<app-delete-vacancy [modalOpen]="openDeleteVacancyModel()" (close)="closeDeleteVacancyModal()"
+    [vacancy]="vacancy()" (deleted)="vacancyDeleted($event)"></app-delete-vacancy>
