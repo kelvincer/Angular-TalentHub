@@ -9,10 +9,11 @@ import { Candidate } from '../../features/dashboard/models/Candidate';
 import { NewApplication } from '../../features/dashboard/models/Application';
 import { UsersService } from '../../features/dashboard/services/UsersService';
 import { single } from 'rxjs';
+import { ToastComponent } from "../toast/toast.component";
 
 @Component({
   selector: 'app-vacancy-card',
-  imports: [DecimalPipe],
+  imports: [DecimalPipe, ToastComponent],
   templateUrl: './vacancy-card.component.html',
   styleUrl: './vacancy-card.component.css',
 })

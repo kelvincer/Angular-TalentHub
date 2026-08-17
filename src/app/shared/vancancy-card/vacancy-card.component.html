@@ -48,11 +48,4 @@
     </div>
 </div>
 
-
-@if (toastVisible()) {
-<div class="toast z-1">
-    <div class="alert {{toastType()}}">
-        <span class="text-white">{{ toastMessage() }}</span>
-    </div>
-</div>
-}
+<app-toast [visible]="toastVisible()" [message]="toastMessage()" [type]="toastType()" />
