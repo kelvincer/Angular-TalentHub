@@ -21,10 +21,17 @@ export class VacancyRowComponent {
 
   seeVacancyDetail() {
     const userId = this.usersService.currentUser()?.id
-
     if (!userId)
       return
 
     this.router.navigate(['/dashboard', userId, 'vacancy', this.vacancy().id])
+  }
+
+  editVacancy() {
+    const userId = this.usersService.currentUser()?.id
+    if (!userId)
+      return
+
+    this.router.navigate(['/dashboard', userId, 'vacancy', this.vacancy().id, 'edit'])
   }
 }
