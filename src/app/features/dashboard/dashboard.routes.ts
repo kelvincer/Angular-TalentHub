@@ -35,15 +35,11 @@ const dashboardRoutes: Routes = [
             },
             {
                 path: 'applications',
-                loadComponent: () => import("./pages/manage-interview-page/manage-interview.component")
+                loadComponent: () => import("./pages/manage-interview-page/application-list.component")
             },
             {
                 path: 'my-profile',
                 loadComponent: () => import("./pages/candidate-profile-page/candidate-profile.component")
-            },
-            {
-                path: 'applications',
-                loadComponent: () => import("./pages/applications-page/application.component")
             }
         ]
     }

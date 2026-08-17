@@ -1,7 +1,7 @@
-<div class="flex flex-wrap justify-between">
+<div class="mb-6 flex flex-wrap items-center justify-between gap-4">
 
     <div>
-        <div class="text-2xl">Vacantes</div>
+        <div class="text-2xl font-bold">Vacantes</div>
         <div class="text-base-content/60">
             {{ isCandidate() ? 'Explora las oportunidades disponibles y postula.'
             : 'Administra las vacantes del proceso de reclutamiento.' }}
@@ -23,8 +23,6 @@
         </svg>
         <input type="search" class="grow" placeholder="Buscar por título, ubicación o área..."
             [(ngModel)]="searchText" />
-        <kbd class="kbd kbd-sm">⌘</kbd>
-        <kbd class="kbd kbd-sm">K</kbd>
     </label>
 </div>
 
@@ -35,7 +33,6 @@
 } @else if (isStaff()) {
 <div class="overflow-x-auto mt-3">
     <table class="table table-zebra">
-        <!-- head -->
         <thead>
             <tr class="text-sm">
                 <th>Vacante</th>
@@ -51,7 +48,7 @@
             <tr app-vacancy-row [vacancy]="item" [applicantCount]="applicantCount(item.id)"></tr>
             } @empty {
             <tr>
-                <td colspan="3">No users found.</td>
+                <td colspan="3">No se encontraron vacantes.</td>
             </tr>
             }
         </tbody>

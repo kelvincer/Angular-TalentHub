@@ -1,0 +1,44 @@
+@let app = application();
+
+<td>
+    <div class="font-semibold">
+        {{candidateName(app.candidateId)}}
+    </div>
+    <div class="text-xs text-base-content/60">
+        {{ candidateTitle(app.candidateId) }}
+    </div>
+</td>
+<td>
+    <div>
+        {{vacancyTitle(app.vacancyId)}}
+    </div>
+</td>
+<td>
+    <div>
+        {{app.appliedAt | date: "dd/MM/yyyy"}}
+    </div>
+</td>
+<td>
+    @switch (app.status) {
+    @case ('PENDING') {
+    <div class="badge badge-neutral">Pendiente</div>
+    }
+    @case ('REVIEWED') {
+    <div class="badge badge-info">Revisado</div>
+    }
+    @case ('INTERVIEW') {
+    <div class="badge badge-secondary">Entrevista</div>
+    }
+    @case ('ACCEPTED') {
+    <div class="badge badge-success">Aceptado</div>
+    }
+    @case ('REJECTED') {
+    <div class="badge badge-accent">Rechazado</div>
+    }
+    }
+</td>
+<td>
+    <div>
+        <button class="btn btn-dash btn-secondary">Gestionar</button>
+    </div>
+</td>

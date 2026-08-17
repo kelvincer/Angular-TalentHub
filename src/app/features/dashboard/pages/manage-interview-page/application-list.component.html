@@ -1,0 +1,101 @@
+<div class="mb-6 items-center justify-between gap-4">
+    <div class="text-2xl font-bold">Postulaciones</div>
+    <div class="text-base-content/60">
+        {{ !isStaff() ? 'Sigue el estado de tus postulaciones.'
+        : 'Administra las postulaciones recibidas.' }}
+    </div>
+</div>
+
+<div class="flex flex-wrap mt-4">
+    <label class="input">
+        <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.3-4.3"></path>
+            </g>
+        </svg>
+        <input type="search" class="grow" placeholder="Buscar por candidato o vacante..." [(ngModel)]="search" />
+    </label>
+</div>
+
+@if (isLoading() && (myApplications().length === 0 || staffApplications().length === 0)) {
+<div class="flex justify-center py-20">
+    <span class="loading loading-spinner loading-lg text-primary"></span>
+</div>
+} @else {
+
+@if (isStaff()) {
+@if (filteredItems().length === 0) {
+@if (search().length === 0) {
+<div class="card bg-base-100 shadow-sm mt-3">
+    <div class="card-body items-center py-16 text-center">
+        <p class="text-base-content/50">Aún no has postulado a ninguna vacante.</p>
+        <a routerLink="/dashboard/{{ userId() }}/vacancy" class="btn btn-primary mt-4">Explorar vacantes</a>
+    </div>
+</div>
+} @else {
+<div class="card bg-base-100 shadow-sm mt-3">
+    <div class="card-body items-center py-16 text-center">
+        <p class="text-base-content/50">No se encontraron postulaciones.</p>
+    </div>
+</div>
+}
+
+} @else {
+
+<div class="overflow-x-auto mt-3">
+    <table class="table table-zebra">
+        <thead>
+            <tr>
+                <th>Candidato</th>
+                <th>Vacante</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of filteredItems(); track item.id) {
+            <tr app-application-row [application]="item"></tr>
+            } @empty {
+            <tr>
+                <td colspan="3">No se encontraron aplicaciones.</td>
+            </tr>
+            }
+        </tbody>
+
+    </table>
+
+</div>
+}
+
+} @else {
+
+@if (filteredItems().length === 0) {
+@if (search().length === 0) {
+<div class="card bg-base-100 shadow-sm mt-3">
+    <div class="card-body items-center py-16 text-center">
+        <p class="text-base-content/50">Aún no has postulado a ninguna vacante.</p>
+        <a routerLink="/dashboard/{{ userId() }}/vacancy" class="btn btn-primary mt-4">Explorar vacantes</a>
+    </div>
+</div>
+} @else {
+<div class="card bg-base-100 shadow-sm mt-3">
+    <div class="card-body items-center py-16 text-center">
+        <p class="text-base-content/50">No se encontraron postulaciones.</p>
+    </div>
+</div>
+}
+
+} @else {
+<div class="flex flex-col mt-3 gap-y-4">
+    @for (item of filteredItems(); track item.id) {
+    <app-application-card [application]="item" [vacancyTitle]="vacancyTitle(item.vacancyId)"
+        [vacancyId]="item.vacancyId">
+
+    </app-application-card>
+    }
+</div>
+}
+}
+}
