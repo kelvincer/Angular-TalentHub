@@ -2,8 +2,9 @@ import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { User } from '../../models/User';
 import { UsersService } from '../../services/UsersService';
 import { CreateUserComponent } from "../../modals/create-user/CreateUser.component";
-import { DeleteUserComponent } from "../../modals/delete-user/DeleteUser.component/DeleteUser.component";
-import { EditUserComponent } from "../../modals/edit-user/EditUser.component/EditUser.component";
+import { DeleteUserComponent } from '../../modals/delete-user/DeleteUser.component';
+import { EditUserComponent } from '../../modals/edit-user/EditUser.component';
+import { Role } from '../../../auth/models/LoggedUser';
 
 @Component({
   selector: 'app-user-manager-page.component',
@@ -22,7 +23,7 @@ export default class UserManagerPageComponent implements OnInit {
   readonly selectedUserDelete = signal<User | undefined>(undefined)
   readonly search = signal('')
   readonly roleFilter = signal('Todos')
-  roles = ['Todos', 'Administrador', 'Reclutador', 'Candidato']
+  readonly roles: (Role | 'Todos')[] = ['Todos', 'ADMIN', 'RECRUITER', 'CANDIDATE']
 
   filteredUsers = computed(() => {
     const texto = this.search().toLowerCase().trim();
@@ -30,6 +31,9 @@ export default class UserManagerPageComponent implements OnInit {
 
     return this.users().filter(user => {
       const matchesText = !texto || user.name.toLowerCase().includes(texto);
+
+      console.log("user.role", user.role, 'rol', rol)
+
       const matchesRole = rol === 'Todos' || user.role === rol;
       return matchesText && matchesRole;
     });

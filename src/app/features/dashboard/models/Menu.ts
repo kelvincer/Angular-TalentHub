@@ -14,18 +14,23 @@ export const menu: Menu[] = [
     },
     {
         role: 'ADMIN',
-        link: 'user-manager',
-        name: 'Gestionar Usuarios'
+        link: 'candidates',
+        name: 'Candidatos'
+    },
+    {
+        role: 'ADMIN',
+        link: 'applications',
+        name: 'Postulaciones'
     },
     {
         role: 'ADMIN',
         link: 'visualize-report',
-        name: 'Visualizar Reportes'
+        name: 'Reportes'
     },
     {
         role: 'ADMIN',
         link: 'manage-vacancy',
-        name: 'Administrar Vacantes'
+        name: 'Usuarios'
     },
     {
         role: 'RECRUITER',

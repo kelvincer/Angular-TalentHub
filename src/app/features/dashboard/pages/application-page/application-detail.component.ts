@@ -44,8 +44,8 @@ export default class ApplicationDetailComponent implements OnInit {
   readonly applicationTypeLabels = APPLICATION_STATUS_LABELS
   readonly applicationBadge = applicationBadge;
   readonly interviewForm = new FormGroup({
-    type: new FormControl(null, [Validators.required]),
-    dateTime: new FormControl(null, [Validators.required]),
+    type: new FormControl<string | null>(null, [Validators.required]),
+    dateTime: new FormControl<string | null>(null, [Validators.required]),
     interviewer: new FormControl(null, [Validators.required]),
     notes: new FormControl('')
   })
@@ -138,6 +138,7 @@ export default class ApplicationDetailComponent implements OnInit {
       notes: raw.notes ?? ''
     }).subscribe({
       next: () => {
+        this.interviewForm.reset();
         this.toastService.show('Entrevista Agendada', 'alert-success')
         this.interviewsService.getByApplication(this.application().id).subscribe({
           next: (data) => this.interviews.set(data),

@@ -23,7 +23,7 @@ const dashboardRoutes: Routes = [
             },
             {
                 path: 'manage-vacancy',
-                loadComponent: () => import("./pages/manage-vancancy-page/manage-vacancy.component")
+                loadComponent: () => import("./pages/user-manager-page/user-manager-page.component")
             },
             {
                 path: 'vacancy',

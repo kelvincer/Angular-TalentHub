@@ -10,14 +10,30 @@
     <select class="select select-bordered" [value]="roleFilter()" (change)="roleFilter.set($any($event.target).value)">
 
         @for (role of roles; track role) {
-        <option>{{role}}</option>
+        @switch (role) {
+
+        @case ('ADMIN') {
+        <option value="ADMIN">Administrador</option>
+        }
+        @case ('RECRUITER') {
+        <option value="RECRUITER">Reclutador</option>
+        }
+        @case ('CANDIDATE') {
+        <option value="CANDIDATE">Candidato</option>
+        }
+        @default {
+        <option value="Todos">Todos</option>
+        }
+
+        }
+
         }
 
     </select>
 
 </div>
 
-<div class="overflow-x-auto">
+<div class="overflow-x-auto mt-6">
 
     <table class="table table-zebra">
 
@@ -44,7 +60,7 @@
 
                 <td>
 
-                    <div class="badge badge-primary">
+                    <div class="badge badge-neutral">
 
                         @switch(user.role) {
                         @case ('ADMIN') {

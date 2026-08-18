@@ -1,7 +1,7 @@
 import { Component, effect, inject, input, output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { User } from '../../../models/User';
-import { UsersService } from '../../../services/UsersService';
+import { UsersService } from '../../services/UsersService';
+import { User } from '../../models/User';
 
 @Component({
   selector: 'app-edit-user',

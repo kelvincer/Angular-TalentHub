@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
-import { User } from '../../../models/User';
-import { UsersService } from '../../../services/UsersService';
+import { Component, inject, input, output } from '@angular/core';
+import { UsersService } from '../../services/UsersService';
+import { User } from '../../models/User';
 
 @Component({
   selector: 'app-delete-user',
