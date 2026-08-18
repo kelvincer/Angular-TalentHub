@@ -31,9 +31,6 @@ export default class UserManagerPageComponent implements OnInit {
 
     return this.users().filter(user => {
       const matchesText = !texto || user.name.toLowerCase().includes(texto);
-
-      console.log("user.role", user.role, 'rol', rol)
-
       const matchesRole = rol === 'Todos' || user.role === rol;
       return matchesText && matchesRole;
     });

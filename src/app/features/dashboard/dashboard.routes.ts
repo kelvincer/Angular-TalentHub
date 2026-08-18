@@ -14,10 +14,6 @@ const dashboardRoutes: Routes = [
                 loadComponent: () => import("./pages/empty-page/empty.component")
             },
             {
-                path: 'user-manager',
-                loadComponent: () => import("./pages/user-manager-page/user-manager-page.component")
-            },
-            {
                 path: 'visualize-report',
                 loadComponent: () => import("./pages/visualize-report-page/visualize-report-page.component")
             },
