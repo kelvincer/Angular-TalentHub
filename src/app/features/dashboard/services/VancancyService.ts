@@ -17,16 +17,16 @@ export class VancancyService {
   }
 
   getById(id: string): Observable<Vacancy> {
-    return this.http.get<Vacancy>(`${API_URL}/vacancies/${id}`);
+    return this.http.get<Vacancy>(`${this.api}/${id}`);
   }
 
   create(data: NewVacancy): Observable<Vacancy> {
     const payload = { ...data, createdAt: new Date() };
-    return this.http.post<Vacancy>(`${API_URL}/vacancies`, payload);
+    return this.http.post<Vacancy>(`${this.api}`, payload);
   }
 
   update(id: string, data: Partial<Vacancy>): Observable<Vacancy> {
-    return this.http.patch<Vacancy>(`${API_URL}/vacancies/${id}`, data);
+    return this.http.patch<Vacancy>(`${this.api}/${id}`, data);
   }
 
   deleteVacancy(id: string) {

@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit, signal } from '@angular/core';
+import { Component, inject, input, OnInit, output, signal } from '@angular/core';
 import { Application } from '../../features/dashboard/models/Application';
 import { CandidateService } from '../../features/dashboard/services/CandidatesService';
 import { Candidate } from '../../features/dashboard/models/Candidate';
@@ -17,9 +17,10 @@ export class ApplicationRowComponent implements OnInit {
 
   private candidateService = inject(CandidateService)
   private vacanciesService = inject(VancancyService)
-  readonly application = input.required<Application>();
+  readonly application = input.required<Application>()
+  readonly manageApp = output<string>()
   readonly candidates = signal<Candidate[]>([])
-  readonly vacancies =signal<Vacancy[]>([])
+  readonly vacancies = signal<Vacancy[]>([])
 
   candidateName = (candidateId: string) => {
     return this.candidates().find((c) => c.id === candidateId)?.fullName ?? 'Candidate'
@@ -42,5 +43,9 @@ export class ApplicationRowComponent implements OnInit {
       },
       error: (error) => console.error(error)
     })
+  }
+
+  manageApplication(id: string) {
+    this.manageApp.emit(id)
   }
 }

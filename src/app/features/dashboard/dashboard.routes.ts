@@ -35,7 +35,7 @@ const dashboardRoutes: Routes = [
             },
             {
                 path: 'applications',
-                loadComponent: () => import("./pages/manage-interview-page/application-list.component")
+                loadChildren: () => import("./pages/application-page/applications.routes")
             },
             {
                 path: 'my-profile',

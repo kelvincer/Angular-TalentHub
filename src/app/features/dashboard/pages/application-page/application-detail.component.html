@@ -1,0 +1,149 @@
+@let candidateData = candidate();
+@let vacancyData = vacancy();
+@let appData = application();
+
+@if (appData && candidateData && vacancyData) {
+
+<div>
+    <a routerLink="../" class="link link-neutral text-sm">← Volver a postulaciones</a>
+</div>
+
+<div class="flex flex-row justify-between mt-6 gap-3">
+
+    <section class="flex flex-col flex-8 card bg-base-100 shadow-sm lg:col-span-2">
+        <div class="flex flex-row justify-between m-4">
+            <div>
+                <div class="card-title text-xl">
+                    Postulación de {{candidateData.fullName}}
+                </div>
+                <div class="text-base-content/60">
+                    {{ candidateData.title }}
+                </div>
+            </div>
+            <span class="badge badge-lg {{ applicationBadge(appData.status) }}">{{
+                applicationTypeLabels[appData.status]}}
+            </span>
+
+        </div>
+        <div class="flex flex-row m-4 gap-4">
+            <div class="flex flex-1 card bg-base-100 shadow-sm">
+                <div class="card-body">
+                    <h2 class="card-title text-xs text-base-content/60">Vacante</h2>
+                    <a class="link link-primary font-semibold" (click)="onVacancyClick()">{{vacancyData.title}}</a>
+                </div>
+            </div>
+            <div class="flex flex-1 card bg-base-100 shadow-sm">
+                <div class="card-body">
+                    <h2 class="card-title text-xs text-base-content/60">Candidato</h2>
+                    <a class="link link-primary font-semibold"
+                        (click)="onCandidateNameClick()">{{candidateData.fullName}}</a>
+                </div>
+            </div>
+            <div class="flex flex-1 card bg-base-100 shadow-sm">
+                <div class="card-body">
+                    <h2 class="card-title text-xs text-base-content/60">Postulada</h2>
+                    <div class="font-semibold">{{appData.appliedAt | date:'d MMM. y, hh:mm a' }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="divider divider-neutral m-4"></div>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 m-4">
+            <fieldset class="fieldset">
+                <legend class="fieldset-legend">Estado de la postulación</legend>
+                <select #statusSelect class="select" (change)="onStatusChange(statusSelect.value)">
+                    @for (entry of applicationTypeLabels | keyvalue; track entry.key) {
+                    <option [value]="entry.key" [selected]="entry.key === appData.status">{{ entry.value }}</option>
+                    }
+                </select>
+            </fieldset>
+
+            <fieldset class="fieldset">
+                <legend class="fieldset-legend">Notas del reclutador</legend>
+
+                <div class="flex flex-row gap-3">
+                    <input type="text" class="input" placeholder="Ej. Buen perfil técnico..." [value]="notes()"
+                        (input)="notes.set($any($event.target).value)" />
+
+                    <button class="btn btn-outline align-baseline" (click)="saveNotes()">Guardar</button>
+                </div>
+
+            </fieldset>
+
+        </div>
+
+    </section>
+    <div class="flex flex-4  flex-col gap-2">
+        <section class="card bg-base-100 shadow-sm lg:col-span-2">
+
+            <form class="flex flex-col m-4 gap-2" [formGroup]="interviewForm" (ngSubmit)="scheduleInterview()">
+                <div class="card-title text-xl">
+                    Agendar entrevista
+                </div>
+
+                <fieldset class="fieldset">
+                    <legend class="fieldset-legend">Tipo *</legend>
+                    <select class="select" formControlName="type">
+                        <option value="null" disabled selected>Selecciona un tipo</option>
+                        @for (entry of interviewTypeLabels | keyvalue; track entry.key) {
+                        <option [value]="entry.key">{{ entry.value }}</option>
+                        }
+                    </select>
+                </fieldset>
+
+                <fieldset class="fieldset">
+
+                    <legend class="fieldset-legend">Fecha y hora *</legend>
+                    <input id="datetime" type="datetime-local" class="input input-bordered"
+                        formControlName="dateTime" />
+
+                </fieldset>
+
+                <fieldset class="fieldset">
+                    <legend class="fieldset-legend">Entrevistador *</legend>
+                    <select class="select" formControlName="interviewer">
+                        <option value="null" disabled selected>Selecciona...</option>
+                        @for (user of interviewers(); track user.id) {
+                        <option [value]="user.id">{{ user.name }} ({{ user.role }})</option>
+                        }
+                    </select>
+                </fieldset>
+
+
+                <fieldset class="fieldset">
+
+                    <legend class="fieldset-legend">Notas</legend>
+                    <textarea class="textarea" placeholder="Temas a evaluar..." formControlName="notes"></textarea>
+                </fieldset>
+
+
+                <button class="btn btn-primary text-white">Agendar entrevista</button>
+            </form>
+
+        </section>
+
+        <section class="flex flex-col card bg-base-100 shadow-sm lg:col-span-2">
+
+            @if (interviews().length === 0) {
+
+            <div class="card-body">
+                <div class="card-title">
+                    Entrevistas: 0
+                </div>
+                <p class="py-6 text-center text-sm text-base-content/50">Aún no hay entrevistas para esta postulación.
+                </p>
+
+            </div>
+            } @else {
+            <div class="card-title m-3">
+                Entrevistas: {{interviews().length}}
+            </div>
+            @for (item of interviews(); track item.id) {
+            <app-interview-card [interview]="item" (updateInterview)="updateInterviews()"></app-interview-card>
+            }
+            }
+        </section>
+    </div>
+
+</div>
+
+}

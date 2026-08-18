@@ -1,0 +1,28 @@
+@let data = interview();
+
+<div class="flex flex-col m-3 p-3 gap-2.5 card bg-base-100 shadow-sm">
+    <div class="flex justify-between">
+        <span class="font-semibold">{{ typeOptions[data.type] }}</span>
+        <span class="badge {{ interviewBadge(data.status) }}">{{ interviewStatusOptions[data.status] }}</span>
+    </div>
+    <div class="text-sm">
+        📅 {{data.scheduledAt | date: 'dd/MM/yyyy'}}
+    </div>
+    <div>
+        👤 {{interviewerName(data.interviewerId)}}
+    </div>
+
+    <div class="mt-2 flex flex-wrap gap-2">
+        @if (data.status !== 'DONE') {
+        <button type="button" class="btn btn-xs btn-success"
+            (click)="setInterviewStatus(data, 'DONE')">Realizada</button>
+        }
+        @if (data.status === 'PENDING') {
+        <button type="button" class="btn btn-xs btn-warning"
+            (click)="setInterviewStatus(data, 'CANCELLED')">Cancelar</button>
+        }
+        <button type="button" class="btn btn-xs btn-ghost text-error"
+            (click)="deleteInterview(data)">Eliminar</button>
+    </div>
+
+</div>

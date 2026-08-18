@@ -6,7 +6,7 @@ import { VancancyService } from '../../services/VancancyService';
 import { Vacancy } from '../../models/Vacancy';
 import { forkJoin } from 'rxjs';
 import { UsersService } from '../../services/UsersService';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CandidateService } from '../../services/CandidatesService';
 import { ApplicationRowComponent } from "../../../../shared/application-row/application-row.component";
 import { FormsModule } from '@angular/forms';
@@ -20,6 +20,7 @@ import { Candidate } from '../../models/Candidate';
 })
 export default class ApplicationListComponent {
 
+  private router = inject(Router)
   private applicationsService = inject(ApplicationsService)
   private vacanciesService = inject(VancancyService)
   private candidatesService = inject(CandidateService)
@@ -84,5 +85,11 @@ export default class ApplicationListComponent {
         this.isLoading.set(false);
       }
     })
+  }
+
+  manageApplication(applicationId: string) {
+    if (!this.userId())
+      return
+    this.router.navigate(['/dashboard', this.userId(), 'applications', applicationId])
   }
 }

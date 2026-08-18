@@ -434,5 +434,16 @@
       "createdAt": "2026-07-01T10:00:00.000Z"
     }
   ],
+  "interviews": [
+    {
+      "id": "1",
+      "applicationId": "1",
+      "type": "TECNICA",
+      "scheduledAt": "2026-08-12T15:00:00.000Z",
+      "status": "PENDING",
+      "interviewerId": "2",
+      "notes": "Evaluar dominio de Angular y RxJS."
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }

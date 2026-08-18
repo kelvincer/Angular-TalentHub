@@ -8,7 +8,7 @@ import { API_URL, SESSION_KEY } from '../utils/config';
 })
 export class UsersService {
 
-  private api = `${API_URL}/users`;
+  private api = `${API_URL}/users`
   private http = inject(HttpClient)
   readonly currentUser = signal<User | undefined>(undefined)
   readonly isAdmin = computed(() => this.currentUser()?.role === 'ADMIN')

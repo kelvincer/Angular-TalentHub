@@ -16,8 +16,16 @@ export class ApplicationsService {
     return this.http.get<Application[]>(this.api).pipe(delay(1500))
   }
 
+  getById(id: string): Observable<Application> {
+    return this.http.get<Application>(`${this.api}/${id}`)
+  }
+
   create(data: NewApplication): Observable<Application> {
     const payload = { ...data, appliedAt: new Date() }
     return this.http.post<Application>(this.api, payload)
+  }
+
+  update(id: string, data: Partial<Application>): Observable<Application> {
+    return this.http.patch<Application>(`${this.api}/${id}`, data)
   }
 }

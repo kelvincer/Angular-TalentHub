@@ -16,6 +16,10 @@ export class CandidateService {
         return this.http.get<Candidate[]>(this.api)
     }
 
+    getCandidateById(id: string) {
+        return this.http.get<Candidate>(`${this.api}/${id}`)
+    }
+
     getCandidateByUserId(userId: string) {
         const params = new HttpParams()
             .set('_where', JSON.stringify({
