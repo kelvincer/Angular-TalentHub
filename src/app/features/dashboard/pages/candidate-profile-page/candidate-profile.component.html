@@ -82,7 +82,18 @@
         </div>
 
         <div class="flex flex-col items-center justify-center">
-            <input type="file" class="file-input" />
+
+            @if (fileUrl) {
+            <iframe [src]="fileUrl" height="200" class="w-full mb-2">
+            </iframe>
+            }
+
+            @if (fileName()) {
+            <p class="fieldset-legend mt-2 text-sm mb-2">{{ fileName() }}</p>
+            }
+
+            <input type="file" class="file-input" (change)="onFileSelected($event)" />
+
 
             <div class="divider">
 

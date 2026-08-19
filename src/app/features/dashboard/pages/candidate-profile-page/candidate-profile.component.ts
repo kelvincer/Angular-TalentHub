@@ -5,6 +5,7 @@ import { CandidateService } from '../../services/CandidatesService';
 import { Candidate } from '../../models/Candidate';
 import { UsersService } from '../../services/UsersService';
 import { ToastService } from '../../services/ToastService';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-candidate-profile.component',
@@ -20,6 +21,9 @@ export default class CandidateProfileComponent implements OnInit {
   private readonly toastService = inject(ToastService)
   readonly userId = signal<string | null>(null)
   readonly candidate = signal<Candidate | null>(null)
+  fileUrl?: SafeResourceUrl;
+  readonly fileName = signal('');
+  readonly sanitizer = inject(DomSanitizer)
   candidateForm = new FormGroup({
     fullName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required]),
@@ -43,7 +47,6 @@ export default class CandidateProfileComponent implements OnInit {
 
       this.candidateService.getCandidateByUserId(userId).subscribe({
         next: (data) => {
-          console.log("data", data)
           this.candidate.set(data)
           if (data) {
             this.candidateForm.patchValue({
@@ -69,6 +72,16 @@ export default class CandidateProfileComponent implements OnInit {
         error: (error) => console.log(error)
       })
     })
+  }
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files?.length) {
+      this.fileName.set(input.files[0].name);
+      this.candidateForm.patchValue({ cvUrl: input.files[0].name })
+      const url = URL.createObjectURL(input.files[0]);
+      this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    }
   }
 
   submit() {
