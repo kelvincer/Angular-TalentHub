@@ -39,7 +39,7 @@
                     Debe ser por lo menos 6 caracteres
                 </p>
                 }
-                <div class="card-actions w-full">
+                <div class="card-actions w-full aura aura-gold">
                     <button class="btn btn-primary btn-block  disabled:bg-gray-400 disabled:text-gray-700"
                         (click)="loginUser()"
                         [disabled]="isSubmiting() || (emailInput.invalid && emailInput.value?.length !== 0) || (passwordInput.invalid && passwordInput.value?.length !== 0)">

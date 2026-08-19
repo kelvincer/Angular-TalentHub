@@ -27,8 +27,4 @@ export class AuthService {
     .pipe(delay(3000))
     .pipe(map(users => users[0]))
   }
-
-  isAuthenticated(): boolean {
-    return localStorage.getItem(SESSION_KEY) !== null
-  }
 }

@@ -27,6 +27,10 @@ export class UsersService {
     }
   }
 
+   isAuthenticated(): boolean {
+    return localStorage.getItem(SESSION_KEY) !== null
+  }
+
   getUsers() {
     return this.http.get<User[]>(this.api).pipe(map((users) => users.reverse()))
   }
