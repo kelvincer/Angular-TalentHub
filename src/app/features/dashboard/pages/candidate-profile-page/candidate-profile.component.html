@@ -89,11 +89,12 @@
             }
 
             @if (fileName()) {
-            <p class="fieldset-legend mt-2 text-sm mb-2">{{ fileName() }}</p>
+            <p class="fieldset-legend mt-2 text-sm mb-2">CV: {{ fileName() }}</p>
+            } @else if (candidate()?.cvUrl) {
+            <p class="fieldset-legend mt-2 text-sm mb-2">CV: {{ candidate()?.cvUrl }}</p>
             }
 
             <input type="file" class="file-input" (change)="onFileSelected($event)" />
-
 
             <div class="divider">
 

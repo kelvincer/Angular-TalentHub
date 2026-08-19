@@ -21,8 +21,8 @@ export default class CandidateProfileComponent implements OnInit {
   private readonly toastService = inject(ToastService)
   readonly userId = signal<string | null>(null)
   readonly candidate = signal<Candidate | null>(null)
-  fileUrl?: SafeResourceUrl;
-  readonly fileName = signal('');
+  fileUrl?: SafeResourceUrl
+  readonly fileName = signal('')
   readonly sanitizer = inject(DomSanitizer)
   candidateForm = new FormGroup({
     fullName: new FormControl('', [Validators.required]),
