@@ -2,6 +2,7 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import { User } from '../models/User';
 import { HttpClient } from '@angular/common/http';
 import { API_URL, SESSION_KEY } from '../utils/config';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +28,7 @@ export class UsersService {
   }
 
   getUsers() {
-    return this.http.get<User[]>(this.api);
+    return this.http.get<User[]>(this.api).pipe(map((users) => users.reverse()))
   }
 
   create(user: User) {

@@ -2,7 +2,7 @@ import { inject, Injectable } from "@angular/core"
 import { API_URL } from "../utils/config"
 import { HttpClient, HttpParams } from "@angular/common/http"
 import { Interview, NewInterview } from "../models/Interview"
-import { Observable } from "rxjs"
+import { map, Observable } from "rxjs"
 
 @Injectable({
     providedIn: 'root',
@@ -16,7 +16,7 @@ export class InterviewService {
     }
 
     getInterviews() {
-        return this.http.get<Interview[]>(this.api);
+        return this.http.get<Interview[]>(this.api).pipe(map((interviews) => interviews.reverse()));
     }
 
     getByApplication(applicationId: string): Observable<Interview[]> {

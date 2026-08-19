@@ -12,10 +12,6 @@ export class AuthService {
   private api = `${API_URL}/users`;
   http = inject(HttpClient)
 
-  getUsers() {
-    return this.http.get<User[]>(this.api).pipe(delay(3000));
-  }
-
   authenticated(email: string, password: string) {
     const params = new HttpParams()
       .set('_where', JSON.stringify({

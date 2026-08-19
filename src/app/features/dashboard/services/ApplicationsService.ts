@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Application, NewApplication } from '../models/Application';
 import { API_URL } from '../utils/config';
-import { delay, Observable } from 'rxjs';
+import { delay, map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,10 @@ export class ApplicationsService {
   private http = inject(HttpClient)
 
   getApplications() {
-    return this.http.get<Application[]>(this.api).pipe(delay(1500))
+    return this.http.get<Application[]>(this.api)
+      .pipe(delay(1500),
+        map(applications => applications.reverse())
+      )
   }
 
   getById(id: string): Observable<Application> {

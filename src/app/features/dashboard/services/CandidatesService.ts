@@ -14,6 +14,7 @@ export class CandidateService {
 
     getCandidates() {
         return this.http.get<Candidate[]>(this.api)
+            .pipe(map((candidates) => candidates.reverse()))
     }
 
     getCandidateById(id: string) {

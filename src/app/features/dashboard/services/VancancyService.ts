@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { NewVacancy, Vacancy } from '../models/Vacancy';
 import { API_URL } from '../utils/config';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,7 @@ export class VancancyService {
   http = inject(HttpClient)
 
   getVacancies() {
-    return this.http.get<Vacancy[]>(this.api);
+    return this.http.get<Vacancy[]>(this.api).pipe(map((vacancies) => vacancies.reverse()))
   }
 
   getById(id: string): Observable<Vacancy> {
