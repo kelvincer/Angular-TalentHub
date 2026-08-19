@@ -6,12 +6,11 @@ import { UsersService } from '../../services/UsersService';
 import { User } from '../../models/User';
 import { ToastService } from '../../services/ToastService';
 import { Role } from '../../../auth/models/LoggedUser';
-import { JsonPipe } from '@angular/common';
 import { ROLE_LABELS, STATUS_LABELS } from '../../utils/label';
 
 @Component({
   selector: 'app-create-user',
-  imports: [ReactiveFormsModule, JsonPipe, KeyValuePipe],
+  imports: [ReactiveFormsModule, KeyValuePipe],
   templateUrl: './CreateUser.component.html',
   styleUrl: './CreateUser.component.css',
 })
@@ -31,7 +30,7 @@ export class CreateUserComponent {
     state: new FormControl<string>('', [Validators.required])
   });
 
-  closeModal() {
+  setFormInitialValues() {
     this.createUserForm.reset({
       name: '',
       email: '',
@@ -39,6 +38,10 @@ export class CreateUserComponent {
       role: '',
       state: ''
     });
+  }
+
+  closeModal() {
+    this.setFormInitialValues()
     this.close.emit()
   }
 
@@ -55,7 +58,6 @@ export class CreateUserComponent {
     const role = this.createUserForm.value.role as Role
     const status = this.createUserForm.value.state as User['status']
 
-    console.log(name + ' | ' + email + ' | ' + role + ' | ' + status);
     this.userService.create(
       {
         "id": '',
@@ -67,8 +69,9 @@ export class CreateUserComponent {
         "createdAt": new Date()
       }
     ).subscribe({
-      next: (response) => {
-        console.log(response);
+      next: () => {
+        this.toastService.show('Usuario creado.')
+        this.setFormInitialValues()
         this.close.emit();
       }
     })

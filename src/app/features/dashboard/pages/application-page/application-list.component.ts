@@ -1,4 +1,4 @@
-import { Component, computed, inject, model, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, model, signal } from '@angular/core';
 import { ApplicationsService } from '../../services/ApplicationsService';
 import { Application } from '../../models/Application';
 import { ApplicationCardComponent } from '../../../../shared/application-card/application-card.component';

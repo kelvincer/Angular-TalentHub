@@ -2,7 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { KeyValuePipe } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MODALITY_LABELS, VACANCY_STATUS_LABELS } from '../../utils/label';
-import { Modality, Vacancy, VacancyStatus } from '../../models/Vacancy';
+import { Modality, VacancyStatus } from '../../models/Vacancy';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { VancancyService } from '../../services/VancancyService';
 import { UsersService } from '../../services/UsersService';

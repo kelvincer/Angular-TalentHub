@@ -7,7 +7,7 @@
             Nuevo Usuario
         </h3>
 
-        <form class="py-4" [formGroup]="createUserForm">
+        <form class="py-4" [formGroup]="createUserForm" (ngSubmit)="handleSubmit()">
 
             <input class="input input-bordered w-full" placeholder="Nombre" formControlName="name">
 
@@ -27,7 +27,6 @@
                 <option value="" disabled>Selecciona el estado</option>
                 @for (entry of statuses | keyvalue; track entry.key) {
                 <option [value]="entry.key">{{ entry.value }}</option>
-
                 }
             </select>
 
@@ -37,13 +36,11 @@
                     Cancelar
                 </button>
 
-                <button class="btn btn-primary" type="submit" (click)="handleSubmit()">
+                <button class="btn btn-primary" type="submit">
                     Guardar
                 </button>
 
             </div>
-
-            <pre>{{ createUserForm.value | json }}</pre>
 
         </form>
 

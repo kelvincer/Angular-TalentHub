@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
 import { Candidate } from '../../features/dashboard/models/Candidate';
 import { NewApplication } from '../../features/dashboard/models/Application';
 import { UsersService } from '../../features/dashboard/services/UsersService';
-import { single } from 'rxjs';
 import { ToastService } from '../../features/dashboard/services/ToastService';
 
 @Component({

@@ -1,6 +1,5 @@
 import { Component, computed, inject, input } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { AuthService } from '../../features/auth/services/auth.service';
 import { Menu } from '../../features/dashboard/models/Menu';
 import { UsersService } from '../../features/dashboard/services/UsersService';
 
