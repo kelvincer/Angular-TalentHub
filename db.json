@@ -395,6 +395,15 @@
       "status": "PENDING",
       "interviewerId": "2",
       "notes": "Evaluar dominio de Angular y RxJS."
+    },
+    {
+      "applicationId": "1",
+      "type": "FINAL",
+      "scheduledAt": "2026-08-19T18:13:11.198Z",
+      "status": "PENDING",
+      "interviewerId": "4",
+      "notes": "",
+      "id": "Olvt_yymgtc"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

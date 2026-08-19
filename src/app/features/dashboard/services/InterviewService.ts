@@ -28,7 +28,7 @@ export class InterviewService {
                     eq: applicationId
                 }
             }));
-        return this.http.get<Interview[]>(this.api, { params })
+        return this.http.get<Interview[]>(this.api, { params }).pipe(map((interviews) => interviews.reverse()))
 
     }
 
