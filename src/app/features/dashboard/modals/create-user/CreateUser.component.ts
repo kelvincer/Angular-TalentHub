@@ -1,37 +1,59 @@
 import { Component, inject, input, output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { KeyValuePipe } from '@angular/common';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UsersService } from '../../services/UsersService';
 import { User } from '../../models/User';
+import { ToastService } from '../../services/ToastService';
+import { Role } from '../../../auth/models/LoggedUser';
+import { JsonPipe } from '@angular/common';
+import { ROLE_LABELS, STATUS_LABELS } from '../../utils/label';
 
 @Component({
   selector: 'app-create-user',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, JsonPipe, KeyValuePipe],
   templateUrl: './CreateUser.component.html',
   styleUrl: './CreateUser.component.css',
 })
 export class CreateUserComponent {
 
-  modalOpen = input(false);
-  close = output<void>();
-  userService = inject(UsersService)
-  createUserForm = new FormGroup({
-    name: new FormControl(''),
-    email: new FormControl(''),
-    role: new FormControl(''),
-    state: new FormControl('')
-  })
+  private toastService = inject(ToastService)
+  readonly modalOpen = input(false);
+  readonly close = output<void>();
+  private readonly userService = inject(UsersService)
+  readonly roles = ROLE_LABELS
+  readonly statuses = STATUS_LABELS
+  readonly createUserForm = new FormGroup({
+    name: new FormControl<string>('', [Validators.required]),
+    email: new FormControl<string>('', [Validators.required]),
+    password: new FormControl<string>('', [Validators.required]),
+    role: new FormControl<string>('', [Validators.required]),
+    state: new FormControl<string>('', [Validators.required])
+  });
 
   closeModal() {
-    this.createUserForm.reset()
+    this.createUserForm.reset({
+      name: '',
+      email: '',
+      password: '',
+      role: '',
+      state: ''
+    });
     this.close.emit()
   }
 
   handleSubmit() {
-    const name = this.createUserForm.value.name ?? '';
-    const email = this.createUserForm.value.email ?? '';
-    const role = this.createUserForm.value.role as User['role'];
-    const status = this.createUserForm.value.state as User['status'];
+
+    if (this.createUserForm.invalid) {
+      this.toastService.show('Completa el nombre, el correo y la contraseña.', 'alert-error')
+      return
+    }
+
+    const name = this.createUserForm.value.name ?? ''
+    const email = this.createUserForm.value.email ?? ''
+    const password = this.createUserForm.value.password ?? ''
+    const role = this.createUserForm.value.role as Role
+    const status = this.createUserForm.value.state as User['status']
 
     console.log(name + ' | ' + email + ' | ' + role + ' | ' + status);
     this.userService.create(
@@ -39,6 +61,7 @@ export class CreateUserComponent {
         "id": '',
         "name": name,
         "email": email,
+        "password": password,
         "role": role,
         "status": status,
         "createdAt": new Date()

@@ -33,10 +33,19 @@
                 </label>
 
                 <select class="select select-bordered w-full" formControlName="role">
-                    @for (rol of roles; track rol) {
-                    <option [value]="rol">
-                        {{ rol }}
-                    </option>
+                    @for (role of roles; track role) {
+                    @switch (role) {
+
+                    @case ('ADMIN') {
+                    <option value="ADMIN">Administrador</option>
+                    }
+                    @case ('RECRUITER') {
+                    <option value="RECRUITER">Reclutador</option>
+                    }
+                    @case ('CANDIDATE') {
+                    <option value="CANDIDATE">Candidato</option>
+                    }
+                    }
                     }
                 </select>
 
@@ -48,7 +57,7 @@
                 </label>
 
                 <select class="select select-bordered w-full" formControlName="status">
-                    @for (state of states; track state) {
+                    @for (state of statuses; track state) {
                     <option [value]="state">
                         {{ state }}
                     </option>

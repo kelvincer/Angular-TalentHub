@@ -1,132 +1,84 @@
 {
-  "loggedUsers": [
-    {
-      "email": "admin@talenthub.com",
-      "password": "admin123",
-      "role": "ADMIN",
-      "id": "WkfNwEGDE_0"
-    },
-    {
-      "email": "reclutador@talenthub.com",
-      "password": "reclutador123",
-      "role": "RECRUITER",
-      "id": "Hf9Jd9aEKLE"
-    },
-    {
-      "email": "candidato@talenthub.com",
-      "password": "candidato123",
-      "role": "CANDIDATE",
-      "id": "sRRi4raDgd4"
-    },
-    {
-      "email": "jorge.castillo@mail.com",
-      "password": "candidato123",
-      "role": "CANDIDATE",
-      "id": "sRRi4raDg12"
-    },
-    {
-      "email": "maria@example.com",
-      "password": "candidato123",
-      "role": "CANDIDATE",
-      "id": "sRRP9raDg12"
-    },
-    {
-      "email": "alfredo@site.com",
-      "password": "admin123",
-      "role": "ADMIN",
-      "id": "sRRi4raDgd9"
-    },
-    {
-      "email": "lucia.fernandez@mail.com",
-      "password": "candidato123",
-      "role": "CANDIDATE",
-      "id": "sRRi4raDgd3"
-    },
-    {
-      "email": "reclutador2@talenthub.com",
-      "password": "reclutador123",
-      "role": "RECRUITER",
-      "id": "Hf9Jd9aEKLF"
-    },
-    {
-      "_comment": "Usuario que no se encuentra en candidates",
-      "email": "carlos.silva@talenthub.com",
-      "password": "candidato123",
-      "role": "CANDIDATE",
-      "id": "sRRi4raDgd5"
-    }
-  ],
   "users": [
     {
       "id": "1",
       "name": "Jorge Mendez",
       "email": "admin@talenthub.com",
+      "password": "admin123",
       "role": "ADMIN",
-      "status": "Activo",
+      "status": "ACTIVE",
       "createdAt": "12-09-2026"
     },
     {
       "id": "2",
       "name": "Juan Aparicio",
       "email": "reclutador@talenthub.com",
+      "password": "reclutador123",
       "role": "RECRUITER",
-      "status": "Activo",
+      "status": "ACTIVE",
       "createdAt": "12-09-2026"
     },
     {
       "id": "3",
       "name": "Michel Gutierrez",
       "email": "candidato@talenthub.com",
+      "password": "candidato123",
       "role": "CANDIDATE",
-      "status": "Activo",
+      "status": "ACTIVE",
       "createdAt": "12-09-2026"
     },
     {
       "id": "4",
       "name": "Alfredo Perez",
       "email": "alfredo@site.com",
+      "password": "admin123",
       "role": "ADMIN",
-      "status": "Activo",
+      "status": "ACTIVE",
       "createdAt": "12-09-2026"
     },
     {
       "id": "5",
       "name": "Jorge Castillo",
       "email": "jorge.castillo@mail.com",
+      "password": "candidato123",
       "role": "CANDIDATE",
-      "status": "Activo",
+      "status": "ACTIVE",
       "createdAt": "12-08-2026"
     },
     {
       "id": "6",
       "name": "María Gómez",
       "email": "maria@example.com",
+      "password": "candidato123",
       "role": "CANDIDATE",
-      "status": "Activo",
+      "status": "ACTIVE",
       "createdAt": "13-08-2026"
     },
     {
       "id": "7",
       "name": "Lucía Fernández",
       "email": "lucia.fernandez@mail.com",
+      "password": "candidato123",
       "role": "CANDIDATE",
-      "status": "Activo",
+      "status": "ACTIVE",
       "createdAt": "13-08-2026"
     },
     {
       "id": "8",
       "name": "Andrea Torres",
       "email": "reclutador2@talenthub.com",
+      "password": "reclutador123",
       "role": "RECRUITER",
-      "status": "Activo",
+      "status": "ACTIVE",
       "createdAt": "13-08-2026"
     },
     {
       "id": "9",
       "name": "Carlos Silva",
       "email": "carlos.silva@talenthub.com",
+      "password": "candidato123",
       "role": "CANDIDATE",
-      "status": "Activo",
+      "status": "ACTIVE",
       "createdAt": "13-08-2026"
     }
   ],

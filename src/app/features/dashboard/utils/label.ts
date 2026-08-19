@@ -1,6 +1,19 @@
 import { Modality, VacancyStatus } from "../models/Vacancy";
-import { Status } from "../models/Application";
 import { InterviewStatus, InterviewType } from "../models/Interview";
+import { Role } from "../../auth/models/LoggedUser";
+import { Status } from "../models/User";
+import { ApplicationStatus } from "../models/Application";
+
+export const ROLE_LABELS: Record<Role, string> = {
+  ADMIN: 'Administrador',
+  RECRUITER: 'Reclutador',
+  CANDIDATE: 'Candidato',
+};
+
+export const STATUS_LABELS: Record<Status, string> = {
+  ACTIVE: 'Activo',
+  INACTIVE: 'Inactivo'
+};
 
 export const MODALITY_LABELS: Record<Modality, string> = {
   PRESENCIAL: 'Presencial',
@@ -14,7 +27,7 @@ export const VACANCY_STATUS_LABELS: Record<VacancyStatus, string> = {
   CLOSED: 'Cerrada',
 };
 
-export const APPLICATION_STATUS_LABELS: Record<Status, string> = {
+export const APPLICATION_STATUS_LABELS: Record<ApplicationStatus, string> = {
   PENDING: 'Pendiente',
   REVIEWED: 'En revisión',
   INTERVIEW: 'Entrevista',
@@ -35,7 +48,7 @@ export const INTERVIEW_STATUS_LABELS: Record<InterviewStatus, string> = {
   CANCELLED: 'Cancelada',
 };
 
-export function applicationBadge(status: Status): string {
+export function applicationBadge(status: ApplicationStatus): string {
   switch (status) {
     case 'PENDING':
       return 'badge-info';

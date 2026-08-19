@@ -1,10 +1,10 @@
-export type Status = 'PENDING' | 'REVIEWED' | 'INTERVIEW' | 'ACCEPTED' | 'REJECTED';
+export type ApplicationStatus = 'PENDING' | 'REVIEWED' | 'INTERVIEW' | 'ACCEPTED' | 'REJECTED';
 
 export interface Application {
     id: string;
     candidateId: string;
     vacancyId: string;
-    status: Status
+    status: ApplicationStatus
     appliedAt: Date;
     notes: string;
 }

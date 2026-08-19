@@ -1,7 +1,7 @@
 import { Component, computed, inject, input, model, OnInit, signal } from '@angular/core';
 import { DatePipe, KeyValuePipe } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { Application, Status } from '../../models/Application';
+import { Application, ApplicationStatus } from '../../models/Application';
 import { forkJoin } from 'rxjs';
 import { ApplicationsService } from '../../services/ApplicationsService';
 import { CandidateService } from '../../services/CandidatesService';
@@ -111,7 +111,7 @@ export default class ApplicationDetailComponent implements OnInit {
 
   onStatusChange(newStatus: string) {
     console.log(newStatus)
-    this.applicationsService.update(this.application().id, { status: newStatus as Status }).subscribe({
+    this.applicationsService.update(this.application().id, { status: newStatus as ApplicationStatus }).subscribe({
       next: (updated) => {
         this.application.set(updated);
         this.toastService.show('Estado de la postulación actualizado.');

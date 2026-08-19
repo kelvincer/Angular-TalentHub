@@ -80,7 +80,7 @@
 
                 <td>
 
-                    @if(user.status==='Activo'){
+                    @if(user.status==='ACTIVE'){
 
                     <div class="badge badge-success">
                         Activo
@@ -124,4 +124,4 @@
 
 <app-create-user [modalOpen]="isUserCreateModalOpen()" (close)="closeModal()" />
 <app-delete-user [modalOpen]="isUserDeleteModalOpen()" (close)="closeDeleteUserModal()" [user]="selectedUserDelete()" />
-<app-edit-user [modalOpen]="isUserEditModalOpen()" (close)="closeEditUserModal()" [user]="selectedUserEdit()" />
+<app-edit-user [modalOpen]="isUserEditModalOpen()" (close)="closeEditUserModal()" [user]="selectedUserEdit()!" />

@@ -1,7 +1,8 @@
-import { Component, effect, inject, input, output } from '@angular/core';
+import { Component, effect, inject, input, OnInit, output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { UsersService } from '../../services/UsersService';
-import { User } from '../../models/User';
+import { Status, User } from '../../models/User';
+import { Role } from '../../../auth/models/LoggedUser';
 
 @Component({
   selector: 'app-edit-user',
@@ -11,12 +12,12 @@ import { User } from '../../models/User';
 })
 export class EditUserComponent {
 
-  usersService = inject(UsersService)
-  modalOpen = input(false);
+  private usersService = inject(UsersService)
+  readonly modalOpen = input(false);
   close = output<void>();
-  user = input<User>();
-  roles = ['Administrador', 'Reclutador', 'Candidato'];
-  states = ['Activo', 'Inactivo']
+  readonly user = input.required<User>();
+  readonly roles: Role[] = ['ADMIN', 'RECRUITER', 'CANDIDATE'];
+  readonly statuses: Status[] = ['ACTIVE', 'INACTIVE']
 
   editUserForm = new FormGroup({
     name: new FormControl(''),
@@ -27,13 +28,17 @@ export class EditUserComponent {
 
   constructor() {
     effect(() => {
-      this.editUserForm.patchValue({
-        name: this.user()?.name ?? '',
-        email: this.user()?.email ?? '',
-        role: this.user()?.role ?? '',
-        status: this.user()?.status ?? ''
-      });
-    });
+      const user = this.user();
+
+      if (user) {
+        this.editUserForm.patchValue({
+          name: user.name ?? '',
+          email: user.email ?? '',
+          role: user.role ?? '',
+          status: user.status ?? ''
+        });
+      }
+    })
   }
 
   closeModal() {
@@ -41,16 +46,20 @@ export class EditUserComponent {
   }
 
   updateUser() {
-    const u: User = {
-      id: this.user()?.id ?? '',
+
+    const currentUser = this.user()
+    if (!currentUser)
+      return
+
+    const u: Partial<User> = {
       name: this.editUserForm.value.name ?? '',
       email: this.editUserForm.value.email ?? '',
       role: this.editUserForm.value.role as User['role'],
       status: this.editUserForm.value.status as User['status'],
-      createdAt: this.user()?.createdAt ?? new Date()
+      createdAt: currentUser.createdAt
     }
 
-    this.usersService.update(u.id, u).subscribe({
+    this.usersService.update(currentUser.id, { ...currentUser, ...u }).subscribe({
       next: (response) => {
         console.log(response)
         this.closeModal()

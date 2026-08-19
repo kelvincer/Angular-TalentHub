@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { UsersService } from '../dashboard/services/UsersService';
 import { RoleStateService } from '../dashboard/services/RoleStateService';
 import { Role } from './models/LoggedUser';
-import { SESSION_KEY } from '../dashboard/utils/config';
 
 @Component({
   selector: 'app-auth',
@@ -28,52 +27,27 @@ export class AuthComponent {
     console.log(this.email(), this.password())
     this.isSubmiting.set(true)
     this.onSubmitError.set(false)
-    this.authService.getUsers().subscribe({
-      next: (data) => {
-        const loggedUser = data.find(u => {
-          return u.email === this.email() && u.password === this.password()
-        })
-
-        console.log("user", loggedUser)
-
-        if (!loggedUser) {
+    this.authService.authenticated(this.email(), this.password()).subscribe({
+      next: (user) => {
+        if (!user) {
           this.onSubmitError.set(true)
           this.isSubmiting.set(false)
           return
         }
 
-        this.usersService.getUsers().subscribe({
-          next: (data) => {
-            const user = data.find(u => {
-              return u.email === loggedUser?.email
-            })
+        this.roleService.role.set(user?.role)
+        this.usersService.saveUser(user)
 
-            if (!user) {
-              this.onSubmitError.set(true)
-              this.isSubmiting.set(false)
-              return
-            }
-
-            this.roleService.role.set(user?.role)
-            this.usersService.saveUser(user)
-
-            if (user) {
-              this.router.navigate(['/dashboard', user.id])
-            } else {
-              console.log("User can't authenticated")
-            }
-          },
-          error: (error) => {
-            this.isSubmiting.set(false)
-            this.onSubmitError.set(true)
-            console.log(error)
-          }
-        })
+        if (user) {
+          this.router.navigate(['/dashboard', user.id])
+        } else {
+          console.log("User can't authenticated")
+        }
       },
       error: (error) => {
+        console.log(error)
         this.isSubmiting.set(false)
         this.onSubmitError.set(true)
-        console.log(error)
       }
     })
   }
