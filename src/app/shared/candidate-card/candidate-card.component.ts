@@ -5,7 +5,6 @@ import { UsersService } from '../../features/dashboard/services/UsersService';
 
 @Component({
   selector: 'app-candidate-card',
-  imports: [],
   templateUrl: './candidate-card.component.html',
   styleUrl: './candidate-card.component.css',
 })

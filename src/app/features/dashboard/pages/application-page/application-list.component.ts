@@ -1,4 +1,4 @@
-import { Component, computed, inject, model, signal } from '@angular/core';
+import { Component, computed, inject, model, OnInit, signal } from '@angular/core';
 import { ApplicationsService } from '../../services/ApplicationsService';
 import { Application } from '../../models/Application';
 import { ApplicationCardComponent } from '../../../../shared/application-card/application-card.component';
@@ -18,7 +18,7 @@ import { Candidate } from '../../models/Candidate';
   templateUrl: './application-list.component.html',
   styleUrl: './application-list.component.css',
 })
-export default class ApplicationListComponent {
+export default class ApplicationListComponent implements OnInit {
 
   private router = inject(Router)
   private applicationsService = inject(ApplicationsService)
@@ -34,7 +34,7 @@ export default class ApplicationListComponent {
   readonly isStaff = computed(() => this.userService.isAdmin() || this.userService.isRecruiter())
   readonly isLoading = signal(false)
   readonly search = model('')
-  readonly vacancyTitle = (vacancyId: String) => {
+  readonly vacancyTitle = (vacancyId: string) => {
     return this.vacancies().find((v) => v.id === vacancyId)?.title ?? ''
   }
   readonly candidateName = (candidateId: string) => {
@@ -67,13 +67,14 @@ export default class ApplicationListComponent {
       candidates: this.candidatesService.getCandidates()
     }).subscribe({
       next: ({ applications, vacancies, candidate, candidates }) => {
-        console.log("apps", applications)
         this.candidate.set(candidate)
         this.candidates.set(candidates)
         if (this.isStaff()) {
           this.staffApplications.set(applications)
         } else {
-          this.myApplications.set(applications.filter((apps) => apps.candidateId === candidate.id))
+          if (candidate) {
+            this.myApplications.set(applications.filter((apps) => apps.candidateId === candidate.id))
+          }
         }
         this.vacancies.set(vacancies);
       },

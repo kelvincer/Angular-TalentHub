@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { SideBarComponent } from "../side-bar.component/side-bar.component";
 import { ActivatedRoute, RouterOutlet } from "@angular/router";
 import { UsersService } from '../../features/dashboard/services/UsersService';
@@ -13,14 +13,15 @@ import { ToastService } from '../../features/dashboard/services/ToastService';
   templateUrl: './dashboard-layout.component.html',
   styleUrl: './dashboard-layout.component.css',
 })
-export default class DashboardLayoutComponent {
+export default class DashboardLayoutComponent implements OnInit {
 
+  private route = inject(ActivatedRoute)
   private usersService = inject(UsersService)
   protected toastService = inject(ToastService)
   user = signal<User | undefined>(undefined)
   menuItems = signal<Menu[]>([]);
 
-  constructor(private route: ActivatedRoute) {
+  ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       const userId = params.get('userId')
       this.usersService.getUsers().subscribe({
@@ -33,11 +34,9 @@ export default class DashboardLayoutComponent {
           this.menuItems.set(menu.filter(m =>
             m.role.toLowerCase() === user?.role.toLowerCase())
           )
-        }
+        },
+        error: (error) => console.log(error)
       })
     })
-
-    //const id = this.route.snapshot.paramMap.get('userId')
-    //console.log("snapshot", id)
   }
 }

@@ -103,7 +103,7 @@ export default class CandidateProfileComponent implements OnInit {
       title: this.candidateForm.value.title ?? '',
       summary: this.candidateForm.value.summary ?? '',
       skills: (this.candidateForm.value.skills ?? '').split(', '),
-      yearsExperience: Number(this.candidateForm.value.yearsExperience) ?? 0,
+      yearsExperience: Number(this.candidateForm.value.yearsExperience) || 0,
       education: this.candidateForm.value.education ?? '',
       cvUrl: this.candidateForm.value.cvUrl ?? null,
       createdAt: new Date()

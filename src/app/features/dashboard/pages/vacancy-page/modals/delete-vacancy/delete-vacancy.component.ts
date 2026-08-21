@@ -4,7 +4,6 @@ import { Vacancy } from '../../../../models/Vacancy';
 
 @Component({
   selector: 'app-delete-vacancy',
-  imports: [],
   templateUrl: './delete-vacancy.component.html',
   styleUrl: './delete-vacancy.component.css',
 })

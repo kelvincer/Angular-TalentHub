@@ -14,7 +14,8 @@ export class ApplicationsService {
 
   getApplications() {
     return this.http.get<Application[]>(this.api)
-      .pipe(delay(1500),
+      .pipe(
+        delay(1500),
         map(applications => applications.reverse())
       )
   }

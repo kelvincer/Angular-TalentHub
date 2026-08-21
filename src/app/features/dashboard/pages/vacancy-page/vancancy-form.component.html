@@ -38,7 +38,7 @@
                 <fieldset class="fieldset">
                     <legend class="fieldset-legend text-lg">Modalidad *</legend>
                     <select class="select" formControlName="modality">
-                        <option disabled selected>Selecciona una modalidad</option>
+                        <option value="" disabled selected>Selecciona una modalidad</option>
                         @for (item of modalityLabels | keyvalue; track item.key) {
                         <option [value]="item.key">{{ item.value }}</option>
                         }
@@ -63,7 +63,7 @@
             <fieldset class="fieldset">
                 <legend class="fieldset-legend text-lg">Estado *</legend>
                 <select class="select w-full" formControlName="status">
-                    <option disabled selected>Selecciona un estado</option>
+                    <option value="" disabled selected>Selecciona un estado</option>
                     @for (item of vacancyLabels | keyvalue; track item.key) {
                     <option [value]="item.key">{{ item.value }}</option>
                     }
@@ -84,7 +84,7 @@
         </div>
 
         <div class="flex justify-end gap-4 pt-4">
-            <a routerLink="../" class="btn btn-ghost">Cancelar</a>
+            <a routerLink="/dashboard/{{userId()}}/vacancy" class="btn btn-ghost">Cancelar</a>
             <button class="btn btn-primary" type="submit">
                 {{ isEditing() ? 'Guardar cambios' : 'Crear vacante'}}
             </button>

@@ -13,7 +13,7 @@ const dashboardRoutes: Routes = [
                 loadComponent: () => import("./pages/visualize-report-page/visualize-report-page.component")
             },
             {
-                path: 'manage-vacancy',
+                path: 'manage-user',
                 canActivate: [roleGuard(['ADMIN'])],
                 loadComponent: () => import("./pages/user-manager-page/user-manager-page.component")
             },

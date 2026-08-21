@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { delay, map } from 'rxjs';
-import { API_URL, SESSION_KEY } from '../../dashboard/utils/config';
+import { API_URL } from '../../dashboard/utils/config';
 import { User } from '../../dashboard/models/User';
 
 @Injectable({

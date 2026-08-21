@@ -20,8 +20,6 @@ export class InterviewService {
     }
 
     getByApplication(applicationId: string): Observable<Interview[]> {
-        //return this.http.get<Interview[]>(`${this.api}?applicationId=${applicationId}`);
-
         const params = new HttpParams()
             .set('_where', JSON.stringify({
                 applicationId: {

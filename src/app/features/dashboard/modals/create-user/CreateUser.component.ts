@@ -1,7 +1,6 @@
 import { Component, inject, input, output } from '@angular/core';
 import { KeyValuePipe } from '@angular/common';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { UsersService } from '../../services/UsersService';
 import { User } from '../../models/User';
 import { ToastService } from '../../services/ToastService';
@@ -17,9 +16,9 @@ import { ROLE_LABELS, STATUS_LABELS } from '../../utils/label';
 export class CreateUserComponent {
 
   private toastService = inject(ToastService)
+  private readonly userService = inject(UsersService)
   readonly modalOpen = input(false);
   readonly close = output<void>();
-  private readonly userService = inject(UsersService)
   readonly roles = ROLE_LABELS
   readonly statuses = STATUS_LABELS
   readonly createUserForm = new FormGroup({
@@ -46,7 +45,6 @@ export class CreateUserComponent {
   }
 
   handleSubmit() {
-
     if (this.createUserForm.invalid) {
       this.toastService.show('Completa el nombre, el correo y la contraseña.', 'alert-error')
       return

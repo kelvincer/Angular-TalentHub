@@ -14,7 +14,7 @@ export class UsersService {
   readonly currentUser = signal<User | undefined>(undefined)
   readonly isAdmin = computed(() => this.currentUser()?.role === 'ADMIN')
   readonly isRecruiter = computed(() => this.currentUser()?.role === 'RECRUITER')
-  readonly isCanditate = computed(() => this.currentUser()?.role === 'CANDIDATE')
+  readonly isCandidate = computed(() => this.currentUser()?.role === 'CANDIDATE')
 
   constructor() {
     const raw = localStorage.getItem(SESSION_KEY)
@@ -47,7 +47,7 @@ export class UsersService {
     return this.http.delete(`${this.api}/${id}`);
   }
 
-  saveUser(user: User | undefined) {
+  saveUser(user: User) {
     this.currentUser.set(user)
     localStorage.setItem(SESSION_KEY, JSON.stringify(user))
   }

@@ -7,7 +7,6 @@ export const CANDIDATES_ROUTES: Routes = [
     { path: '', component: CandidateListComponent },
     { path: 'new', component: CandidateFormComponent },
     { path: ':candidateId', component: CandidateDetailComponent },
-    //{ path: ':id/editar', component: CandidateFormComponent },
 ];
 
 export default CANDIDATES_ROUTES

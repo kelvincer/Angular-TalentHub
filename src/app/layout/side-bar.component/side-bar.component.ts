@@ -31,7 +31,6 @@ export class SideBarComponent {
 
   logout() {
     this.usersService.removeSessionKey()
-    // this.router.navigate([''], { replaceUrl: true })
     this.router.navigateByUrl('');
   }
 }

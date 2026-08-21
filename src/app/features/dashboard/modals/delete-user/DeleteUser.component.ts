@@ -4,7 +4,6 @@ import { User } from '../../models/User';
 
 @Component({
   selector: 'app-delete-user',
-  imports: [],
   templateUrl: './DeleteUser.component.html',
   styleUrl: './DeleteUser.component.css',
 })
@@ -20,8 +19,12 @@ export class DeleteUserComponent {
   }
 
   deleteUser() {
-    this.userService.delete(this.user()?.id ?? '').subscribe({
-      next: (response) => this.closeModal(),
+    const id = this.user()?.id
+    if (!id)
+      return
+
+    this.userService.delete(id).subscribe({
+      next: () => this.closeModal(),
       error: (error) => console.log(error)
     })
   }

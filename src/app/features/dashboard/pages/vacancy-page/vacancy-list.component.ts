@@ -24,7 +24,7 @@ export default class VacancyListComponent implements OnInit {
   readonly vacancies = signal<Vacancy[]>([])
   readonly applications = signal<Application[]>([])
   readonly isStaff = computed(() => this.usersService.isAdmin() || this.usersService.isRecruiter())
-  readonly isCandidate = this.usersService.isCanditate
+  readonly isCandidate = computed(() => this.usersService.isCandidate())
   readonly loading = signal(false)
   readonly searchText = model('')
   readonly filteredVacancies = computed(() => {
@@ -40,7 +40,6 @@ export default class VacancyListComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log("ngOnInit", this.usersService.currentUser())
     this.loading.set(true)
 
     forkJoin({

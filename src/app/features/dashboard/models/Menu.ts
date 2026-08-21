@@ -29,7 +29,7 @@ export const menu: Menu[] = [
     },
     {
         role: 'ADMIN',
-        link: 'manage-vacancy',
+        link: 'manage-user',
         name: 'Usuarios'
     },
     {

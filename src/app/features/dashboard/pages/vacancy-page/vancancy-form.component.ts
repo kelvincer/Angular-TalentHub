@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { KeyValuePipe } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MODALITY_LABELS, VACANCY_STATUS_LABELS } from '../../utils/label';
@@ -21,6 +21,7 @@ export default class VancancyFormComponent implements OnInit {
   private vacanciesService = inject(VancancyService)
   private userService = inject(UsersService)
   private readonly toastService = inject(ToastService)
+  readonly userId = computed(() => this.userService.currentUser()?.id)
   readonly isEditing = signal(false)
   readonly modalityLabels = MODALITY_LABELS
   readonly vacancyLabels = VACANCY_STATUS_LABELS
@@ -29,11 +30,11 @@ export default class VancancyFormComponent implements OnInit {
     description: new FormControl('', Validators.required),
     requirements: new FormControl('', Validators.required),
     location: new FormControl('', Validators.required),
-    modality: new FormControl<Modality | string>('Selecciona una modalidad', Validators.required),
+    modality: new FormControl<Modality | string>('', Validators.required),
     department: new FormControl('', Validators.required),
     salaryMin: new FormControl<number | null>(null),
     salaryMax: new FormControl<number | null>(null),
-    status: new FormControl<VacancyStatus | string>('Selecciona un estado', Validators.required),
+    status: new FormControl<VacancyStatus | string>('', Validators.required),
   })
 
   ngOnInit(): void {
@@ -60,7 +61,6 @@ export default class VancancyFormComponent implements OnInit {
   }
 
   submit() {
-    console.log("title", this.vacancyForm.value.title)
     if (this.vacancyForm.invalid) {
       this.toastService.show('Completa los campos requeridos.', 'alert-error')
       return
@@ -90,7 +90,11 @@ export default class VancancyFormComponent implements OnInit {
         }
       })
     } else {
-      this.vacanciesService.create({ ...payload, createdBy: this.userService.currentUser()!.id })
+      const id = this.userService.currentUser()?.id
+      if (!id)
+        return
+
+      this.vacanciesService.create({ ...payload, createdBy: id })
         .subscribe({
           next: () => {
             this.toastService.show('Vacante creada correctamente.', 'alert-success')

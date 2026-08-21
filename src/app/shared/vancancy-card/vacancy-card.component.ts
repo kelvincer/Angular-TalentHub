@@ -65,7 +65,6 @@ export class VacancyCardComponent implements OnInit {
 
     this.applicationService.create(application).subscribe({
       next: () => {
-        console.log('aplicacion creada')
         this.getApplications()
         this.toastService.show('Postulación enviada correctamente.', 'alert-success')
       },
@@ -79,7 +78,6 @@ export class VacancyCardComponent implements OnInit {
       next: (data) => {
         this.appliedVacancyIds.set(new Set(data.filter((v) => v.candidateId === this.candidate()?.id).map((v) => v.vacancyId)))
         this.appliedVacancyLoading.set(false)
-        console.log('vacancyIds', this.appliedVacancyIds())
       },
       error: (error) => console.log(error)
     })

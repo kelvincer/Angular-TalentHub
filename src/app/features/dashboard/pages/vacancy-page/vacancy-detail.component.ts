@@ -98,7 +98,7 @@ export default class VacancyDetailComponent implements OnInit {
   }
 
   onEdit() {
-    const vacancyId = Number(this.route.snapshot.paramMap.get('vacancyId'));
+    const vacancyId = this.route.snapshot.paramMap.get('vacancyId');
     this.router.navigate(['/dashboard', this.usersService.currentUser()?.id, 'vacancy', vacancyId, 'edit'])
   }
 

@@ -3,7 +3,6 @@ import { Router } from "@angular/router";
 import { AuthService } from './services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { UsersService } from '../dashboard/services/UsersService';
-import { RoleStateService } from '../dashboard/services/RoleStateService';
 import { Role } from './models/LoggedUser';
 
 @Component({
@@ -16,7 +15,6 @@ export class AuthComponent {
 
   private authService = inject(AuthService)
   private usersService = inject(UsersService)
-  private roleService = inject(RoleStateService)
   private router = inject(Router)
   email = model('')
   password = model('')
@@ -24,7 +22,6 @@ export class AuthComponent {
   onSubmitError = signal(false)
 
   loginUser() {
-    console.log(this.email(), this.password())
     this.isSubmiting.set(true)
     this.onSubmitError.set(false)
     this.authService.authenticated(this.email(), this.password()).subscribe({
@@ -35,14 +32,8 @@ export class AuthComponent {
           return
         }
 
-        this.roleService.role.set(user?.role)
         this.usersService.saveUser(user)
-
-        if (user) {
-          this.router.navigate(['/dashboard', user.id])
-        } else {
-          console.log("User can't authenticated")
-        }
+        this.router.navigate(['/dashboard', user.id])
       },
       error: (error) => {
         console.log(error)

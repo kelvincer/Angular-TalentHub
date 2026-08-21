@@ -1,1 +1,95 @@
-<p>visualize-report-page.component works!</p>
+@let rp = reportData();
+
+<div>
+    <h1 class="text-2xl font-bold">Reportes</h1>
+    <p class="text-base-content/60">Métricas del proceso de reclutamiento.</p>
+</div>
+
+@if (isLoading()) {
+<div class="flex justify-center py-20">
+    <span class="loading loading-spinner loading-lg text-primary"></span>
+</div>
+} @else {
+
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-3 mt-4">
+    @for (item of rp.informationSummary; track item) {
+    <app-report-card [data]="item" />
+    }
+</div>
+
+<div class="flex flex-row mt-6 gap-3">
+    <div class="flex flex-col flex-1 card bg-base-100 shadow-sm p-6">
+        <div class="card-title">
+            Postulaciones por vacante
+        </div>
+        <div class="flex flex-col gap-y-3 mt-2">
+            @for (item of rp.applicationsByVacancy; track $index) {
+            <div>
+                <div class="flex flex-row justify-between">
+                    <div>
+                        {{item.title}}
+                    </div>
+                    <div class="badge badge-outline">
+                        {{item.count}}
+                    </div>
+                </div>
+                <progress class="progress progress-accent w-full"
+                    [value]="(item.count / maxApplicationsByVacancy()) * 100" max="100"></progress>
+                @if (statusKeys(item.statuses).length > 0) {
+                <div class="mt-1 flex flex-col flex-wrap gap-1">
+                    @for (status of item.statuses | keyvalue; track status.key) {
+                    <div class="badge badge-sm {{ appBadge(status.key) }}">
+                        {{ appStatusLabel(status.key) }}: {{ status.value }}
+                    </div>
+                    }
+                </div>
+                }
+            </div>
+            }
+
+        </div>
+    </div>
+    <div class="flex flex-col flex-1 card bg-base-100 shadow-sm p-6">
+
+        <div>
+            <div class="card-title">
+                Postulaciones por estado
+            </div>
+            <div class="mt-2">
+                <div class="flex flex-wrap gap-3">
+                    @for (status of rp.applicationsByStatus | keyvalue; track status.key) {
+                    <div class="flex-1 rounded-lg border border-base-300 p-4 text-center">
+                        <span class="badge {{ appBadge(status.key) }}">{{ appStatusLabel(status.key) }}</span>
+                        <p class="mt-2 text-3xl font-bold">{{ status.value }}</p>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="mt-5">
+            <div class="card-title">
+                Vacantes por departamento
+            </div>
+            <div class="flex flex-col mt-2 gap-y-3">
+                @for (item of rp.vacanciesByDepartment; track $index) {
+                <div>
+                    <div class="flex flex-row justify-between">
+                        <div>
+                            {{item.department}}
+                        </div>
+                        <div class="badge badge-outline">
+                            {{item.count}}
+                        </div>
+                    </div>
+                    <progress class="progress progress-info w-full" [value]="(item.count / maxByDepartment()) * 100"
+                        max="100"></progress>
+
+                </div>
+                }
+            </div>
+        </div>
+
+    </div>
+
+</div>
+}

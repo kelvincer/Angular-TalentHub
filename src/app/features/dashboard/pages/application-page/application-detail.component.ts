@@ -11,7 +11,7 @@ import { Vacancy } from '../../models/Vacancy';
 import { APPLICATION_STATUS_LABELS, applicationBadge, INTERVIEW_TYPE_LABELS } from '../../utils/label';
 import { UsersService } from '../../services/UsersService';
 import { User } from '../../models/User';
-import { FormControl, FormGroup, Validators, ɵInternalFormsSharedModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ToastService } from '../../services/ToastService';
 import { InterviewService } from '../../services/InterviewService';
 import { Interview, InterviewType } from '../../models/Interview';
@@ -19,7 +19,7 @@ import { InterviewCardComponent } from "../../../../shared/interview-card/interv
 
 @Component({
   selector: 'app-application-detail',
-  imports: [RouterLink, KeyValuePipe, DatePipe, ɵInternalFormsSharedModule, ReactiveFormsModule, InterviewCardComponent],
+  imports: [RouterLink, KeyValuePipe, DatePipe, ReactiveFormsModule, InterviewCardComponent],
   templateUrl: './application-detail.component.html',
   styleUrl: './application-detail.component.css',
 })
@@ -83,15 +83,13 @@ export default class ApplicationDetailComponent implements OnInit {
 
   saveNotes() {
 
-    console.log("save note", this.notes())
-
     this.applicationsService.update(this.application().id, {
       notes: this.notes()
     }).subscribe({
       next: (data) => {
         this.application.set(data)
-        console.log('save data notes')
-      }
+      },
+      error: (error) => console.log(error)
     })
   }
 
@@ -110,7 +108,6 @@ export default class ApplicationDetailComponent implements OnInit {
   }
 
   onStatusChange(newStatus: string) {
-    console.log(newStatus)
     this.applicationsService.update(this.application().id, { status: newStatus as ApplicationStatus }).subscribe({
       next: (updated) => {
         this.application.set(updated);
@@ -148,7 +145,6 @@ export default class ApplicationDetailComponent implements OnInit {
       error: (error) => console.log(error)
     })
 
-    console.log(this.interviewForm.getRawValue())
   }
 
   updateInterviews() {

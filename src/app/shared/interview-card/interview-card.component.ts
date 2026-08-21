@@ -41,7 +41,6 @@ export class InterviewCardComponent implements OnInit {
   setInterviewStatus(interview: Interview, status: InterviewStatus): void {
     this.interviewsService.update(interview.id, { status }).subscribe({
       next: (updated) => {
-        // this.interviews.update((list) => list.map((i) => (i.id === updated.id ? updated : i)));
         this.toastService.show('Entrevista actualizada.');
         this.updateInterview.emit()
       },
