@@ -9,6 +9,7 @@ import { Candidate } from '../../features/dashboard/models/Candidate';
 import { NewApplication } from '../../features/dashboard/models/Application';
 import { UsersService } from '../../features/dashboard/services/UsersService';
 import { ToastService } from '../../features/dashboard/services/ToastService';
+import { switchMap, of, filter } from 'rxjs';
 
 @Component({
   selector: 'app-vacancy-card',
@@ -35,15 +36,27 @@ export class VacancyCardComponent implements OnInit {
 
   ngOnInit(): void {
     const uId = this.userId()
-    if (uId === null)
+    if (!uId)
       return
-
-    this.candidatesService.getCandidateByUserId(uId).subscribe({
-      next: (data) => this.candidate.set(data),
-      error: (error) => console.log(error)
+    this.appliedVacancyLoading.set(true)
+    this.candidatesService.getCandidateByUserId(uId).pipe(
+      filter((data) => data != null),
+      switchMap((candidate) => {
+        this.candidate.set(candidate)
+        return this.applicationService.getApplications()
+      })
+    ).subscribe({
+      next: (data) => {
+        this.appliedVacancyIds.set(new Set(
+          data.filter((v) => v.candidateId === this.candidate()?.id).map((v) => v.vacancyId)
+        ))
+        this.appliedVacancyLoading.set(false)
+      },
+      error: (error) => {
+        console.log(error)
+        this.appliedVacancyLoading.set(false)
+      }
     })
-
-    this.getApplications()
   }
 
   apply(vacancy: Vacancy) {
@@ -73,10 +86,15 @@ export class VacancyCardComponent implements OnInit {
   }
 
   private getApplications() {
+    const candidate = this.candidate()
+    if (!candidate) return
+
     this.appliedVacancyLoading.set(true)
     this.applicationService.getApplications().subscribe({
       next: (data) => {
-        this.appliedVacancyIds.set(new Set(data.filter((v) => v.candidateId === this.candidate()?.id).map((v) => v.vacancyId)))
+        this.appliedVacancyIds.set(new Set(
+          data.filter((v) => v.candidateId === candidate.id).map((v) => v.vacancyId)
+        ))
         this.appliedVacancyLoading.set(false)
       },
       error: (error) => console.log(error)

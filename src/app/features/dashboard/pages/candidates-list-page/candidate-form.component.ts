@@ -4,6 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { CandidateService } from '../../services/CandidatesService';
 import { UsersService } from '../../services/UsersService';
 import { Candidate } from '../../models/Candidate';
+import { ToastService } from '../../services/ToastService';
 
 @Component({
   selector: 'app-candidate-form',
@@ -15,6 +16,7 @@ export default class CandidateFormComponent {
 
   private candidateService = inject(CandidateService)
   private usersService = inject(UsersService)
+  private toastService = inject(ToastService)
   private readonly router = inject(Router)
   readonly candidateForm = new FormGroup({
     fullName: new FormControl('', [Validators.required]),
@@ -29,12 +31,14 @@ export default class CandidateFormComponent {
   })
 
   submit() {
-    if (this.candidateForm.invalid)
+    if (this.candidateForm.invalid) {
+      this.toastService.show('Completa los campos obligatorios.', 'alert-error')
       return
+    }
 
     const candidate: Candidate = {
       id: '',
-      userId: this.usersService.currentUser()?.id ?? null,
+      userId: null,
       fullName: this.candidateForm.value.fullName ?? '',
       email: this.candidateForm.value.email ?? '',
       phone: this.candidateForm.value.phone ?? '',

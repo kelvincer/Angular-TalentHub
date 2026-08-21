@@ -87,7 +87,8 @@ export default class VancancyFormComponent implements OnInit {
           setTimeout(() => {
             this.router.navigate(['../'], { relativeTo: this.route });
           }, 2000)
-        }
+        },
+        error: (error) => console.log(error)
       })
     } else {
       const id = this.userService.currentUser()?.id

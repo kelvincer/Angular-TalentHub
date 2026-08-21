@@ -23,7 +23,7 @@ export class CreateUserComponent {
   readonly statuses = STATUS_LABELS
   readonly createUserForm = new FormGroup({
     name: new FormControl<string>('', [Validators.required]),
-    email: new FormControl<string>('', [Validators.required]),
+    email: new FormControl<string>('', [Validators.required, Validators.email]),
     password: new FormControl<string>('', [Validators.required]),
     role: new FormControl<string>('', [Validators.required]),
     state: new FormControl<string>('', [Validators.required])
@@ -71,7 +71,8 @@ export class CreateUserComponent {
         this.toastService.show('Usuario creado.')
         this.setFormInitialValues()
         this.close.emit();
-      }
+      },
+      error: (error) => console.log(error)
     })
   }
 }

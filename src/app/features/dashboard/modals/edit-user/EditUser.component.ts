@@ -60,8 +60,9 @@ export class EditUserComponent {
     }
 
     this.usersService.update(currentUser.id, { ...currentUser, ...u }).subscribe({
-      next: () => {
+      next: (user) => {
         this.closeModal()
+        this.usersService.saveUser(user)
       },
       error: err => console.error(err)
     })

@@ -1,4 +1,4 @@
-import { Component, inject, input, output } from '@angular/core';
+import { Component, computed, inject, input, output } from '@angular/core';
 import { UsersService } from '../../services/UsersService';
 import { User } from '../../models/User';
 
@@ -9,7 +9,8 @@ import { User } from '../../models/User';
 })
 export class DeleteUserComponent {
 
-  userService = inject(UsersService)
+  private readonly userService = inject(UsersService)
+  readonly userId = computed(() => this.userService.currentUser()?.id)
   modalOpen = input(false);
   close = output<void>();
   user = input<User>()

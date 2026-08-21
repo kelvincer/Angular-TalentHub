@@ -45,7 +45,7 @@ export default class ApplicationDetailComponent implements OnInit {
   readonly applicationBadge = applicationBadge;
   readonly interviewForm = new FormGroup({
     type: new FormControl<string | null>(null, [Validators.required]),
-    dateTime: new FormControl<string | null>(null, [Validators.required]),
+    dateTime: new FormControl<string>('', [Validators.required]),
     interviewer: new FormControl(null, [Validators.required]),
     notes: new FormControl('')
   })
@@ -62,6 +62,7 @@ export default class ApplicationDetailComponent implements OnInit {
       next: ({ application, users }) => {
 
         this.application.set(application)
+        this.notes.set(application.notes ?? '')
         this.users.set(users)
 
         forkJoin({
@@ -129,7 +130,7 @@ export default class ApplicationDetailComponent implements OnInit {
     this.interviewsService.create({
       applicationId: this.application().id,
       type: raw.type! as InterviewType,
-      scheduledAt: new Date().toISOString(),
+      scheduledAt: new Date(raw.dateTime ?? '').toISOString(),
       status: 'PENDING',
       interviewerId: raw.interviewer!,
       notes: raw.notes ?? ''

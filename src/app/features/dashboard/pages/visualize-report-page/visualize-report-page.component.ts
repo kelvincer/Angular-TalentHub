@@ -7,10 +7,6 @@ import { Vacancy } from '../../models/Vacancy';
 import { Candidate } from '../../models/Candidate';
 import { Application, ApplicationStatus } from '../../models/Application';
 import { ReportCardComponent } from '../../../../shared/report-card/report-card.component';
-import { UsersService } from '../../services/UsersService';
-import { InterviewService } from '../../services/InterviewService';
-import { Interview } from '../../models/Interview';
-import { User } from '../../models/User';
 import { ReportData, VacancyReportRow } from '../../models/ReportData';
 import { APPLICATION_STATUS_LABELS, applicationBadge } from '../../utils/label';
 import { KeyValuePipe } from '@angular/common';
@@ -27,17 +23,17 @@ export default class VisualizeReportPageComponent implements OnInit {
   private candidatesService = inject(CandidateService)
   private applicationsService = inject(ApplicationsService)
 
-  readonly reportData = signal<ReportData>(undefined!)
+  readonly reportData = signal<ReportData | null>(null)
   readonly isLoading = signal<boolean>(false)
   readonly maxApplicationsByVacancy = computed(() => {
     const data = this.reportData();
-    if (!data.applicationsByVacancy)
+    if (!data?.applicationsByVacancy)
       return 1
     return Math.max(...data.applicationsByVacancy.map((row) => row.count), 1);
   })
   readonly maxByDepartment = computed(() => {
     const data = this.reportData()
-    if (!data.vacanciesByDepartment)
+    if (!data?.vacanciesByDepartment)
       return 1
     return Math.max(...data.vacanciesByDepartment.map((row) => row.count), 1)
   })
@@ -61,7 +57,10 @@ export default class VisualizeReportPageComponent implements OnInit {
         }))
         this.isLoading.set(false)
       },
-      error: (error) => console.log(error),
+      error: (error) => {
+        console.log(error)
+        this.isLoading.set(false)
+      },
       complete: () => this.isLoading.set(false)
     })
   }

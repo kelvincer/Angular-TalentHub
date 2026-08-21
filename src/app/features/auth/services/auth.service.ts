@@ -14,14 +14,8 @@ export class AuthService {
 
   authenticated(email: string, password: string) {
     const params = new HttpParams()
-      .set('_where', JSON.stringify({
-        email: {
-          eq: email
-        },
-        password: {
-          eq: password
-        }
-      }))
+      .set('email', email)
+      .set('password', password)
 
     return this.http.get<User[]>(this.api, { params })
     .pipe(delay(3000))

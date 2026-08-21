@@ -78,12 +78,12 @@
         </div>
     </div>
 </div>
-} @else if(vacancy.length === 0){
+} @else if(!vacancy()){
 <div class="flex flex-col items-center justify-center mt-16 gap-4">
     <p class="text-base-content/60">No se encontró la vacante solicitada.</p>
     <a class="btn btn-primary" routerLink="../">Volver a vacantes</a>
 </div>
 }
 
-<app-delete-vacancy [modalOpen]="openDeleteVacancyModel()" (close)="closeDeleteVacancyModal()"
-    [vacancy]="vacancy()" (deleted)="vacancyDeleted($event)"></app-delete-vacancy>
+<app-delete-vacancy [modalOpen]="openDeleteVacancyModel()" (close)="closeDeleteVacancyModal()" [vacancy]="vacancy()"
+    (deleted)="vacancyDeleted($event)"></app-delete-vacancy>

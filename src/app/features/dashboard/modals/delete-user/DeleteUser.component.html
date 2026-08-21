@@ -11,13 +11,17 @@
             ¿Desea eliminar a este usuario {{user()?.name}}?
         </p>
 
+        @if (user()?.id === userId()) {
+        <p class="text-error text-sm mt-2">No puedes eliminar tu propio usuario.</p>
+        }
+
         <div class="modal-action">
 
-            <button class="btn" (click)="closeModal()">
+            <button class="btn" type="button" (click)="closeModal()">
                 Cancelar
             </button>
 
-            <button class="btn btn-error" (click)="deleteUser()">
+            <button class="btn btn-error" type="button" [disabled]="user()?.id === userId()" (click)="deleteUser()">
                 Eliminar
             </button>
 
