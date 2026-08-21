@@ -29,7 +29,7 @@
         <div class="card-actions flex gap-2 items-center">
             <button class="flex-1 btn btn-secondary" (click)="seeVacancyDetail()">Ver detalles</button>
             @if(appliedVacancyLoading()) {
-            <button class="btn flex-1 disabled:bg-gray-400">
+            <button class="btn flex-1 disabled:bg-gray-400" [disabled]="appliedVacancyLoading()">
                 <span class="loading loading-spinner loading-md"></span>
             </button>
             }

@@ -3,7 +3,7 @@
         <h1 class="text-2xl font-bold">Nueva vacante</h1>
         <div class="text-base-content/60">Completa la información de la vacante.</div>
     </div>
-    <a routerLink="../" class="btn btn-ghost btn-sm">← Volver</a>
+    <a routerLink="/dashboard/{{userId()}}/vacancy" class="btn btn-ghost btn-sm">← Volver</a>
 </div>
 
 <form [formGroup]="vacancyForm" (ngSubmit)="submit()">
