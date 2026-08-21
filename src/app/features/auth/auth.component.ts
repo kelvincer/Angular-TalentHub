@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 import { AuthService } from './services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { UsersService } from '../dashboard/services/UsersService';
-import { Role } from './models/LoggedUser';
+import { Role } from './type/Role';
 
 @Component({
   selector: 'app-auth',

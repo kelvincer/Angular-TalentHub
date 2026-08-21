@@ -4,7 +4,7 @@ import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { UsersService } from '../../services/UsersService';
 import { User } from '../../models/User';
 import { ToastService } from '../../services/ToastService';
-import { Role } from '../../../auth/models/LoggedUser';
+import { Role } from '../../../auth/type/Role';
 import { ROLE_LABELS, STATUS_LABELS } from '../../utils/label';
 
 @Component({

@@ -4,7 +4,7 @@ import { UsersService } from '../../services/UsersService';
 import { CreateUserComponent } from "../../modals/create-user/CreateUser.component";
 import { DeleteUserComponent } from '../../modals/delete-user/DeleteUser.component';
 import { EditUserComponent } from '../../modals/edit-user/EditUser.component';
-import { Role } from '../../../auth/models/LoggedUser';
+import { Role } from '../../../auth/type/Role';
 
 @Component({
   selector: 'app-user-manager-page.component',

@@ -1,4 +1,4 @@
-import { Role } from "../../auth/models/LoggedUser"
+import { Role } from "../../auth/type/Role"
 
 export interface Menu {
     role: Role

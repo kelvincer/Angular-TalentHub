@@ -1,6 +1,6 @@
 import { Modality, VacancyStatus } from "../models/Vacancy";
 import { InterviewStatus, InterviewType } from "../models/Interview";
-import { Role } from "../../auth/models/LoggedUser";
+import { Role } from "../../auth/type/Role";
 import { Status } from "../models/User";
 import { ApplicationStatus } from "../models/Application";
 
