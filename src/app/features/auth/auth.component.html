@@ -15,10 +15,10 @@
                         </g>
                     </svg>
                     <input type="email" placeholder="mail@site.com" [(ngModel)]="email" #emailInput="ngModel"
-                        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required />
+                        pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$" required />
                 </label>
                 @if (emailInput.invalid && emailInput.touched) {
-                <div class="text-error ">Ingresa un correo válido</div>
+                <div class="badge text-error ">Ingresa un correo válido</div>
                 }
 
                 <label class="input validator w-full">
@@ -35,12 +35,12 @@
                         #passwordInput="ngModel" />
                 </label>
                 @if (passwordInput.invalid && passwordInput.touched) {
-                <p class="text-error">
+                <p class="badge text-error">
                     Debe ser por lo menos 6 caracteres
                 </p>
                 }
                 <div class="card-actions w-full aura aura-gold">
-                    <button class="btn btn-primary btn-block  disabled:bg-gray-400 disabled:text-gray-700"
+                    <button class="btn btn-primary text-white btn-block  disabled:bg-gray-400 disabled:text-gray-700"
                         (click)="loginUser()"
                         [disabled]="isSubmiting() || (emailInput.invalid && emailInput.value?.length !== 0) || (passwordInput.invalid && passwordInput.value?.length !== 0)">
                         @if(isSubmiting()) {
