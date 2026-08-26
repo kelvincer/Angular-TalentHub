@@ -19,7 +19,7 @@ export default class DashboardLayoutComponent implements OnInit {
   private usersService = inject(UsersService)
   protected toastService = inject(ToastService)
   user = signal<User | undefined>(undefined)
-  menuItems = signal<Menu[]>([]);
+  menuItems = signal<Menu[]>([])
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {

@@ -6,7 +6,7 @@
         {{vacancy().createdAt | date:'dd/MM/yyyy'}}
     </div>
 </td>
-<td>
+<td class="hidden lg:table-cell">
     <div>
         {{vacancy().department}}
     </div>
@@ -15,8 +15,8 @@
     </div>
 
 </td>
-<td>S/. {{vacancy().salaryMin | number}} - S/. {{vacancy().salaryMax | number}}</td>
-<td>
+<td class="hidden md:table-cell">S/. {{vacancy().salaryMin | number}} - S/. {{vacancy().salaryMax | number}}</td>
+<td class="hidden md:table-cell">
     @switch(vacancy().status) {
     @case('ACTIVE'){
     <div class="badge badge-primary">Activa</div>
