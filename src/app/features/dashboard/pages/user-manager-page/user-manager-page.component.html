@@ -43,8 +43,8 @@
                 <th>Nombre</th>
                 <th>Correo</th>
                 <th>Rol</th>
-                <th>Estado</th>
-                <th>Acciones</th>
+                <th class="hidden md:table-cell">Estado</th>
+                <th class="hidden md:table-cell">Acciones</th>
             </tr>
 
         </thead>
@@ -78,7 +78,7 @@
 
                 </td>
 
-                <td>
+                <td class="hidden md:table-cell">
 
                     @if(user.status==='ACTIVE'){
 
@@ -96,7 +96,7 @@
 
                 </td>
 
-                <td>
+                <td class="hidden md:table-cell">
 
                     <div class="flex gap-2">
 
