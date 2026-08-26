@@ -3,7 +3,7 @@
     <p class="text-base-content/60">Completa tu perfil para postular a las vacantes.</p>
 </div>
 
-<form class="flex flex-row flex-wrap mt-8 h-full gap-6" [formGroup]="candidateForm" (ngSubmit)="submit()">
+<form class="flex flex-row flex-wrap mt-8 gap-6" [formGroup]="candidateForm" (ngSubmit)="submit()">
 
     <div class="flex flex-col flex-5">
         <div class="flex flex-row gap-3">
@@ -37,17 +37,17 @@
         <div class="flex flex-row gap-3">
 
             <fieldset class="fieldset flex-1">
-                <legend class="fieldset-legend text-lg">Puesto / Perfil</legend>
+                <legend class="fieldset-legend text-lg line-clamp-1">Puesto / Perfil</legend>
                 <input type="text" class="input" formControlName="title" />
             </fieldset>
 
             <fieldset class="fieldset flex-1">
-                <legend class="fieldset-legend text-lg">Formación</legend>
+                <legend class="fieldset-legend text-lg line-clamp-1">Formación</legend>
                 <input type="text" class="input" formControlName="education" />
             </fieldset>
 
             <fieldset class="fieldset flex-1">
-                <legend class="fieldset-legend text-lg">Años de experiencia</legend>
+                <legend class="fieldset-legend text-lg line-clamp-1">Años de experiencia</legend>
                 <input type="text" class="input" formControlName="yearsExperience" />
             </fieldset>
 
@@ -65,7 +65,7 @@
 
         <div class="flex-1"></div>
 
-        <div class="flex justify-end w-full">
+        <div class="flex justify-end w-full mt-2">
             <button class="btn btn-primary" type="submit">Guardar perfil</button>
         </div>
 
