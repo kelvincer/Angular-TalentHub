@@ -1,4 +1,4 @@
-<aside class="w-fit bg-base-100 border-r border-base-300 h-full">
+<aside class="w-fit bg-base-100 border-r border-base-300 min-h-screen top-0">
     <div class="menu-title text-2xl">
         <div class="flex flex-row items-center justify-center">
             Talent Hub
@@ -13,7 +13,7 @@
     <ul class="menu w-full">
         @for (item of menu(); track item) {
         <li>
-            <a [routerLink]="item.link" routerLinkActive="menu-active">{{item.name}}</a>
+            <a [routerLink]="item.link" routerLinkActive="menu-active" (click)="closeMenu()">{{item.name}}</a>
         </li>
         }
 

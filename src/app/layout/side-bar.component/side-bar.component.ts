@@ -29,6 +29,13 @@ export class SideBarComponent {
     }
   })
 
+  closeMenu() {
+    const checkbox = document.getElementById('my-drawer-1') as HTMLInputElement | null;
+    if (checkbox) {
+      checkbox.checked = false
+    }
+  }
+
   logout() {
     this.usersService.removeSessionKey()
     this.router.navigateByUrl('');

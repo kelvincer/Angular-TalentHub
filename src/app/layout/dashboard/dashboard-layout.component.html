@@ -1,9 +1,18 @@
-<div class="flex h-screen">
-    <app-side-bar [menu]="menuItems()" [userName]="user()?.name ?? ''" [role]="user()?.role ?? ''" />
+<div class="drawer lg:drawer-open min-h-screen">
 
-    <main class="flex-1 p-6 overflow-auto">
-        <router-outlet />
-    </main>
+    <input id="my-drawer-1" type="checkbox" class="drawer-toggle" />
+
+    <div class="drawer-content flex flex-col">
+        <main class="flex-1 overflow-auto p-4 lg:p-6">
+            <label for="my-drawer-1" class="btn drawer-button lg:hidden">☰</label>
+            <router-outlet />
+        </main>
+    </div>
+
+    <div class="drawer-side">
+        <label for="my-drawer-1" aria-label="close sidebar" class="drawer-overlay"></label>
+        <app-side-bar [menu]="menuItems()" [userName]="user()?.name ?? ''" [role]="user()?.role ?? ''" />
+    </div>
 
 </div>
 
