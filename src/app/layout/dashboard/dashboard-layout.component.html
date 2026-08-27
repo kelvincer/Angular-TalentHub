@@ -1,9 +1,9 @@
-<div class="drawer lg:drawer-open min-h-screen">
+<div class="drawer lg:drawer-open h-screen">
 
     <input id="my-drawer-1" type="checkbox" class="drawer-toggle" />
 
-    <div class="drawer-content flex flex-col">
-        <main class="flex-1 overflow-auto p-4 lg:p-6">
+    <div #drawerContent class="drawer-content flex flex-col overflow-auto">
+        <main class="flex-1 p-4 lg:p-6">
             <label for="my-drawer-1" class="btn drawer-button lg:hidden mb-1">☰</label>
             <router-outlet />
         </main>
